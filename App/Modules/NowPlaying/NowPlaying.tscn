@@ -1,0 +1,86 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://App/Interface/Controls/NextTrack.tscn" type="PackedScene" id=1]
+[ext_resource path="res://App/Interface/Controls/PlayPause.tscn" type="PackedScene" id=2]
+[ext_resource path="res://App/Interface/Track/TrackView.tscn" type="PackedScene" id=3]
+[ext_resource path="res://App/Interface/Controls/PreviousTrack.tscn" type="PackedScene" id=4]
+[ext_resource path="res://App/Modules/NowPlaying/NowPlaying.gd" type="Script" id=5]
+
+[sub_resource type="StyleBoxFlat" id=26]
+content_margin_left = 8.0
+content_margin_right = 8.0
+content_margin_top = 8.0
+content_margin_bottom = 8.0
+bg_color = Color( 0, 0, 0, 0 )
+border_width_bottom = 1
+border_color = Color( 0.247059, 0.247059, 0.247059, 1 )
+
+[node name="NowPlaying" type="VBoxContainer"]
+margin_top = 607.0
+margin_right = 480.0
+margin_bottom = 660.0
+custom_constants/separation = 0
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TrackView" parent="." instance=ExtResource( 3 )]
+anchor_right = 0.0
+margin_right = 480.0
+margin_bottom = 51.0
+custom_styles/panel = SubResource( 26 )
+playable = false
+removable = false
+show_active = true
+
+[node name="Info" parent="TrackView/HBoxContainer" index="0"]
+margin_right = 269.0
+
+[node name="Main" parent="TrackView/HBoxContainer/Info" index="0"]
+margin_right = 269.0
+
+[node name="Title" parent="TrackView/HBoxContainer/Info/Main" index="1"]
+margin_right = 269.0
+
+[node name="Meta" parent="TrackView/HBoxContainer/Info" index="1"]
+margin_right = 269.0
+
+[node name="AddToQueue" parent="TrackView/HBoxContainer" index="1"]
+margin_left = 273.0
+margin_right = 308.0
+
+[node name="Remove" parent="TrackView/HBoxContainer" index="2"]
+margin_left = 312.0
+margin_right = 347.0
+
+[node name="PreviousTrack" parent="TrackView/HBoxContainer" index="3" instance=ExtResource( 4 )]
+margin_left = 351.0
+margin_right = 386.0
+margin_bottom = 35.0
+rect_min_size = Vector2( 35, 0 )
+
+[node name="PlayPause" parent="TrackView/HBoxContainer" index="4" instance=ExtResource( 2 )]
+margin_left = 390.0
+margin_right = 425.0
+margin_bottom = 35.0
+rect_min_size = Vector2( 35, 0 )
+
+[node name="NextTrack" parent="TrackView/HBoxContainer" index="5" instance=ExtResource( 1 )]
+margin_left = 429.0
+margin_right = 464.0
+margin_bottom = 35.0
+rect_min_size = Vector2( 35, 0 )
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+margin_top = 51.0
+margin_right = 480.0
+margin_bottom = 53.0
+rect_min_size = Vector2( 0, 2 )
+step = 0.0
+value = 50.0
+percent_visible = false
+
+[connection signal="selected" from="TrackView" to="." method="_on_TrackView_selected"]
+
+[editable path="TrackView"]

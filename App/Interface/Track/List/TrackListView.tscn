@@ -1,0 +1,9 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://App/Interface/Track/TrackView.tscn" type="PackedScene" id=1]
+[ext_resource path="res://App/Interface/Track/List/TrackListView.gd" type="Script" id=2]
+[ext_resource path="res://App/Interface/ListView/ListView.tscn" type="PackedScene" id=3]
+
+[node name="TrackListView" instance=ExtResource( 3 )]
+script = ExtResource( 2 )
+item_scene = ExtResource( 1 )

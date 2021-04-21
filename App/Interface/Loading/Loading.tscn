@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://App/Interface/Loading/Loading.gd" type="Script" id=1]
+[ext_resource path="res://App/Icons/generic_loading.svg" type="Texture" id=2]
+
+[node name="Loading" type="Control"]
+modulate = Color( 1, 1, 1, 0 )
+margin_right = 32.0
+margin_bottom = 32.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+active = false
+
+[node name="Icon" type="TextureRect" parent="."]
+modulate = Color( 1, 1, 1, 0.74902 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_rotation = 166.396
+rect_pivot_offset = Vector2( 16, 16 )
+mouse_filter = 2
+texture = ExtResource( 2 )
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="."]

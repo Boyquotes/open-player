@@ -1,0 +1,71 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://App/Modules/IconMenu/IconMenu.gd" type="Script" id=1]
+[ext_resource path="res://App/Icons/menu_home.svg" type="Texture" id=2]
+[ext_resource path="res://App/Interface/IconButton/IconButton.tscn" type="PackedScene" id=3]
+[ext_resource path="res://App/Icons/menu_settings.svg" type="Texture" id=4]
+[ext_resource path="res://App/Icons/menu_import.svg" type="Texture" id=5]
+[ext_resource path="res://App/Icons/menu_tracks.svg" type="Texture" id=6]
+[ext_resource path="res://App/Icons/menu_lists.svg" type="Texture" id=7]
+
+[sub_resource type="ButtonGroup" id=1]
+
+[node name="IconMenu" type="HBoxContainer"]
+margin_top = 660.0
+margin_right = 480.0
+margin_bottom = 720.0
+rect_min_size = Vector2( 0, 60 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Home" parent="." instance=ExtResource( 3 )]
+margin_right = 101.0
+margin_bottom = 60.0
+rect_min_size = Vector2( 60, 0 )
+size_flags_horizontal = 3
+group = SubResource( 1 )
+texture = ExtResource( 2 )
+
+[node name="Import" parent="." instance=ExtResource( 3 )]
+margin_left = 105.0
+margin_right = 206.0
+margin_bottom = 60.0
+rect_min_size = Vector2( 60, 0 )
+size_flags_horizontal = 3
+group = SubResource( 1 )
+texture = ExtResource( 5 )
+
+[node name="Tracks" parent="." instance=ExtResource( 3 )]
+margin_left = 210.0
+margin_right = 311.0
+margin_bottom = 60.0
+rect_min_size = Vector2( 60, 0 )
+size_flags_horizontal = 3
+group = SubResource( 1 )
+texture = ExtResource( 6 )
+
+[node name="Folders" parent="." instance=ExtResource( 3 )]
+margin_left = 315.0
+margin_right = 416.0
+margin_bottom = 60.0
+rect_min_size = Vector2( 60, 0 )
+focus_mode = 2
+size_flags_horizontal = 3
+group = SubResource( 1 )
+texture = ExtResource( 7 )
+
+[node name="Settings" parent="." instance=ExtResource( 3 )]
+margin_left = 420.0
+margin_right = 480.0
+margin_bottom = 60.0
+rect_min_size = Vector2( 60, 0 )
+group = SubResource( 1 )
+texture = ExtResource( 4 )
+
+[connection signal="pressed" from="Home" to="." method="_on_Home_pressed"]
+[connection signal="pressed" from="Import" to="." method="_on_Import_pressed"]
+[connection signal="pressed" from="Tracks" to="." method="_on_Tracks_pressed"]
+[connection signal="pressed" from="Folders" to="." method="_on_Folders_pressed"]
+[connection signal="pressed" from="Settings" to="." method="_on_Settings_pressed"]

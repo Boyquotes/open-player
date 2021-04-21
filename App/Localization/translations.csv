@@ -1,0 +1,41 @@
+keys,en_US,de_DE,ru_RU
+MENU_HOME,Home,Heim,Главная
+MENU_IMPORT,Import,Importieren,Импорт
+IMPORT_FILES,Load from device,Vom Gerät laden,Загрузить с устройства
+IMPORT_ADD_FILES,Add Files,Dateien hinzufügen,Добавить файлы
+IMPORT_FILES_LOADING,Adding Files…,Dateien hinzufügen…,Добавление файлов…
+IMPORT_SEARCH,Search YouTube,YouTube durchsuchen,Искать в Youtube
+SEARCH_PLACEHOLDER,Search YouTube...,YouTube Suchen…,Искать в Youtube…
+MENU_TRACKS,Music,Musik,Музыка
+MY_TRACKS_NAME,My Music,Meine Musik,Моя музыка
+MY_TRACKS_EMPTY,You have not discovered any music!\nCheck the search tab.,Sie haben keine Musik entdeckt!\nÜberprüfen Sie die Registerkarte Suche. ,Вы не обнаружили никакой музыки!\nПроверить вкладку импорт
+TRACKS_PLAY,Play All,Alle wiedergeben,Играть всё 
+TRACK_REMOVE,Remove Song,Lied entfernen,Удалить музыку
+TRACK_MENU_PLAY_NEXT,Play Next,Weiter spielen,играть следующую
+TRACK_MENU_ADD_TO_FOLDER,Add to playlist,Zur Wiedergabeliste hinzufügen,Добавить в плейлист
+TRACK_MENU_ADD_TO_MY_TRACKS,Add to my music,Zu meiner Musik hinzufügen,добавить в мою музыку
+TRACK_MENU_VIEW_ON_YOUTUBE,Watch on YouTube,Auf YouTube ansehen,Смотреть на Youtube 
+TRACK_MENU_COPY_YOUTUBE_URL,Copy YouTube URL,YouTube-URL kopieren,Копировать URL с Youtube
+TRACK_MENU_COPY_YOUTUBE_ID,Copy YouTube ID,YouTube-ID kopieren,Копировать Youtube ID
+MENU_FOLDERS,Playlists,Wiedergabelisten,Плейлисты
+FOLDERS_CREATE,Create Playlist,Wiedergabeliste erstellen,Создать плейлист
+FOLDER_NAME,Playlist {0},Wiedergabeliste {0},Плейлист {0}
+FOLDER_EMPTY,This playlist does not have any songs.,Diese Playlist enthält keine Songs.,В плейлисте нету песен
+FOLDER_REMOVE,Remove Playlist,Playlist entfernen,Удалить плейлист
+MENU_SETTINGS,Settings,Einstellungen,Настройки
+SETTINGS_ANIMATIONS_ENABLED,Animations Enabled,Animationen aktiviert,Анимации включены
+SETTINGS_ANIMATION_SPEED,Animation Speed,Animations Geschwindigkeit,Скорость Анимации
+SETTINGS_LANGUAGE,Language: {0},Sprache: {0},Язык: {0}
+SETTINGS_SHOW_COPYRIGHT,Show Copyright,Urheberrecht anzeigen,Показать права 
+QUEUE_TITLE,Now Playing,Läuft gerade,Сейчас играет
+QUEUE_SHUFFLE,Shuffle,Mischen,Шарканье
+QUEUE_MODE_ONCE,Play Queue Once,Warteschlange einmal abspielen,Играть Очередь один раз
+QUEUE_MODE_REPEAT,Repeat Queue,Warteschlange wiederholen,Повторить Очередь
+QUEUE_MODE_REPEAT_SINGLE,Repeat Song,Lied wiederholen,Повторить песню
+CONTROL_VOLUME,Volume,Volumen,Громкость
+CONTROL_PREVIOUS_TRACK,Previous Song,Vorheriges Lied,Предыдущая песня
+CONTROL_NEXT_TRACK,Next Song,Nächstes Lied,Следующая песня
+CONTROL_SEEK_BACK,Seek Back,Zurück suchen,Искать назад
+CONTROL_SEEK_FORWARD,Seek Forward,Vorwärts suchen,Искать вперед 
+CONTROL_PAUSE,Pause,Pause,Пауза 
+CONTROL_PLAY,Play,Spielen,Пуск

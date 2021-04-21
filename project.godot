@@ -1,0 +1,251 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "Control",
+"class": "App",
+"language": "GDScript",
+"path": "res://App/App.gd"
+}, {
+"base": "HBoxContainer",
+"class": "Controls",
+"language": "GDScript",
+"path": "res://App/Modules/Controls/Controls.gd"
+}, {
+"base": "VBoxContainer",
+"class": "Dashboard",
+"language": "GDScript",
+"path": "res://App/Modules/Menu/Menu.gd"
+}, {
+"base": "Container",
+"class": "DropContainer",
+"language": "GDScript",
+"path": "res://App/Interface/DropContainer/DropContainer.gd"
+}, {
+"base": "PanelContainer",
+"class": "DummyContainer",
+"language": "GDScript",
+"path": "res://App/Interface/DummyContainer/DummyContainer.gd"
+}, {
+"base": "TrackList",
+"class": "Folder",
+"language": "GDScript",
+"path": "res://App/Model/Folder.gd"
+}, {
+"base": "Resource",
+"class": "List",
+"language": "GDScript",
+"path": "res://App/Model/List.gd"
+}, {
+"base": "Resource",
+"class": "Profile",
+"language": "GDScript",
+"path": "res://App/Model/Profile.gd"
+}, {
+"base": "HBoxContainer",
+"class": "Progress",
+"language": "GDScript",
+"path": "res://App/Modules/Progress/Progress.gd"
+}, {
+"base": "PanelContainer",
+"class": "QueueItem",
+"language": "GDScript",
+"path": "res://App/Modules/Queue/QueueItem.gd"
+}, {
+"base": "Resource",
+"class": "Track",
+"language": "GDScript",
+"path": "res://App/Model/Track.gd"
+}, {
+"base": "List",
+"class": "TrackList",
+"language": "GDScript",
+"path": "res://App/Model/TrackList.gd"
+}, {
+"base": "Resource",
+"class": "TrackSource",
+"language": "GDScript",
+"path": "res://App/Model/TrackSource.gd"
+}, {
+"base": "TrackSource",
+"class": "TrackSourceMP3",
+"language": "GDScript",
+"path": "res://App/Model/TrackSourceMP3.gd"
+}, {
+"base": "TrackSource",
+"class": "TrackSourceOGG",
+"language": "GDScript",
+"path": "res://App/Model/TrackSourceOGG.gd"
+}, {
+"base": "TrackSource",
+"class": "TrackSourceWAV",
+"language": "GDScript",
+"path": "res://App/Model/TrackSourceWAV.gd"
+}, {
+"base": "TrackSource",
+"class": "TrackSourceYouTube",
+"language": "GDScript",
+"path": "res://App/Model/TrackSourceYouTube.gd"
+}, {
+"base": "TrackList",
+"class": "Tracks",
+"language": "GDScript",
+"path": "res://App/Model/Tracks.gd"
+} ]
+_global_script_class_icons={
+"App": "",
+"Controls": "",
+"Dashboard": "",
+"DropContainer": "",
+"DummyContainer": "",
+"Folder": "",
+"List": "",
+"Profile": "",
+"Progress": "",
+"QueueItem": "",
+"Track": "",
+"TrackList": "",
+"TrackSource": "",
+"TrackSourceMP3": "",
+"TrackSourceOGG": "",
+"TrackSourceWAV": "",
+"TrackSourceYouTube": "",
+"Tracks": ""
+}
+
+[application]
+
+config/name="OpenPlayer"
+run/main_scene="res://App/App.tscn"
+run/low_processor_mode_sleep_usec=100000
+boot_splash/image="res://App/Branding/Icons/logo.png"
+boot_splash/fullsize=false
+boot_splash/bg_color=Color( 0.0588235, 0.0588235, 0.0588235, 1 )
+config/icon="res://App/Branding/Icons/logo.svg"
+config/quit_on_go_back=false
+
+[audio]
+
+default_bus_layout="res://App/default_bus_layout.tres"
+mix_rate=48000
+
+[autoload]
+
+MetaCleaner="*res://App/Global/MetaCleaner.gd"
+Global="*res://App/Global/Global.gd"
+Copyright="*res://App/Global/Copyright.gd"
+
+[debug]
+
+gdscript/warnings/unused_signal=false
+
+[display]
+
+window/size/width=1280
+window/size/height=720
+window/dpi/allow_hidpi=true
+window/energy_saving/keep_screen_on=false
+window/handheld/orientation="sensor_portrait"
+
+[importer_defaults]
+
+texture={
+"compress/bptc_ldr": 0,
+"compress/hdr_mode": 0,
+"compress/lossy_quality": 0.7,
+"compress/mode": 2,
+"compress/normal_map": 0,
+"detect_3d": true,
+"flags/anisotropic": false,
+"flags/filter": true,
+"flags/mipmaps": false,
+"flags/repeat": 0,
+"flags/srgb": 2,
+"process/HDR_as_SRGB": false,
+"process/fix_alpha_border": true,
+"process/invert_color": false,
+"process/normal_map_invert_y": false,
+"process/premult_alpha": false,
+"size_limit": 0,
+"stream": false,
+"svg/scale": 1.0
+}
+
+[input]
+
+skip_modifier={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777237,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777238,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+skip_backward={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777231,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":65,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+skip_forward={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777233,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":68,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+previous_track={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777232,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":87,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+next_track={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777234,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":83,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+toggle_playing={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":32,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+seek_preview={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777237,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+queue_shuffle={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":81,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+queue_cycle_modes={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":69,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+search={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":true,"meta":false,"command":true,"pressed":false,"scancode":70,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+
+[locale]
+
+translations=PoolStringArray( "res://App/Localization/translations.en_US.translation", "res://App/Localization/translations.de_DE.translation", "res://App/Localization/translations.ru_RU.translation" )
+locale_filter=[ 0, [ "en" ] ]
+
+[network]
+
+limits/debugger_stdout/max_chars_per_second=20480
+
+[rendering]
+
+environment/default_clear_color=Color( 0, 0, 0, 1 )
+quality/dynamic_fonts/use_oversampling=false

@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://App/Interface/IconButton/IconButton.tscn" type="PackedScene" id=1]
+[ext_resource path="res://App/Icons/control_next.svg" type="Texture" id=2]
+[ext_resource path="res://App/Interface/Controls/ControlButton.gd" type="Script" id=3]
+
+[node name="NextTrack" instance=ExtResource( 1 )]
+script = ExtResource( 3 )
+texture = ExtResource( 2 )
+icon_size = 0.7
+hint = "CONTROL_NEXT_TRACK"
+operation = "next_track"
+
+[node name="Texture" parent="." index="0"]
+rect_min_size = Vector2( 89.6, 89.6 )
+texture = ExtResource( 2 )
+
+[node name="Hint" parent="." index="1"]
+text = "CONTROL_NEXT_TRACK"
