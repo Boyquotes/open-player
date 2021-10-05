@@ -14,7 +14,7 @@ func _ready() -> void:
 	Global.ok(connect("resized", self, "_on_resized"))
 
 func _on_resized() -> void:
-	var size := get_viewport().size / Vector2(720.0, 1280.0)
+	var size := get_viewport().size / Vector2(800.0, 1280.0)
 	var power := 2.0
 	var step := 1.0
 	

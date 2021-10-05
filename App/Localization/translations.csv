@@ -8,7 +8,7 @@ IMPORT_SEARCH,Search YouTube,YouTube durchsuchen,Искать в Youtube
 SEARCH_PLACEHOLDER,Search YouTube...,YouTube Suchen…,Искать в Youtube…
 MENU_TRACKS,Music,Musik,Музыка
 MY_TRACKS_NAME,My Music,Meine Musik,Моя музыка
-MY_TRACKS_EMPTY,You have not discovered any music!\nCheck the search tab.,Sie haben keine Musik entdeckt!\nÜberprüfen Sie die Registerkarte Suche. ,Вы не обнаружили никакой музыки!\nПроверить вкладку импорт
+MY_TRACKS_EMPTY,You have not discovered any music!\nCheck the import tab.,Sie haben keine Musik entdeckt!\nÜberprüfen Sie den Import-Tab.,Вы не обнаружили никакой музыки!\nПроверить вкладку импорт
 TRACKS_PLAY,Play All,Alle wiedergeben,Играть всё 
 TRACK_REMOVE,Remove Song,Lied entfernen,Удалить музыку
 TRACK_MENU_PLAY_NEXT,Play Next,Weiter spielen,играть следующую

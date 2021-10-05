@@ -9,6 +9,13 @@ var entry: List.Entry
 func _ready() -> void:
 	view.list = Global.profile.folders
 	Global.profile.folders.connect("removed", self, "_on_folder_removed")
+	
+	Global.ok(Global.connect("go_back", self, "_on_go_back"))
+
+func _on_go_back(request: Global.GoBackRequest) -> void:
+	if current_container.showing:
+		current_container.showing = false
+		request.exit = false
 
 func _on_folder_removed(folder: List.Entry) -> void:
 	if folder == entry:

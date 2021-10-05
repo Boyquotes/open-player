@@ -6,6 +6,17 @@ onready var files_loading := $FilesLoading
 
 onready var search_container := $SearchContainer
 
+func _ready() -> void:
+	Global.ok(Global.connect("go_back", self, "_on_go_back"))
+
+func _on_go_back(request: Global.GoBackRequest) -> void:
+	if files_container.showing:
+		files_container.showing = false
+		request.exit = false
+	elif search_container.showing:
+		search_container.showing = false
+		request.exit = false
+
 ### FILES ###
 
 func _on_FilesButton_pressed() -> void:
