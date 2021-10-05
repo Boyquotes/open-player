@@ -2,21 +2,19 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/logo.svg-3f432b6177825957c797c790f84faab1.s3tc.stex"
-path.etc2="res://.import/logo.svg-3f432b6177825957c797c790f84faab1.etc2.stex"
+path="res://.import/logo.png-f263b60752e3c76b0bf495f65277a21f.stex"
 metadata={
-"imported_formats": [ "s3tc", "etc2" ],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
-source_file="res://App/Branding/Icons/logo.svg"
-dest_files=[ "res://.import/logo.svg-3f432b6177825957c797c790f84faab1.s3tc.stex", "res://.import/logo.svg-3f432b6177825957c797c790f84faab1.etc2.stex" ]
+source_file="res://App/Branding/logo.png"
+dest_files=[ "res://.import/logo.png-f263b60752e3c76b0bf495f65277a21f.stex" ]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0

@@ -48,8 +48,11 @@ func _ready() -> void:
 
 func _press_write(canvas: Image, rect: Rect2) -> void:
 	OS.window_size = rect.size.normalized() * 500.0
-	yield(get_tree().create_timer(0.1), "timeout")
+	
+	yield(get_tree().create_timer(0.5), "timeout")
+	
 	get_viewport().size = rect.size
+	
 	yield(get_tree().create_timer(0.1), "timeout")
 	
 	self.active_view = "tracks"
