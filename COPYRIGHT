@@ -24,7 +24,7 @@ Files: App/Icons/generic_add.svg
  App/Icons/generic_pointer.svg
  App/Icons/generic_remove.svg
 Copyright: 2021, Nathan Franke
-License: public-domain or CC0-1.0 or Expat
+License: public-domain or CC0-1.0 or GPL-3+ or Expat
 Comment: OpenPlayer Icon(s) - generic_add.svg, generic_loading.svg, generic_play.svg, generic_pointer.svg, generic_remove.svg
 
 Files: App/Icons/control_next.svg
@@ -41,7 +41,7 @@ Files: App/Icons/control_next.svg
  App/Icons/queue_repeat_single.svg
  App/Icons/queue_shuffle.svg
 Copyright: SVG Repo
-License: public-domain or CC0-1.0 or Expat
+License: public-domain or CC0-1.0 or GPL-3+ or Expat
 Comment: OpenPlayer Icon(s) - control_next.svg, control_pause.svg, control_play.svg, control_skip.svg, queue_once.svg, queue_repeat.svg, queue_repeat_single.svg, queue_shuffle.svg
 
 Files: App/Icons/volume_0.svg
@@ -49,7 +49,7 @@ Files: App/Icons/volume_0.svg
  App/Icons/volume_2.svg
  App/Icons/volume_3.svg
 Copyright: OpenClipart
-License: public-domain or CC0-1.0 or Expat
+License: public-domain or CC0-1.0 or GPL-3+ or Expat
 Comment: OpenPlayer Icon(s) - volume_0.svg, volume_1.svg, volume_2.svg, volume_3.svg
 
 

@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://App/Modules/Screens/Home/HomeScreen.gd" type="Script" id=1]
-[ext_resource path="res://App/Branding/logo.svg" type="Texture" id=2]
+[ext_resource path="res://App/Branding/Icons/logo.svg" type="Texture" id=2]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 

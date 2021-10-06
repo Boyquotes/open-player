@@ -125,10 +125,10 @@ _global_script_class_icons={
 config/name="OpenPlayer"
 run/main_scene="res://App/App.tscn"
 run/low_processor_mode_sleep_usec=100000
-boot_splash/image="res://App/Branding/logo.png"
+boot_splash/image="res://App/Branding/Icons/logo.png"
 boot_splash/fullsize=false
 boot_splash/bg_color=Color( 0.0588235, 0.0588235, 0.0588235, 1 )
-config/icon="res://App/Branding/logo.svg"
+config/icon="res://App/Branding/Icons/logo.svg"
 config/quit_on_go_back=false
 
 [audio]
