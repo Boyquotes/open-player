@@ -9,6 +9,7 @@ _data = [ Vector2( 0, 500 ), 0.0, -935.909, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 
 [node name="ListView" type="ScrollContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 1
 scroll_horizontal_enabled = false
 script = ExtResource( 1 )
 __meta__ = {
