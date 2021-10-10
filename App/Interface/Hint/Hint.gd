@@ -16,9 +16,10 @@ func _set_text(value: String) -> void:
 	text = value
 	
 	if not is_inside_tree():
-		yield(self, "ready")
+		return
 	
 	label.text = text
+	call_deferred("update_position")
 
 export var hide_on_release := true
 
@@ -38,6 +39,8 @@ func _ready() -> void:
 	while node != null and node is Control:
 		Global.ok(node.connect("item_rect_changed", self, "update_position"))
 		node = node.get_parent()
+	
+	update_position()
 
 func _exit_tree() -> void:
 	set_showing(false, true)
