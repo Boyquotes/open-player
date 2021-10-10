@@ -1,6 +1,7 @@
 extends DummyContainer
 
 onready var files_container := $FilesContainer
+onready var files_list := $FilesContainer/PlayableTrackList
 onready var files_dialog := $Files/FileDialog
 onready var files_loading := $FilesLoading
 
@@ -20,16 +21,14 @@ func _on_go_back(request: Global.GoBackRequest) -> void:
 ### FILES ###
 
 func _on_FilesButton_pressed() -> void:
-	files_container.reset()
-	files_container.showing = true
-
-func _on_Import_pressed() -> void:
 	files_dialog.popup_centered_clamped(Vector2(800, 500))
 
 func _on_FileDialog_dir_selected(original_path: String) -> void:
 	files_loading.visible = true
 	yield(get_tree(), "idle_frame")
 	yield(get_tree(), "idle_frame")
+	
+	var list := TrackList.new()
 	
 	var current := [original_path]
 	var next: Array
@@ -50,19 +49,38 @@ func _on_FileDialog_dir_selected(original_path: String) -> void:
 				else:
 					var track := Track.create_file(full_path)
 					if track != null:
-						files_container.view.list.add(track)
+						list.add(track)
 			dir.list_dir_end()
 		
 		current = next
 	
 	files_loading.visible = false
+	
+	for track in list.iter():
+		Global.profile.tracks.ensure_has(track)
+	
+	files_list.list = list
+	files_container.showing = true
 
 func _on_FileDialog_file_selected(path: String) -> void:
+	files_loading.visible = true
+	yield(get_tree(), "idle_frame")
+	yield(get_tree(), "idle_frame")
+	
+	var list := TrackList.new()
+	
 	var track := Track.create_file(path)
 	if track != null:
-		files_container.view.list.add(track)
+		list.add(track)
+	
+	files_loading.visible = false
+	
+	Global.profile.tracks.ensure_has(track)
+	
+	files_list.list = list
+	files_container.showing = true
 
-func _on_FilesDrop_pressed():
+func _on_FilesDrop_pressed() -> void:
 	files_container.showing = false
 
 ### SEARCH ###

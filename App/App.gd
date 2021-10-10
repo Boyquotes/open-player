@@ -17,13 +17,49 @@ func _ready() -> void:
 	Global.ok(connect("track_finished", self, "next_track"))
 	Global.ok(Global.profile.tracks.connect("removed", self, "_profile_track_removed"))
 	
-	if "--generate-press" in OS.get_cmdline_args():
-		# Add sample music.
+	if "--generate-branding" in OS.get_cmdline_args():
+		### RESPONSIVE UI ###
+		
 		for track in Global.profile.tracks.iter():
 			queue.add(track)
 		
+		var width_min := 400
+		var width_max := 1200
+		var width_step := 20
+		var height := 800
+		
+		var i := 0
+		for w in range(width_min, width_max + width_step, width_step):
+			OS.window_size = Vector2(w, height)
+			_prepare_screen()
+			
+			var task = _prepare_screen()
+			if task is GDScriptFunctionState:
+				yield(task, "completed")
+			
+			var image := get_viewport().get_texture().get_data()
+			image.flip_y()
+			
+			Global.ok(image.save_png("res://App/Press/Scaling/frame%d.png" % i))
+			i += 1
+		for w in range(width_max - width_step, width_min, -width_step):
+			OS.window_size = Vector2(w, height)
+			_prepare_screen()
+			
+			var task = _prepare_screen()
+			if task is GDScriptFunctionState:
+				yield(task, "completed")
+			
+			var image := get_viewport().get_texture().get_data()
+			image.flip_y()
+			
+			Global.ok(image.save_png("res://App/Press/Scaling/frame%d.png" % i))
+			i += 1
+		
+		### DEVICES ###
+		
 		var overlay := Image.new()
-		Global.ok(overlay.load("res://App/Branding/Press/devices_overlay.png"))
+		Global.ok(overlay.load("res://App/Press/Devices/devices_overlay.png"))
 		
 		var canvas := Image.new()
 		canvas.create(overlay.get_width(), overlay.get_height(), false, Image.FORMAT_RGBA8)
@@ -42,9 +78,31 @@ func _ready() -> void:
 		
 		canvas.shrink_x2()
 		
-		Global.ok(canvas.save_png("res://App/Branding/Press/devices.png"))
+		Global.ok(canvas.save_png("res://App/Press/Devices/devices.png"))
 		
 		get_tree().quit()
+		return
+
+func _prepare_screen() -> void:
+	Global.save_profile = false
+	Global.profile.animations_enabled = false
+	
+	if queue.empty():
+		for track in Global.profile.tracks.iter():
+			queue.add(track)
+	
+	self.active_view = "tracks"
+	
+	yield(get_tree().create_timer(0.1), "timeout")
+	
+	if has_node("Layouts/Portrait"):
+		$Layouts/Portrait.queue_container.showing = true
+	
+	yield(get_tree().create_timer(0.3), "timeout")
+	
+	self.position = 60.0
+	
+	yield(get_tree().create_timer(0.1), "timeout")
 
 func _press_write(canvas: Image, rect: Rect2) -> void:
 	OS.window_size = rect.size.normalized() * 500.0
@@ -55,13 +113,9 @@ func _press_write(canvas: Image, rect: Rect2) -> void:
 	
 	yield(get_tree().create_timer(0.1), "timeout")
 	
-	self.active_view = "tracks"
-	self.position = 60.0
-	
-	if has_node("Layouts/Portrait"):
-		$Layouts/Portrait.queue_container.showing = true
-	
-	yield(get_tree().create_timer(0.5), "timeout")
+	var task = _prepare_screen()
+	if task is GDScriptFunctionState:
+		yield(task, "completed")
 	
 	var image := get_viewport().get_texture().get_data()
 	image.flip_y()
@@ -181,6 +235,15 @@ class Queue:
 			mapping[i] = values[i]
 		
 		order(mapping)
+	
+	func play_next(track: Track) -> void:
+		Global.profile.tracks.ensure_has(track)
+		
+		var index := size()
+		if app.current != null:
+			index = app.current.index + 1
+		
+		insert(index, track)
 
 var queue := Queue.new(self)
 

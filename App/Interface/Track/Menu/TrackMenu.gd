@@ -78,18 +78,12 @@ func _on_PopupMenu_popup_hide() -> void:
 func _on_PopupMenu_id_pressed(id: int) -> void:
 	match id:
 		0:
-			Global.profile.tracks.ensure_has(entry.value)
-			
-			if Global.player.current != entry:
-				var index := Global.player.queue.size()
-				if Global.player.current != null:
-					index = Global.player.current.index + 1
-				
-				Global.player.queue.insert(index, entry.value)
+			Global.player.queue.play_next(entry.value)
 		1:
 			Global.profile.tracks.ensure_has(entry.value)
 		3, 4, 5: # YouTube
-			var youtube_id: String = entry.value.source.id
+			var source: TrackSourceYouTube = entry.value.source
+			var youtube_id := source.id
 			var youtube_url := "https://www.youtube.com/watch?v=%s" % youtube_id
 			
 			match id:

@@ -26,6 +26,8 @@ func _exit_tree() -> void:
 
 const _PROFILE_VERSION := 0
 
+var save_profile := true
+
 func _get_profile_path(v: int) -> String:
 	return "user://profile.%d.tres" % v
 
@@ -36,11 +38,12 @@ func _load_profile() -> Profile:
 	return Profile.new()
 
 func _save_profile() -> void:
-	var path := _get_profile_path(_PROFILE_VERSION)
-	ok(ResourceSaver.save(path + ".part.tres", profile))
-	
-	var dir := Directory.new()
-	ok(dir.rename(path + ".part.tres", path))
+	if save_profile:
+		var path := _get_profile_path(_PROFILE_VERSION)
+		ok(ResourceSaver.save(path + ".part.tres", profile))
+		
+		var dir := Directory.new()
+		ok(dir.rename(path + ".part.tres", path))
 
 ### GO BACK ###
 

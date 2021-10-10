@@ -14,12 +14,12 @@ func _ready() -> void:
 	Global.ok(connect("resized", self, "_on_resized"))
 
 func _on_resized() -> void:
-	var size := get_viewport().size / Vector2(800.0, 1280.0)
+	var size := get_viewport().size / Vector2(720.0, 1280.0)
 	var power := 2.0
 	var step := 1.0
 	
 	var ratio := get_viewport().size.aspect()
-	if ratio < 1.1:
+	if ratio < 0.9:
 		self.layout_scene = preload("res://App/Layouts/Portrait.tscn")
 		step = pow(power, ceil(log(size.x) / log(power)))
 	else:

@@ -1,6 +1,6 @@
 # OpenPlayer - Music that doesn't waste your time.
 
-![Devices using OpenPlayer](https://raw.githubusercontent.com/nathanfranke/open-player/main/App/Branding/Press/devices.png)
+![Devices using OpenPlayer](https://raw.githubusercontent.com/nathanfranke/open-player/main/App/Press/Devices/devices.png)
 
 * Import MP3 and OGG Vorbis music from your computer.
 * Stream audio from [YouTube](https://www.youtube.com/).

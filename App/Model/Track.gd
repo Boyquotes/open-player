@@ -18,29 +18,26 @@ func _init(_source: TrackSource = null, _author := "", _title := "", _duration :
 func key() -> Array:
 	return [source.get_type(), source.get_id()]
 
+### CONSTRUCTION ###
+
 static func create_file(original_path: String) -> Track:
-	print("Create file: ", original_path)
+	var path: String = Global.get_absolute_path(original_path)
 	
-	var file := File.new()
-	var id := file.get_sha256(original_path)
+	print("Create track from path: ", path)
 	
 	var _source: TrackSource
-	if original_path.ends_with(".mp3"):
-		_source = TrackSourceMP3.new(id)
-	elif original_path.ends_with(".wav"):
-		_source = TrackSourceWAV.new(id)
-	elif original_path.ends_with(".ogg"):
-		_source = TrackSourceOGG.new(id)
+	if path.ends_with(".mp3"):
+		_source = TrackSourceMP3.new(path)
+	elif path.ends_with(".wav"):
+		_source = TrackSourceWAV.new(path)
+	elif path.ends_with(".ogg"):
+		_source = TrackSourceOGG.new(path)
 	else:
 		return null
 	
-	var dir := Directory.new()
-	Global.ok(dir.make_dir_recursive("user://audio"))
-	Global.ok(dir.copy(original_path, _source.get_path()))
-	
 	var group := "AUTHOR"
 	var object := "TITLE"
-	var segments := original_path.split("/")
+	var segments := path.split("/")
 	if segments.size() >= 2:
 		group = segments[segments.size() - 2]
 		object = segments[segments.size() - 1]

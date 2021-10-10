@@ -45,8 +45,10 @@ func _search() -> void:
 	
 	var list := TrackList.new()
 	
+	print(results)
 	for from_artist in [true, false]:
 		for result in results:
+			print(result.title)
 			if result.from_artist == from_artist:
 				var track := Track.create_youtube(result)
 				var index: int = Global.profile.tracks.find(track)

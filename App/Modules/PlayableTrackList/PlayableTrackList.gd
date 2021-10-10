@@ -2,7 +2,7 @@ extends VBoxContainer
 
 signal removed
 
-var track_scene := preload("res://App/Interface/Track/Playable/PlayableTrackView.tscn")
+var track_scene := preload("res://App/Interface/Track/TrackView.tscn")
 
 onready var title: LineEdit = $Top/Title
 onready var remove := $Top/Remove
@@ -28,7 +28,7 @@ func _update_empty() -> void:
 		if list is Tracks:
 			empty.text = tr("MY_TRACKS_EMPTY")
 		elif list is Folder:
-			empty.text = tr("FOLDER_EMPTY")
+			empty.text = tr("FOLDERS_EMPTY")
 
 var list: TrackList setget _set_list
 func _set_list(value: TrackList) -> void:

@@ -24,7 +24,7 @@ func _on_folder_removed(folder: List.Entry) -> void:
 func _on_Add_pressed() -> void:
 	var index: int = Global.profile.folders.size()
 	var number := index + 1
-	var folder := Folder.new(tr("FOLDER_NAME").format([number]))
+	var folder := Folder.new(tr("FOLDERS_DEFAULT_NAME").format([number]))
 	Global.profile.folders.add(folder)
 	open(Global.profile.folders.entry(index))
 

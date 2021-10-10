@@ -146,6 +146,7 @@ jobs:
           platform="Windows Desktop"
           [preset.0.options]
           custom_template/release="${{ github.workspace }}/godot/bin/godot.windows.opt.64.exe"
+          application/icon="res://App/Press/Logos/logo_bg.ico"
           EOT
 
       - name: Build Project

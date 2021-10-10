@@ -2,7 +2,7 @@
 
 [ext_resource path="res://App/Interface/Hint/Hint.tscn" type="PackedScene" id=1]
 [ext_resource path="res://App/Interface/IconButton/IconButton.gd" type="Script" id=2]
-[ext_resource path="res://App/Branding/Icons/logo.svg" type="Texture" id=3]
+[ext_resource path="res://App/Press/Logos/logo.svg" type="Texture" id=3]
 
 [node name="IconButton" type="Button"]
 margin_bottom = 128.0

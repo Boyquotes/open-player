@@ -1,9 +1,0 @@
-[gd_scene load_steps=3 format=2]
-
-[ext_resource path="res://App/Interface/Track/Playable/PlayableTrackView.gd" type="Script" id=3]
-[ext_resource path="res://App/Interface/Track/TrackView.tscn" type="PackedScene" id=4]
-
-[node name="PlayableTrackView" instance=ExtResource( 4 )]
-margin_bottom = 51.0
-script = ExtResource( 3 )
-removable = false

@@ -22,6 +22,7 @@ content_margin_bottom = 8.0
 [node name="PlayableTrackList" type="VBoxContainer"]
 margin_right = 400.0
 margin_bottom = 400.0
+custom_constants/separation = 0
 script = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -60,10 +61,10 @@ margin_right = 400.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 30, 0 )
 texture = ExtResource( 4 )
-hint = "TRACKS_PLAY"
+hint = "TRACK_PLAY_ALL"
 
 [node name="Contents" type="PanelContainer" parent="."]
-margin_top = 34.0
+margin_top = 30.0
 margin_right = 400.0
 margin_bottom = 400.0
 mouse_filter = 1
@@ -75,13 +76,13 @@ script = ExtResource( 1 )
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 400.0
-margin_bottom = 366.0
+margin_bottom = 370.0
 editable = true
 
 [node name="Empty" type="Label" parent="Contents"]
-margin_top = 176.0
+margin_top = 178.0
 margin_right = 400.0
-margin_bottom = 190.0
+margin_bottom = 192.0
 align = 1
 
 [connection signal="focus_exited" from="Top/Title" to="." method="_on_Title_focus_exited"]

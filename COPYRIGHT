@@ -8,14 +8,18 @@ Copyright: 2021, Nathan Franke
 License: GPL-3+
 Comment: OpenPlayer
 
-Files: App/Branding/Icons/*
+Files: App/Press/Devices/*
+Copyright: https://pixabay.com/vectors/tablet-screen-monitor-phone-pc-314153/
+License: Pixabay
+
+Files: App/Press/Logos/*
 Copyright: play button by Raúl Inc from thenounproject.com
  https://thenounproject.com/term/play-button/3907606/
 License: CC-BY-3.0
 
-Files: App/Branding/Press/*
-Copyright: https://pixabay.com/vectors/tablet-screen-monitor-phone-pc-314153/
-License: Pixabay
+Files: App/Press/Scaling/*
+Copyright: 2021, Nathan Franke
+License: CC-BY-3.0 or GPL-3+ or Expat
 
 Files: App/Icons/generic_add.svg
  App/Icons/generic_down.svg

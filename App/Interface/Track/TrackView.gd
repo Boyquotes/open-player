@@ -143,14 +143,18 @@ func _on_TrackView_gui_input(event: InputEvent) -> void:
 			_select_update(event.index, event.position)
 	else:
 		if event is InputEventMouseButton:
-			if event.button_index == BUTTON_LEFT:
-				if event.pressed:
-					_select_start(-1, event.position)
-				else:
-					_select_end(-1)
-			if event.button_index == BUTTON_RIGHT:
-				if event.pressed:
-					_open_context()
+			match event.button_index:
+				BUTTON_LEFT:
+					if event.pressed:
+						_select_start(-1, event.position)
+					else:
+						_select_end(-1)
+				BUTTON_RIGHT:
+					if event.pressed:
+						_open_context()
+				BUTTON_MIDDLE:
+					if event.pressed:
+						Global.player.queue.play_next(entry.value)
 		if event is InputEventMouseMotion:
 			if event.button_mask & BUTTON_LEFT:
 				_select_update(-1, event.position)
