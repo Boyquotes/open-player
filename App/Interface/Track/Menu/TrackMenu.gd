@@ -41,7 +41,7 @@ func _insert_folder(folder_entry: List.Entry) -> void:
 	folders.add_check_item("")
 	_update_folders_enabled()
 	
-	for i in Global.profile.folders.size():
+	for i in folders.get_item_count():
 		_update_folder(Global.profile.folders.entry(i))
 	
 	Global.ok(folder_entry.value.connect("changed", self, "_update_folder", [folder_entry]))

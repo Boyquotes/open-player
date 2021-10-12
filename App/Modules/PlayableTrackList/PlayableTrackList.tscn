@@ -53,7 +53,7 @@ margin_bottom = 30.0
 rect_min_size = Vector2( 30, 0 )
 focus_mode = 2
 texture = ExtResource( 3 )
-hint = "FOLDER_REMOVE"
+hint = "FOLDERS_REMOVE"
 
 [node name="Play" parent="Top" instance=ExtResource( 2 )]
 margin_left = 370.0

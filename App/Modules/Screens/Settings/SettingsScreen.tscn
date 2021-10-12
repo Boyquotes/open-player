@@ -25,36 +25,36 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer"]
+[node name="Animations" type="PanelContainer" parent="VBoxContainer"]
 margin_right = 1248.0
 margin_bottom = 74.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/PanelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Animations"]
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 1241.0
 margin_bottom = 67.0
 custom_constants/separation = 4
 
-[node name="AnimationsEnabled" type="CheckButton" parent="VBoxContainer/PanelContainer/VBoxContainer"]
+[node name="AnimationsEnabled" type="CheckButton" parent="VBoxContainer/Animations/VBoxContainer"]
 margin_right = 1234.0
 margin_bottom = 40.0
 focus_mode = 0
 text = "SETTINGS_ANIMATIONS_ENABLED"
 
-[node name="AnimationSpeed" type="HBoxContainer" parent="VBoxContainer/PanelContainer/VBoxContainer"]
+[node name="AnimationSpeed" type="HBoxContainer" parent="VBoxContainer/Animations/VBoxContainer"]
 margin_top = 44.0
 margin_right = 1234.0
 margin_bottom = 60.0
 custom_constants/separation = 8
 
-[node name="Label" type="Label" parent="VBoxContainer/PanelContainer/VBoxContainer/AnimationSpeed"]
+[node name="Label" type="Label" parent="VBoxContainer/Animations/VBoxContainer/AnimationSpeed"]
 margin_top = 1.0
 margin_right = 189.0
 margin_bottom = 15.0
 text = "SETTINGS_ANIMATION_SPEED"
 
-[node name="HSlider" type="HSlider" parent="VBoxContainer/PanelContainer/VBoxContainer/AnimationSpeed"]
+[node name="HSlider" type="HSlider" parent="VBoxContainer/Animations/VBoxContainer/AnimationSpeed"]
 margin_left = 197.0
 margin_right = 1234.0
 margin_bottom = 16.0
@@ -70,6 +70,7 @@ tick_count = 8
 margin_top = 82.0
 margin_right = 1248.0
 margin_bottom = 102.0
+text = "SETTINGS_LANGUAGE"
 
 [node name="ViewCopyright" type="Button" parent="VBoxContainer"]
 margin_top = 110.0
@@ -104,8 +105,8 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="toggled" from="VBoxContainer/PanelContainer/VBoxContainer/AnimationsEnabled" to="." method="_on_AnimationsEnabled_toggled"]
-[connection signal="changed" from="VBoxContainer/PanelContainer/VBoxContainer/AnimationSpeed/HSlider" to="." method="_on_AnimationSpeed_changed"]
-[connection signal="value_changed" from="VBoxContainer/PanelContainer/VBoxContainer/AnimationSpeed/HSlider" to="." method="_on_AnimationSpeed_value_changed"]
+[connection signal="toggled" from="VBoxContainer/Animations/VBoxContainer/AnimationsEnabled" to="." method="_on_AnimationsEnabled_toggled"]
+[connection signal="changed" from="VBoxContainer/Animations/VBoxContainer/AnimationSpeed/HSlider" to="." method="_on_AnimationSpeed_changed"]
+[connection signal="value_changed" from="VBoxContainer/Animations/VBoxContainer/AnimationSpeed/HSlider" to="." method="_on_AnimationSpeed_value_changed"]
 [connection signal="item_selected" from="VBoxContainer/Language" to="." method="_on_Language_item_selected"]
 [connection signal="pressed" from="VBoxContainer/ViewCopyright" to="." method="_on_ShowCopyright_pressed"]

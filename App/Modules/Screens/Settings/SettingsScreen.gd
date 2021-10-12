@@ -26,9 +26,9 @@ func _ready() -> void:
 	Global.ok(Global.profile.connect("changed", self, "update_config"))
 
 func update_config() -> void:
-	$VBoxContainer/PanelContainer/VBoxContainer/AnimationsEnabled.pressed = Global.profile.animations_enabled
-	$VBoxContainer/PanelContainer/VBoxContainer/AnimationSpeed.visible = Global.profile.animations_enabled
-	$VBoxContainer/PanelContainer/VBoxContainer/AnimationSpeed/HSlider.value = Global.profile.animation_speed
+	$VBoxContainer/Animations/VBoxContainer/AnimationsEnabled.pressed = Global.profile.animations_enabled
+	$VBoxContainer/Animations/VBoxContainer/AnimationSpeed.visible = Global.profile.animations_enabled
+	$VBoxContainer/Animations/VBoxContainer/AnimationSpeed/HSlider.value = Global.profile.animation_speed
 	
 	for i in language.get_item_count():
 		if language.get_item_metadata(i) == Global.profile.language:

@@ -19,7 +19,7 @@ func _on_resized() -> void:
 	var step := 1.0
 	
 	var ratio := get_viewport().size.aspect()
-	if ratio < 0.9:
+	if ratio < 1.0:
 		self.layout_scene = preload("res://App/Layouts/Portrait.tscn")
 		step = pow(power, ceil(log(size.x) / log(power)))
 	else:
