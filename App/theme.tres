@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=38 format=2]
+[gd_resource type="Theme" load_steps=42 format=2]
 
 [ext_resource path="res://App/Fonts/Font12.tres" type="DynamicFont" id=1]
 [ext_resource path="res://App/Fonts/Font16.tres" type="DynamicFont" id=3]
@@ -109,7 +109,7 @@ bg_color = Color( 0, 0, 0, 0 )
 border_width_bottom = 1
 border_color = Color( 0.247059, 0.247059, 0.247059, 1 )
 
-[sub_resource type="Image" id=44]
+[sub_resource type="Image" id=49]
 data = {
 "data": PoolByteArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 13, 0, 28, 0, 39, 0, 39, 0, 28, 0, 13, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 22, 102, 110, 137, 193, 152, 239, 152, 239, 137, 193, 102, 110, 0, 22, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 13, 102, 110, 146, 232, 142, 255, 135, 255, 135, 255, 142, 255, 146, 232, 102, 110, 0, 13, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 28, 137, 193, 142, 255, 132, 255, 131, 255, 131, 255, 132, 255, 142, 255, 137, 193, 0, 28, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 39, 152, 239, 135, 255, 131, 255, 131, 255, 131, 255, 131, 255, 135, 255, 152, 239, 0, 39, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 40, 150, 240, 135, 255, 131, 255, 131, 255, 131, 255, 131, 255, 135, 255, 149, 240, 0, 40, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 34, 143, 219, 138, 255, 131, 255, 131, 255, 131, 255, 131, 255, 136, 255, 142, 222, 0, 36, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 23, 129, 175, 143, 255, 131, 255, 131, 255, 131, 255, 131, 255, 141, 255, 141, 197, 0, 26, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 82, 101, 150, 252, 133, 255, 131, 255, 131, 255, 133, 255, 150, 254, 77, 100, 0, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 33, 49, 143, 224, 137, 255, 131, 255, 131, 255, 137, 255, 145, 224, 4, 40, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 20, 120, 156, 147, 255, 133, 255, 133, 255, 147, 255, 116, 149, 0, 19, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 12, 44, 144, 219, 140, 255, 140, 255, 145, 220, 12, 44, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 11, 56, 79, 156, 244, 156, 247, 64, 85, 0, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 20, 114, 115, 122, 125, 0, 22, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 11, 0, 12, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ),
 "format": "LumAlpha8",
@@ -121,7 +121,7 @@ data = {
 [sub_resource type="ImageTexture" id=39]
 flags = 4
 flags = 4
-image = SubResource( 44 )
+image = SubResource( 49 )
 size = Vector2( 16, 16 )
 
 [sub_resource type="StyleBoxFlat" id=37]
@@ -233,17 +233,42 @@ bg_color = Color( 0.6, 0.6, 0.6, 0 )
 border_width_top = 1
 border_color = Color( 0.247059, 0.247059, 0.247059, 1 )
 
+[sub_resource type="StyleBoxFlat" id=45]
+content_margin_left = 8.0
+content_margin_right = 8.0
+content_margin_top = 8.0
+content_margin_bottom = 8.0
+bg_color = Color( 0.152941, 0.152941, 0.152941, 1 )
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id=46]
+content_margin_left = 8.0
+content_margin_right = 8.0
+content_margin_top = 8.0
+content_margin_bottom = 8.0
+bg_color = Color( 0.247059, 0.247059, 0.247059, 1 )
+
+[sub_resource type="StyleBoxFlat" id=47]
+content_margin_left = 8.0
+content_margin_right = 8.0
+content_margin_top = 8.0
+content_margin_bottom = 8.0
+bg_color = Color( 0.372549, 0.372549, 0.372549, 1 )
+
+[sub_resource type="StyleBoxFlat" id=48]
+content_margin_left = 8.0
+content_margin_right = 8.0
+content_margin_top = 8.0
+content_margin_bottom = 8.0
+bg_color = Color( 0.145098, 0.345098, 0.501961, 1 )
+
 [sub_resource type="StyleBoxFlat" id=31]
-bg_color = Color( 0.427451, 0.427451, 0.427451, 1 )
-expand_margin_top = 6.0
-expand_margin_bottom = 6.0
+bg_color = Color( 0.498039, 0.498039, 0.498039, 1 )
 
 [sub_resource type="StyleBoxFlat" id=32]
-content_margin_left = 6.0
-content_margin_right = 6.0
-content_margin_top = 6.0
-content_margin_bottom = 6.0
-bg_color = Color( 0.184314, 0.184314, 0.184314, 1 )
+content_margin_left = 12.0
+bg_color = Color( 0.247059, 0.247059, 0.247059, 1 )
 
 [sub_resource type="StyleBoxFlat" id=33]
 bg_color = Color( 0.121569, 0.121569, 0.121569, 1 )
@@ -308,6 +333,12 @@ ProgressBar/styles/fg = SubResource( 28 )
 ScrollContainer/styles/dashboard = SubResource( 29 )
 ScrollContainer/styles/queue = SubResource( 29 )
 ScrollContainer/styles/track_list = SubResource( 30 )
+TabContainer/colors/font_color_bg = Color( 0.498039, 0.498039, 0.498039, 1 )
+TabContainer/constants/side_margin = 0
+TabContainer/styles/panel = SubResource( 45 )
+TabContainer/styles/tab_bg = SubResource( 46 )
+TabContainer/styles/tab_disabled = SubResource( 47 )
+TabContainer/styles/tab_fg = SubResource( 48 )
 VScrollBar/icons/decrement = null
 VScrollBar/icons/decrement_highlight = null
 VScrollBar/icons/increment = null

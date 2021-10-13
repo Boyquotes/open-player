@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://App/Modules/Screens/Settings/SettingsScreen.gd" type="Script" id=1]
+
+[sub_resource type="StyleBoxEmpty" id=1]
+content_margin_top = 8.0
+content_margin_bottom = 0.0
 
 [node name="SettingsScreen" type="MarginContainer"]
 anchor_right = 1.0
@@ -72,14 +76,14 @@ margin_right = 1248.0
 margin_bottom = 102.0
 text = "SETTINGS_LANGUAGE"
 
-[node name="ViewCopyright" type="Button" parent="VBoxContainer"]
+[node name="ShowCopyright" type="Button" parent="VBoxContainer"]
 margin_top = 110.0
 margin_right = 199.0
 margin_bottom = 130.0
 size_flags_horizontal = 0
 text = "SETTINGS_SHOW_COPYRIGHT"
 
-[node name="Copyright" type="Control" parent="."]
+[node name="Windows" type="Control" parent="."]
 margin_left = 16.0
 margin_top = 16.0
 margin_right = 1264.0
@@ -89,24 +93,54 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="WindowDialog" type="WindowDialog" parent="Copyright"]
+[node name="Copyright" type="WindowDialog" parent="Windows"]
 margin_right = 223.0
 margin_bottom = 204.0
 window_title = "Copyright"
 __meta__ = {
-"_edit_group_": true,
 "_edit_use_anchors_": false
 }
 
-[node name="TabContainer" type="TabContainer" parent="Copyright/WindowDialog"]
+[node name="MarginContainer" type="MarginContainer" parent="Windows/Copyright"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+custom_constants/margin_right = 16
+custom_constants/margin_top = 16
+custom_constants/margin_left = 16
+custom_constants/margin_bottom = 16
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="TabContainer" type="TabContainer" parent="Windows/Copyright/MarginContainer"]
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 207.0
+margin_bottom = 188.0
+custom_styles/panel = SubResource( 1 )
+tab_align = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Software" type="TabContainer" parent="Windows/Copyright/MarginContainer/TabContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 32.0
+tab_align = 0
+
+[node name="Licenses" type="TabContainer" parent="Windows/Copyright/MarginContainer/TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+tab_align = 0
 
 [connection signal="toggled" from="VBoxContainer/Animations/VBoxContainer/AnimationsEnabled" to="." method="_on_AnimationsEnabled_toggled"]
 [connection signal="changed" from="VBoxContainer/Animations/VBoxContainer/AnimationSpeed/HSlider" to="." method="_on_AnimationSpeed_changed"]
 [connection signal="value_changed" from="VBoxContainer/Animations/VBoxContainer/AnimationSpeed/HSlider" to="." method="_on_AnimationSpeed_value_changed"]
 [connection signal="item_selected" from="VBoxContainer/Language" to="." method="_on_Language_item_selected"]
-[connection signal="pressed" from="VBoxContainer/ViewCopyright" to="." method="_on_ShowCopyright_pressed"]
+[connection signal="pressed" from="VBoxContainer/ShowCopyright" to="." method="_on_ShowCopyright_pressed"]

@@ -1,14 +1,32 @@
 extends Control
 class_name App
 
-func _enter_tree() -> void:
-	for arg in ["--license", "--licenses", "--copyright"]:
-		if arg in OS.get_cmdline_args():
-			var licenses := PoolStringArray(Copyright.licenses.values())
-			print(licenses.join("\n\n\n\n"))
-			Global.exit_silently()
+func _copyright_print(title: String, text: String) -> void:
+	print(title, ":")
+	
+	# Indent text
+	text = "\t" + text.replace("\n", "\n\t")
+	print(text)
+	
+	print("\n\n")
 
 func _ready() -> void:
+	if "--copyright" in OS.get_cmdline_args():
+		print("{0} BEGIN COPYRIGHT {0}".format(["-".repeat(20)]))
+		print("\n\n")
+		
+		for item in Copyright.software:
+			_copyright_print(item, Copyright.software[item])
+		
+		print("{0} BEGIN LICENSES {0}".format(["-".repeat(20)]))
+		print("\n\n")
+		
+		for item in Copyright.licenses:
+			_copyright_print(item, Copyright.licenses[item])
+		
+		Global.exit_silently()
+		return
+	
 	randomize()
 	
 	_profile_theme_changed(Global.profile.theme)
