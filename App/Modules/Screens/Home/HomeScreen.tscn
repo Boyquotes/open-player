@@ -15,7 +15,8 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="icon" type="TextureRect" parent="."]
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color( 0, 0, 0, 1 )
 margin_left = 608.0
 margin_top = 328.0
 margin_right = 672.0

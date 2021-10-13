@@ -46,7 +46,7 @@ func _set_language(value: String) -> void:
 	TranslationServer.set_locale(language)
 	emit_changed()
 
-export var theme: Theme = preload("res://App/theme.tres") setget _set_theme
+export var theme: Theme = preload("res://App/Themes/dark.tres") setget _set_theme
 func _set_theme(value: Theme) -> void:
 	theme = value
 	emit_signal("theme_changed", theme)

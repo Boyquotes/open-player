@@ -17,6 +17,7 @@ onready var buttons := [
 
 func _update_style() -> void:
 	for button in buttons:
+		button.modulate = button.get_color("icon")
 		button.add_font_override("font", button.get_font("menu_item"))
 		button.add_stylebox_override("normal", button.get_stylebox("menu_button_normal"))
 		button.add_stylebox_override("hover", button.get_stylebox("menu_button_hover"))

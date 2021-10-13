@@ -1,7 +1,6 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://App/Interface/Track/TrackView.gd" type="Script" id=1]
-[ext_resource path="res://App/theme.tres" type="Theme" id=2]
 [ext_resource path="res://App/Interface/IconButton/IconButton.tscn" type="PackedScene" id=3]
 [ext_resource path="res://App/Interface/Loading/Loading.tscn" type="PackedScene" id=4]
 [ext_resource path="res://App/Icons/generic_remove.svg" type="Texture" id=5]
@@ -27,7 +26,6 @@ anchor_right = 1.0
 margin_bottom = 50.0
 mouse_filter = 1
 mouse_default_cursor_shape = 2
-theme = ExtResource( 2 )
 custom_styles/panel = SubResource( 26 )
 script = ExtResource( 1 )
 __meta__ = {
@@ -38,14 +36,14 @@ __meta__ = {
 margin_left = 8.0
 margin_top = 8.0
 margin_right = 1272.0
-margin_bottom = 47.0
+margin_bottom = 42.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Info" type="VBoxContainer" parent="HBoxContainer"]
-margin_right = 1178.0
-margin_bottom = 39.0
+margin_right = 1188.0
+margin_bottom = 34.0
 mouse_filter = 2
 size_flags_horizontal = 3
 theme = SubResource( 12 )
@@ -53,9 +51,9 @@ custom_constants/separation = 0
 alignment = 1
 
 [node name="Main" type="HBoxContainer" parent="HBoxContainer/Info"]
-margin_top = 5.0
-margin_right = 1178.0
-margin_bottom = 19.0
+margin_top = 3.0
+margin_right = 1188.0
+margin_bottom = 17.0
 custom_constants/separation = 0
 
 [node name="Loading" parent="HBoxContainer/Info/Main" instance=ExtResource( 4 )]
@@ -63,30 +61,30 @@ margin_right = 0.0
 margin_bottom = 14.0
 
 [node name="Title" parent="HBoxContainer/Info/Main" instance=ExtResource( 6 )]
-margin_right = 1178.0
+margin_right = 1188.0
 size_flags_horizontal = 3
 
 [node name="Meta" parent="HBoxContainer/Info" instance=ExtResource( 6 )]
 modulate = Color( 1, 1, 1, 0.74902 )
-margin_top = 19.0
-margin_right = 1178.0
-margin_bottom = 33.0
+margin_top = 17.0
+margin_right = 1188.0
+margin_bottom = 31.0
 text = "Loading..."
 
 [node name="AddToQueue" parent="HBoxContainer" instance=ExtResource( 3 )]
-margin_left = 1182.0
-margin_right = 1221.0
-margin_bottom = 39.0
-rect_min_size = Vector2( 39, 0 )
+margin_left = 1192.0
+margin_right = 1226.0
+margin_bottom = 34.0
+rect_min_size = Vector2( 34, 0 )
 focus_mode = 2
 texture = ExtResource( 7 )
 hint = "Add to queue"
 
 [node name="Remove" parent="HBoxContainer" instance=ExtResource( 3 )]
-margin_left = 1225.0
+margin_left = 1230.0
 margin_right = 1264.0
-margin_bottom = 39.0
-rect_min_size = Vector2( 39, 0 )
+margin_bottom = 34.0
+rect_min_size = Vector2( 34, 0 )
 texture = ExtResource( 5 )
 hint = "TRACK_REMOVE"
 

@@ -2,15 +2,15 @@
 
 [ext_resource path="res://App/Interface/IconButton/IconButton.tscn" type="PackedScene" id=1]
 [ext_resource path="res://App/Modules/Controls/Controls.gd" type="Script" id=2]
-[ext_resource path="res://App/Interface/Controls/NextTrack.tscn" type="PackedScene" id=3]
-[ext_resource path="res://App/Interface/Controls/PlayPause.tscn" type="PackedScene" id=5]
-[ext_resource path="res://App/Interface/Controls/SeekBack.tscn" type="PackedScene" id=6]
+[ext_resource path="res://App/Modules/Controls/Buttons/NextTrack.tscn" type="PackedScene" id=3]
+[ext_resource path="res://App/Modules/Controls/Buttons/PlayPause.tscn" type="PackedScene" id=5]
+[ext_resource path="res://App/Modules/Controls/Buttons/SeekBack.tscn" type="PackedScene" id=6]
 [ext_resource path="res://App/Icons/volume_3.svg" type="Texture" id=7]
 [ext_resource path="res://App/Icons/volume_0.svg" type="Texture" id=8]
 [ext_resource path="res://App/Icons/volume_2.svg" type="Texture" id=9]
 [ext_resource path="res://App/Icons/volume_1.svg" type="Texture" id=10]
-[ext_resource path="res://App/Interface/Controls/SeekForward.tscn" type="PackedScene" id=12]
-[ext_resource path="res://App/Interface/Controls/PreviousTrack.tscn" type="PackedScene" id=13]
+[ext_resource path="res://App/Modules/Controls/Buttons/SeekForward.tscn" type="PackedScene" id=12]
+[ext_resource path="res://App/Modules/Controls/Buttons/PreviousTrack.tscn" type="PackedScene" id=13]
 
 [sub_resource type="StyleBoxFlat" id=1]
 content_margin_left = 8.0
@@ -43,6 +43,7 @@ __meta__ = {
 volume_stages = [ ExtResource( 8 ), ExtResource( 10 ), ExtResource( 9 ), ExtResource( 7 ) ]
 
 [node name="Volume" parent="." instance=ExtResource( 1 )]
+modulate = Color( 0, 0, 0, 1 )
 margin_left = 454.0
 margin_right = 502.0
 margin_bottom = 48.0
@@ -85,6 +86,7 @@ __meta__ = {
 }
 
 [node name="PreviousTrack" parent="." instance=ExtResource( 13 )]
+modulate = Color( 0, 0, 0, 1 )
 margin_left = 506.0
 margin_right = 554.0
 margin_bottom = 48.0
@@ -92,6 +94,7 @@ rect_min_size = Vector2( 48, 0 )
 icon_size = 0.6
 
 [node name="SeekBack" parent="." instance=ExtResource( 6 )]
+modulate = Color( 0, 0, 0, 1 )
 margin_left = 558.0
 margin_right = 606.0
 margin_bottom = 48.0
@@ -99,12 +102,14 @@ rect_min_size = Vector2( 48, 0 )
 icon_size = 0.6
 
 [node name="PlayPause" parent="." instance=ExtResource( 5 )]
+modulate = Color( 0, 0, 0, 1 )
 margin_left = 610.0
 margin_right = 658.0
 margin_bottom = 48.0
 rect_min_size = Vector2( 48, 0 )
 
 [node name="SeekForward" parent="." instance=ExtResource( 12 )]
+modulate = Color( 0, 0, 0, 1 )
 margin_left = 662.0
 margin_right = 710.0
 margin_bottom = 48.0
@@ -112,6 +117,7 @@ rect_min_size = Vector2( 48, 0 )
 icon_size = 0.6
 
 [node name="NextTrack" parent="." instance=ExtResource( 3 )]
+modulate = Color( 0, 0, 0, 1 )
 margin_left = 714.0
 margin_right = 762.0
 margin_bottom = 48.0

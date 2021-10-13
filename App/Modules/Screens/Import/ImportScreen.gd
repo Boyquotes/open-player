@@ -1,5 +1,8 @@
 extends DummyContainer
 
+onready var files_button := $MarginContainer/VBoxContainer/FilesButton
+onready var search_button := $MarginContainer/VBoxContainer/SearchButton
+
 onready var files_container := $FilesContainer
 onready var files_list := $FilesContainer/PlayableTrackList
 onready var files_dialog := $Files/FileDialog
@@ -7,7 +10,14 @@ onready var files_loading := $FilesLoading
 
 onready var search_container := $SearchContainer
 
+func _update_style() -> void:
+	files_button.modulate = files_button.get_color("icon")
+	search_button.modulate = search_button.get_color("icon")
+
 func _ready() -> void:
+	_update_style()
+	Global.ok(Global.connect("theme_changed", self, "_update_style"))
+	
 	Global.ok(Global.connect("go_back", self, "_on_go_back"))
 
 func _on_go_back(request: Global.GoBackRequest) -> void:

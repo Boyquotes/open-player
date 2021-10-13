@@ -76,10 +76,16 @@ margin_right = 1248.0
 margin_bottom = 102.0
 text = "SETTINGS_LANGUAGE"
 
-[node name="ShowCopyright" type="Button" parent="VBoxContainer"]
+[node name="Theme" type="OptionButton" parent="VBoxContainer"]
 margin_top = 110.0
-margin_right = 199.0
+margin_right = 1248.0
 margin_bottom = 130.0
+text = "SETTINGS_THEME"
+
+[node name="ShowCopyright" type="Button" parent="VBoxContainer"]
+margin_top = 138.0
+margin_right = 199.0
+margin_bottom = 158.0
 size_flags_horizontal = 0
 text = "SETTINGS_SHOW_COPYRIGHT"
 
@@ -133,14 +139,12 @@ tab_align = 0
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 4.0
 margin_top = 32.0
-margin_right = -4.0
-margin_bottom = -4.0
 tab_align = 0
 
 [connection signal="toggled" from="VBoxContainer/Animations/VBoxContainer/AnimationsEnabled" to="." method="_on_AnimationsEnabled_toggled"]
 [connection signal="changed" from="VBoxContainer/Animations/VBoxContainer/AnimationSpeed/HSlider" to="." method="_on_AnimationSpeed_changed"]
 [connection signal="value_changed" from="VBoxContainer/Animations/VBoxContainer/AnimationSpeed/HSlider" to="." method="_on_AnimationSpeed_value_changed"]
 [connection signal="item_selected" from="VBoxContainer/Language" to="." method="_on_Language_item_selected"]
+[connection signal="item_selected" from="VBoxContainer/Theme" to="." method="_on_Theme_item_selected"]
 [connection signal="pressed" from="VBoxContainer/ShowCopyright" to="." method="_on_ShowCopyright_pressed"]

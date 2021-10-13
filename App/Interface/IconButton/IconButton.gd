@@ -12,7 +12,7 @@ func _set_texture(value: Texture) -> void:
 	if not _is_ready:
 		return
 	
-	update_texture()
+	_update_style()
 
 export(float, 0.0, 1.0, 0.05) var icon_size := 0.5 setget _set_icon_size
 func _set_icon_size(value: float) -> void:
@@ -21,7 +21,7 @@ func _set_icon_size(value: float) -> void:
 	if not _is_ready:
 		return
 	
-	update_texture()
+	_update_style()
 
 export var flip: bool setget _set_flip
 func _set_flip(value: bool) -> void:
@@ -41,13 +41,16 @@ func _set_hint(value: String) -> void:
 	
 	hint_node.text = hint
 
-func _ready() -> void:
-	update_texture()
-
-func _process(_delta: float) -> void:
-	rect_min_size.x = rect_size.y
-
-func update_texture() -> void:
+func _update_style() -> void:
 	texture_rect.texture = texture
 	texture_rect.rect_min_size = rect_size * icon_size
 	texture_rect.set_anchors_and_margins_preset(Control.PRESET_CENTER)
+	
+	modulate = get_color("icon")
+
+func _ready() -> void:
+	_update_style()
+	Global.ok(Global.connect("theme_changed", self, "_update_style"))
+
+func _process(_delta: float) -> void:
+	rect_min_size.x = rect_size.y

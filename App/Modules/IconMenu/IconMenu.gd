@@ -15,13 +15,14 @@ func _input(event: InputEvent) -> void:
 		Global.player.active_view = "import"
 
 func _update_active_view(view) -> void:
-	home_button.modulate = Color.white
-	import_button.modulate = Color.white
-	tracks_button.modulate = Color.white
-	folders_button.modulate = Color.white
-	settings_button.modulate = Color.white
+	var normal := get_color("icon", "Button")
+	var selected := get_color("icon_selected", "Button")
 	
-	var selected := get_color("selected_icon", "Button")
+	home_button.modulate = normal
+	import_button.modulate = normal
+	tracks_button.modulate = normal
+	folders_button.modulate = normal
+	settings_button.modulate = normal
 	
 	match view:
 		"home":

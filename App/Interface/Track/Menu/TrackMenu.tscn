@@ -1,6 +1,5 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://App/theme.tres" type="Theme" id=1]
 [ext_resource path="res://App/Interface/Track/Menu/TrackMenu.gd" type="Script" id=2]
 
 [node name="Menu" type="CanvasLayer"]
@@ -9,7 +8,6 @@ script = ExtResource( 2 )
 [node name="PopupMenu" type="PopupMenu" parent="."]
 margin_right = 139.0
 margin_bottom = 70.0
-theme = ExtResource( 1 )
 items = [ "TRACK_MENU_PLAY_NEXT", null, 0, false, false, 0, 0, null, "", false, "TRACK_MENU_ADD_TO_MY_TRACKS", null, 0, false, false, 1, 0, null, "", false, "TRACK_MENU_ADD_TO_FOLDER", null, 0, false, false, 2, 0, null, "", false, "", null, 0, false, false, -1, 0, null, "", true, "TRACK_MENU_VIEW_ON_YOUTUBE", null, 0, false, false, 3, 0, null, "", false, "TRACK_MENU_COPY_YOUTUBE_URL", null, 0, false, false, 4, 0, null, "", false, "TRACK_MENU_COPY_YOUTUBE_ID", null, 0, false, false, 5, 0, null, "", false ]
 __meta__ = {
 "_edit_use_anchors_": false
