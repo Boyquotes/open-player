@@ -1,7 +1,5 @@
 extends DummyContainer
 
-const BASE_RESOLUTION := 960.0
-
 func _ready() -> void:
 	var safe_area := OS.get_window_safe_area().clip(get_viewport_rect())
 	
@@ -14,22 +12,25 @@ func _ready() -> void:
 	Global.ok(connect("resized", self, "_on_resized"))
 
 func _on_resized() -> void:
-	var size := get_viewport().size / Vector2(720.0, 1280.0)
+	var size := get_viewport().size
 	var power := 2.0
 	var step := 1.0
 	
-	var ratio := get_viewport().size.aspect()
+	var ratio := size.aspect()
 	if ratio < 1.0:
 		self.layout_scene = preload("res://App/Layouts/Portrait.tscn")
-		step = pow(power, ceil(log(size.x) / log(power)))
+		step = pow(power, round(log(size.x / 500.0) / log(power)))
 	else:
 		self.layout_scene = preload("res://App/Layouts/Landscape.tscn")
-		step = pow(power, ceil(log(size.y) / log(power)))
+		step = pow(power, ceil(log(size.y / 720.0) / log(power)))
+	
+	if step > 1.0:
+		step /= 2.0
 	
 	get_tree().set_screen_stretch(
 		SceneTree.STRETCH_MODE_2D,
 		SceneTree.STRETCH_ASPECT_EXPAND,
-		get_viewport().size / step,
+		size / step,
 		1.0
 	)
 

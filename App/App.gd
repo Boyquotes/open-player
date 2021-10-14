@@ -38,63 +38,68 @@ func _ready() -> void:
 	if "--generate-branding" in OS.get_cmdline_args():
 		### RESPONSIVE UI ###
 		
-		for track in Global.profile.tracks.iter():
-			queue.add(track)
-		
-		var width_min := 400
-		var width_max := 1200
-		var width_step := 20
-		var height := 800
-		
-		var i := 0
-		for w in range(width_min, width_max + width_step, width_step):
-			OS.window_size = Vector2(w, height)
-			_prepare_screen()
-			
-			var task = _prepare_screen()
-			if task is GDScriptFunctionState:
-				yield(task, "completed")
-			
-			var image := get_viewport().get_texture().get_data()
-			image.flip_y()
-			
-			Global.ok(image.save_png("res://App/Press/Scaling/frame%d.png" % i))
-			i += 1
-		for w in range(width_max - width_step, width_min, -width_step):
-			OS.window_size = Vector2(w, height)
-			_prepare_screen()
-			
-			var task = _prepare_screen()
-			if task is GDScriptFunctionState:
-				yield(task, "completed")
-			
-			var image := get_viewport().get_texture().get_data()
-			image.flip_y()
-			
-			Global.ok(image.save_png("res://App/Press/Scaling/frame%d.png" % i))
-			i += 1
+#		for track in Global.profile.tracks.iter():
+#			queue.add(track)
+#
+#		var width_min := 400
+#		var width_max := 1200
+#		var width_step := 20
+#		var height := 800
+#
+#		var i := 0
+#		for w in range(width_min, width_max + width_step, width_step):
+#			OS.window_size = Vector2(w, height)
+#			_prepare_screen()
+#
+#			var task = _prepare_screen()
+#			if task is GDScriptFunctionState:
+#				yield(task, "completed")
+#
+#			var image := get_viewport().get_texture().get_data()
+#			image.flip_y()
+#
+#			Global.ok(image.save_png("res://App/Press/Scaling/frame%d.png" % i))
+#			i += 1
+#		for w in range(width_max - width_step, width_min, -width_step):
+#			OS.window_size = Vector2(w, height)
+#			_prepare_screen()
+#
+#			var task = _prepare_screen()
+#			if task is GDScriptFunctionState:
+#				yield(task, "completed")
+#
+#			var image := get_viewport().get_texture().get_data()
+#			image.flip_y()
+#
+#			Global.ok(image.save_png("res://App/Press/Scaling/frame%d.png" % i))
+#			i += 1
 		
 		### DEVICES ###
 		
 		var overlay := Image.new()
 		Global.ok(overlay.load("res://App/Press/Devices/devices_overlay.png"))
+		overlay.lock()
+		for x in overlay.get_width():
+			for y in overlay.get_height():
+				var color := overlay.get_pixel(x, y)
+				if color == Color.black:
+					overlay.set_pixel(x, y, Color.transparent)
+		overlay.unlock()
 		
 		var canvas := Image.new()
 		canvas.create(overlay.get_width(), overlay.get_height(), false, Image.FORMAT_RGBA8)
 		
 		if true:
-			var task = _press_write(canvas, Rect2(1018, 336, 2169, 1417))
+			var task = _press_write(canvas, Rect2(368, 144, 1408, 792))
 			if task is GDScriptFunctionState:
 				yield(task, "completed")
 		
 		if true:
-			var task = _press_write(canvas, Rect2(732, 1346, 590, 1095))
+			var task = _press_write(canvas, Rect2(144, 376, 360, 720))
 			if task is GDScriptFunctionState:
 				yield(task, "completed")
 		
 		_press_put(canvas, overlay, Vector2())
-		
-		canvas.shrink_x2()
 		
 		Global.ok(canvas.save_png("res://App/Press/Devices/devices.png"))
 		
@@ -123,11 +128,11 @@ func _prepare_screen() -> void:
 	yield(get_tree().create_timer(0.1), "timeout")
 
 func _press_write(canvas: Image, rect: Rect2) -> void:
-	OS.window_size = rect.size.normalized() * 500.0
+	OS.window_size = rect.size
 	
 	yield(get_tree().create_timer(0.5), "timeout")
 	
-	get_viewport().size = rect.size
+	get_viewport().size = rect.size * 2.0
 	
 	yield(get_tree().create_timer(0.1), "timeout")
 	
@@ -137,6 +142,7 @@ func _press_write(canvas: Image, rect: Rect2) -> void:
 	
 	var image := get_viewport().get_texture().get_data()
 	image.flip_y()
+	image.shrink_x2()
 	
 	_press_put(canvas, image, rect.position)
 

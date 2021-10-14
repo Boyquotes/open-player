@@ -42,17 +42,29 @@ __meta__ = {
 }
 volume_stages = [ ExtResource( 8 ), ExtResource( 10 ), ExtResource( 9 ), ExtResource( 7 ) ]
 
-[node name="Volume" parent="." instance=ExtResource( 1 )]
-modulate = Color( 0, 0, 0, 1 )
-margin_left = 454.0
-margin_right = 502.0
+[node name="Left" type="MarginContainer" parent="."]
+margin_left = 494.0
+margin_right = 598.0
 margin_bottom = 48.0
-rect_min_size = Vector2( 48, 0 )
+custom_constants/margin_top = 8
+custom_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Left"]
+margin_top = 8.0
+margin_right = 104.0
+margin_bottom = 40.0
+custom_constants/separation = 4
+
+[node name="Volume" parent="Left/HBoxContainer" instance=ExtResource( 1 )]
+modulate = Color( 0, 0, 0, 1 )
+margin_right = 32.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 0 )
 texture = ExtResource( 7 )
 icon_size = 0.75
 hint = "CONTROL_VOLUME"
 
-[node name="Popup" type="Popup" parent="Volume"]
+[node name="Popup" type="Popup" parent="Left/HBoxContainer/Volume"]
 margin_left = -100.0
 margin_right = -68.0
 margin_bottom = 200.0
@@ -61,7 +73,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PanelContainer" type="PanelContainer" parent="Volume/Popup"]
+[node name="PanelContainer" type="PanelContainer" parent="Left/HBoxContainer/Volume/Popup"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_right = -32.0
@@ -70,7 +82,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VSlider" type="VSlider" parent="Volume/Popup/PanelContainer"]
+[node name="VSlider" type="VSlider" parent="Left/HBoxContainer/Volume/Popup/PanelContainer"]
 margin_left = 8.0
 margin_top = 8.0
 margin_right = 24.0
@@ -85,54 +97,66 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PreviousTrack" parent="." instance=ExtResource( 13 )]
+[node name="PreviousTrack" parent="Left/HBoxContainer" instance=ExtResource( 13 )]
 modulate = Color( 0, 0, 0, 1 )
-margin_left = 506.0
-margin_right = 554.0
-margin_bottom = 48.0
-rect_min_size = Vector2( 48, 0 )
-icon_size = 0.6
+margin_left = 36.0
+margin_right = 68.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 0 )
+icon_size = 0.75
 
-[node name="SeekBack" parent="." instance=ExtResource( 6 )]
+[node name="SeekBack" parent="Left/HBoxContainer" instance=ExtResource( 6 )]
 modulate = Color( 0, 0, 0, 1 )
-margin_left = 558.0
-margin_right = 606.0
-margin_bottom = 48.0
-rect_min_size = Vector2( 48, 0 )
-icon_size = 0.6
+margin_left = 72.0
+margin_right = 104.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 0 )
+icon_size = 0.75
 
 [node name="PlayPause" parent="." instance=ExtResource( 5 )]
 modulate = Color( 0, 0, 0, 1 )
-margin_left = 610.0
-margin_right = 658.0
+margin_left = 602.0
+margin_right = 650.0
 margin_bottom = 48.0
 rect_min_size = Vector2( 48, 0 )
 
-[node name="SeekForward" parent="." instance=ExtResource( 12 )]
+[node name="Right" type="MarginContainer" parent="."]
+margin_left = 654.0
+margin_right = 786.0
+margin_bottom = 48.0
+custom_constants/margin_top = 8
+custom_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Right"]
+margin_top = 8.0
+margin_right = 132.0
+margin_bottom = 40.0
+custom_constants/separation = 4
+
+[node name="SeekForward" parent="Right/HBoxContainer" instance=ExtResource( 12 )]
 modulate = Color( 0, 0, 0, 1 )
-margin_left = 662.0
-margin_right = 710.0
-margin_bottom = 48.0
-rect_min_size = Vector2( 48, 0 )
-icon_size = 0.6
+margin_right = 32.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 0 )
+icon_size = 0.75
 
-[node name="NextTrack" parent="." instance=ExtResource( 3 )]
+[node name="NextTrack" parent="Right/HBoxContainer" instance=ExtResource( 3 )]
 modulate = Color( 0, 0, 0, 1 )
-margin_left = 714.0
-margin_right = 762.0
-margin_bottom = 48.0
-rect_min_size = Vector2( 48, 0 )
-icon_size = 0.6
+margin_left = 36.0
+margin_right = 68.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 0 )
+icon_size = 0.75
 
-[node name="SpeedOption" type="Button" parent="."]
-margin_left = 766.0
-margin_right = 826.0
-margin_bottom = 48.0
+[node name="SpeedOption" type="Button" parent="Right/HBoxContainer"]
+margin_left = 72.0
+margin_right = 132.0
+margin_bottom = 32.0
 rect_min_size = Vector2( 60, 0 )
 focus_mode = 0
 text = "1x"
 
-[node name="PopupMenu" type="PopupMenu" parent="SpeedOption"]
+[node name="PopupMenu" type="PopupMenu" parent="Right/HBoxContainer/SpeedOption"]
 margin_left = 100.0
 margin_right = 155.0
 margin_bottom = 140.0
@@ -141,7 +165,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="pressed" from="Volume" to="." method="_on_Volume_pressed"]
-[connection signal="value_changed" from="Volume/Popup/PanelContainer/VSlider" to="." method="_on_VSlider_value_changed"]
-[connection signal="pressed" from="SpeedOption" to="." method="_on_SpeedOption_pressed"]
-[connection signal="index_pressed" from="SpeedOption/PopupMenu" to="." method="_on_PopupMenu_index_pressed"]
+[connection signal="pressed" from="Left/HBoxContainer/Volume" to="." method="_on_Volume_pressed"]
+[connection signal="value_changed" from="Left/HBoxContainer/Volume/Popup/PanelContainer/VSlider" to="." method="_on_VSlider_value_changed"]
+[connection signal="pressed" from="Right/HBoxContainer/SpeedOption" to="." method="_on_SpeedOption_pressed"]
+[connection signal="index_pressed" from="Right/HBoxContainer/SpeedOption/PopupMenu" to="." method="_on_PopupMenu_index_pressed"]

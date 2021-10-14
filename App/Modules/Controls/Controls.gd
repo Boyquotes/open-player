@@ -3,30 +3,37 @@ class_name Controls
 
 export(Array, Texture) var volume_stages := []
 
+onready var play_pause := $PlayPause
+onready var previous_track := $Left/HBoxContainer/PreviousTrack
+onready var next_track := $Right/HBoxContainer/NextTrack
+onready var seek_back := $Left/HBoxContainer/SeekBack
+onready var seek_forward := $Right/HBoxContainer/SeekForward
+onready var volume := $Left/HBoxContainer/Volume
+onready var speed := $Right/HBoxContainer/SpeedOption
+
 func _ready() -> void:
 	_update_style()
 	Global.ok(Global.connect("theme_changed", self, "_update_style"))
 	
-	_update_volume()
+	_update_volume(Global.profile.volume)
 	Global.ok(Global.profile.connect("volume_changed", self, "_update_volume"))
 	
 	_update_speed(Global.player.speed)
 	Global.ok(Global.player.connect("speed_changed", self, "_update_speed"))
 
 func _update_style() -> void:
-	var button: Button = $SpeedOption
-	button.add_stylebox_override("normal", button.get_stylebox("control_button_normal"))
-	button.add_stylebox_override("hover", button.get_stylebox("control_button_hover"))
-	button.add_stylebox_override("pressed", button.get_stylebox("control_button_pressed"))
+	speed.add_stylebox_override("normal", speed.get_stylebox("control_button_normal"))
+	speed.add_stylebox_override("hover", speed.get_stylebox("control_button_hover"))
+	speed.add_stylebox_override("pressed", speed.get_stylebox("control_button_pressed"))
 
-func _update_volume(_value = null) -> void:
-	$Volume/Popup/PanelContainer/VSlider.value = Global.profile.volume
+func _update_volume(value: float) -> void:
+	volume.get_node("Popup/PanelContainer/VSlider").value = value
 	
-	var stage := ceil(Global.profile.volume * 3.0)
-	$Volume.texture = volume_stages[stage]
+	var stage := ceil(value * 3.0)
+	volume.texture = volume_stages[stage]
 
-func _update_speed(speed: float) -> void:
-	$SpeedOption.text = str(speed) + "x"
+func _update_speed(value: float) -> void:
+	speed.text = str(value) + "x"
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey:
@@ -53,16 +60,16 @@ func _popup_above(button: Button, popup: Popup) -> void:
 	popup.popup()
 
 func _on_Volume_pressed() -> void:
-	_popup_above($Volume, $Volume/Popup)
+	_popup_above(volume, volume.get_node("Popup"))
 
 func _on_VSlider_value_changed(value: float) -> void:
 	Global.profile.volume = value
 
 func _on_SpeedOption_pressed() -> void:
-	_popup_above($SpeedOption, $SpeedOption/PopupMenu)
+	_popup_above(speed, speed.get_node("PopupMenu"))
 
 func _on_PopupMenu_index_pressed(index) -> void:
-	var popup: PopupMenu = $SpeedOption/PopupMenu
+	var popup: PopupMenu = speed.get_node("PopupMenu")
 	for i in popup.get_item_count():
 		popup.set_item_checked(i, i == index)
 	
