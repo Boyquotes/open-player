@@ -38,7 +38,11 @@ func _ready() -> void:
 		var label := RichTextLabel.new()
 		label.text = Copyright.software[item]
 		software_tabs.add_child(label)
-		software_tabs.set_tab_title(label.get_index(), item)
+		var title: String = item
+		var max_width := 20
+		if title.length() > max_width:
+			title = title.left(max_width) + "…"
+		software_tabs.set_tab_title(label.get_index(), title)
 	
 	for item in Copyright.licenses:
 		var label := RichTextLabel.new()

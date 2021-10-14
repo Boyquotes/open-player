@@ -41,7 +41,7 @@ static func create_file(original_path: String) -> Track:
 	if segments.size() >= 2:
 		group = segments[segments.size() - 2]
 		object = segments[segments.size() - 1]
-		object = object.substr(0, object.find_last("."))
+		object = object.left(object.find_last("."))
 	
 	var stream := _source.create_stream()
 	var _duration := stream.get_length()

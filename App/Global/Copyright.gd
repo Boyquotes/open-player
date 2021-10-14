@@ -5,6 +5,7 @@ var licenses := {}
 
 func _add_software(title: String, parts: Array) -> void:
 	var sections := []
+	sections.push_back(title)
 	for part in parts:
 		var section := ""
 		if part.has("text"):
@@ -711,7 +712,7 @@ may consider it more useful to permit linking proprietary applications with
 the library.  If this is what you want to do, use the GNU Lesser General
 Public License instead of this License.  But first, please read
 <https://www.gnu.org/licenses/why-not-lgpl.html>.""")
-	_add_software("Play Button", [{
+	_add_software("Play Button Icon", [{
 		"text": """play button by Raúl Inc from thenounproject.com
 https://thenounproject.com/term/play-button/3907606/"""
 	}])
