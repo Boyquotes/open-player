@@ -14,3 +14,10 @@
 5) [Compile export templates for your target platform](https://docs.godotengine.org/en/stable/development/compiling/index.html).
 6) Using your build of the godot editor, import the `open-player` project.
 7) Create a new export preset for your desired platform, and export the project.
+
+### License
+
+- The primary license of OpenPlayer is `GPL-3.0+`.
+- Some icons are public domain.
+
+See [COPYRIGHT](https://github.com/nathanfranke/open-player/blob/main/COPYRIGHT) for comprehensive licensing information.
