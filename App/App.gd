@@ -36,44 +36,6 @@ func _ready() -> void:
 	Global.ok(Global.profile.tracks.connect("removed", self, "_profile_track_removed"))
 	
 	if "--generate-branding" in OS.get_cmdline_args():
-		### RESPONSIVE UI ###
-		
-#		for track in Global.profile.tracks.iter():
-#			queue.add(track)
-#
-#		var width_min := 400
-#		var width_max := 1200
-#		var width_step := 20
-#		var height := 800
-#
-#		var i := 0
-#		for w in range(width_min, width_max + width_step, width_step):
-#			OS.window_size = Vector2(w, height)
-#			_prepare_screen()
-#
-#			var task = _prepare_screen()
-#			if task is GDScriptFunctionState:
-#				yield(task, "completed")
-#
-#			var image := get_viewport().get_texture().get_data()
-#			image.flip_y()
-#
-#			Global.ok(image.save_png("res://App/Press/Scaling/frame%d.png" % i))
-#			i += 1
-#		for w in range(width_max - width_step, width_min, -width_step):
-#			OS.window_size = Vector2(w, height)
-#			_prepare_screen()
-#
-#			var task = _prepare_screen()
-#			if task is GDScriptFunctionState:
-#				yield(task, "completed")
-#
-#			var image := get_viewport().get_texture().get_data()
-#			image.flip_y()
-#
-#			Global.ok(image.save_png("res://App/Press/Scaling/frame%d.png" % i))
-#			i += 1
-		
 		### DEVICES ###
 		
 		var overlay := Image.new()
@@ -182,6 +144,12 @@ func _set_current(value: TrackList.Entry) -> void:
 	if current != null:
 		track_history.push_back(current)
 		replay()
+
+var current_track: Track setget _set_current_track, _get_current_track
+func _set_current_track(_value: Track) -> void:
+	assert(false)
+func _get_current_track() -> Track:
+	return current.value if current != null else null
 
 enum QueueMode {
 	REPEAT,

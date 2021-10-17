@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/logo_bg.png-5100349562f3d48a5c16cfde14fa953c.s3tc.stex"
-path.etc2="res://.import/logo_bg.png-5100349562f3d48a5c16cfde14fa953c.etc2.stex"
+path.s3tc="res://.import/logo_bg.png-7e1157454e65676105b52eb9a04bbc6c.s3tc.stex"
+path.etc2="res://.import/logo_bg.png-7e1157454e65676105b52eb9a04bbc6c.etc2.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc2" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://App/Press/Logos/logo_bg.png"
-dest_files=[ "res://.import/logo_bg.png-5100349562f3d48a5c16cfde14fa953c.s3tc.stex", "res://.import/logo_bg.png-5100349562f3d48a5c16cfde14fa953c.etc2.stex" ]
+source_file="res://App/Branding/Logos/logo_bg.png"
+dest_files=[ "res://.import/logo_bg.png-7e1157454e65676105b52eb9a04bbc6c.s3tc.stex", "res://.import/logo_bg.png-7e1157454e65676105b52eb9a04bbc6c.etc2.stex" ]
 
 [params]
 

@@ -712,10 +712,18 @@ may consider it more useful to permit linking proprietary applications with
 the library.  If this is what you want to do, use the GNU Lesser General
 Public License instead of this License.  But first, please read
 <https://www.gnu.org/licenses/why-not-lgpl.html>.""")
+	
+	if Engine.has_singleton("Godotcord"):
+		_add_software("Godotcord", [{
+			"copyright": ["2020, Dominik Sucker"],
+			"license": "MIT"
+		}])
+	
 	_add_software("Play Button Icon", [{
 		"text": """play button by Raúl Inc from thenounproject.com
 https://thenounproject.com/term/play-button/3907606/"""
 	}])
+	
 	for item in Engine.get_copyright_info():
 		_add_software(item.name, item.parts)
 	var raw_licenses := Engine.get_license_info()

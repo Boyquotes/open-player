@@ -41,12 +41,21 @@ func _set_hint(value: String) -> void:
 	
 	hint_node.text = hint
 
+export var selected := false setget _set_selected
+func _set_selected(value: bool) -> void:
+	selected = value
+	
+	if not _is_ready:
+		return
+	
+	_update_style()
+
 func _update_style() -> void:
 	texture_rect.texture = texture
 	texture_rect.rect_min_size = rect_size * icon_size
 	texture_rect.set_anchors_and_margins_preset(Control.PRESET_CENTER)
 	
-	modulate = get_color("icon")
+	modulate = get_color("icon_selected") if selected else get_color("icon")
 
 func _ready() -> void:
 	_update_style()

@@ -1,4 +1,4 @@
-extends MarginContainer
+extends ScrollContainer
 
 onready var language_option := $VBoxContainer/Language
 
@@ -57,6 +57,8 @@ func update_config() -> void:
 	$VBoxContainer/Animations/VBoxContainer/AnimationsEnabled.pressed = Global.profile.animations_enabled
 	$VBoxContainer/Animations/VBoxContainer/AnimationSpeed.visible = Global.profile.animations_enabled
 	$VBoxContainer/Animations/VBoxContainer/AnimationSpeed/HSlider.value = Global.profile.animation_speed
+	$VBoxContainer/DiscordRichPresence.visible = Engine.has_singleton("Godotcord")
+	$VBoxContainer/DiscordRichPresence.pressed = Global.profile.discord_rich_presence
 	
 	for i in language_option.get_item_count():
 		if language_option.get_item_metadata(i) == Global.profile.language:
@@ -68,8 +70,8 @@ func update_config() -> void:
 			theme_option.selected = i
 			theme_option.text = tr("SETTINGS_THEME").format([Global.profile.theme.get_meta("name")])
 
-func _on_AnimationsEnabled_toggled(button_pressed: bool) -> void:
-	Global.profile.animations_enabled = button_pressed
+func _on_AnimationsEnabled_toggled(value: bool) -> void:
+	Global.profile.animations_enabled = value
 	if not Global.profile.animations_enabled:
 		Global.profile.animation_speed = 1.0
 
@@ -81,6 +83,9 @@ func _on_Language_item_selected(index: int) -> void:
 
 func _on_Theme_item_selected(index: int) -> void:
 	Global.profile.theme = theme_option.get_item_metadata(index)
+
+func _on_DiscordRichPresence_toggled(value: bool) -> void:
+	Global.profile.discord_rich_presence = value
 
 func _on_ShowCopyright_pressed() -> void:
 	copyright_window.popup_centered_clamped(Vector2(800.0, 480.0))

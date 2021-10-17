@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=42 format=2]
+[gd_resource type="Theme" load_steps=41 format=2]
 
 [ext_resource path="res://App/Fonts/Font16.tres" type="DynamicFont" id=1]
 [ext_resource path="res://App/Fonts/Font12.tres" type="DynamicFont" id=2]
@@ -96,9 +96,6 @@ border_width_right = 1
 border_width_bottom = 1
 border_color = Color( 0.372549, 0.372549, 0.372549, 0.498039 )
 border_blend = true
-
-[sub_resource type="StyleBoxFlat" id=14]
-bg_color = Color( 0, 0, 0, 0 )
 
 [sub_resource type="StyleBoxFlat" id=15]
 content_margin_left = 8.0
@@ -300,10 +297,10 @@ CheckButton/colors/font_color_disabled = Color( 0, 0, 0, 0.2 )
 CheckButton/colors/font_color_hover = Color( 0, 0, 0, 1 )
 CheckButton/colors/font_color_hover_pressed = Color( 0, 0, 0, 1 )
 CheckButton/colors/font_color_pressed = Color( 0, 0, 0, 1 )
-CheckButton/styles/hover = SubResource( 14 )
-CheckButton/styles/hover_pressed = SubResource( 14 )
-CheckButton/styles/normal = SubResource( 14 )
-CheckButton/styles/pressed = SubResource( 14 )
+CheckButton/styles/hover = SubResource( 12 )
+CheckButton/styles/hover_pressed = SubResource( 12 )
+CheckButton/styles/normal = SubResource( 12 )
+CheckButton/styles/pressed = SubResource( 12 )
 Control/colors/hint_color = Color( 0.184314, 0.184314, 0.184314, 1 )
 Control/colors/icon = Color( 0.121569, 0.121569, 0.121569, 1 )
 Control/fonts/menu_item = ExtResource( 3 )

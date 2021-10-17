@@ -19,6 +19,7 @@ SETTINGS_ANIMATIONS_ENABLED,Animations Enabled,Animationen aktiviert,Анима�
 SETTINGS_ANIMATION_SPEED,Animation Speed,Animations Geschwindigkeit,Скорость Анимации
 SETTINGS_LANGUAGE,Language: {0},Sprache: {0},Язык: {0}
 SETTINGS_THEME,Theme: {0},Thema: {0},Тема: {0}
+SETTINGS_DISCORD_RICH_PRESENCE,Discord Rich Presence,Discord Rich Presence,Discord Rich Presence
 SETTINGS_SHOW_COPYRIGHT,Show Copyright,Urheberrecht anzeigen,Показать права
 TRACK_PLAY_ALL,Play All,Alle wiedergeben,Играть всё
 TRACK_REMOVE,Remove Song,Lied entfernen,Удалить музыку

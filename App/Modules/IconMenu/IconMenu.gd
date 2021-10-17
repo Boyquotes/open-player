@@ -15,31 +15,23 @@ func _input(event: InputEvent) -> void:
 		Global.player.active_view = "import"
 
 func _update_active_view(view) -> void:
-	var normal := get_color("icon", "Button")
-	var selected := get_color("icon_selected", "Button")
-	
-	home_button.modulate = normal
-	import_button.modulate = normal
-	tracks_button.modulate = normal
-	folders_button.modulate = normal
-	settings_button.modulate = normal
+	home_button.selected = false
+	import_button.selected = false
+	tracks_button.selected = false
+	folders_button.selected = false
+	settings_button.selected = false
 	
 	match view:
 		"home":
-			home_button.pressed = true
-			home_button.modulate = selected
+			home_button.selected = true
 		"import":
-			import_button.pressed = true
-			import_button.modulate = selected
+			import_button.selected = true
 		"tracks":
-			tracks_button.pressed = true
-			tracks_button.modulate = selected
+			tracks_button.selected = true
 		"folders":
-			folders_button.pressed = true
-			folders_button.modulate = selected
+			folders_button.selected = true
 		"settings":
-			settings_button.pressed = true
-			settings_button.modulate = selected
+			settings_button.selected = true
 
 func _on_Home_pressed() -> void:
 	Global.player.active_view = "home"

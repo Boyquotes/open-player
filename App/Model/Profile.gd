@@ -52,5 +52,10 @@ func _set_theme(value: Theme) -> void:
 	emit_signal("theme_changed", theme)
 	emit_changed()
 
+export var discord_rich_presence := true setget _set_discord_rich_presence
+func _set_discord_rich_presence(value: bool) -> void:
+	discord_rich_presence = value
+	emit_changed()
+
 func _init():
 	self.tracks = Tracks.new()
