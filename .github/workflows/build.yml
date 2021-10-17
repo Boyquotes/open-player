@@ -1,6 +1,8 @@
 name: 🛠️ Builds
 on:
-  release:
+  push:
+    tags:
+      - v*
   workflow_dispatch:
 
 env:
@@ -18,41 +20,84 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - name: Linux-x64
-            runner: ubuntu-18.04
+          - name: Linux
             identifier: linux
-            platform: x11
+            runner: ubuntu-18.04
             extension: "x86_64"
-          - name: Windows-x64
-            runner: ubuntu-20.04
+          - name: Windows
             identifier: windows
-            platform: windows
+            runner: ubuntu-20.04
             extension: "exe"
+          - name: Android
+            identifier: android
+            runner: ubuntu-20.04
+            extension: "apk"
 
     steps:
-      - uses: actions/checkout@v2
-        with:
-          repository: godotengine/godot
-          ref: ${{ env.GODOT_BASE_BRANCH }}
-          path: godot
 
-      - uses: actions/checkout@v2
-        with:
-          repository: nathanfranke/gdaudioyt
-          path: godot/modules/gdaudioyt
+### INSTALL DEPENDENCIES ###
 
-      - name: Install dependencies
+      - name: (Bionic) Change package sources and install base dependencies
+        if: ${{ matrix.runner == 'ubuntu-18.04' }}
         shell: sh
         run: |
+          sudo rm -f /etc/apt/sources.list.d/*
+          sudo tee -a /etc/apt/sources.list << EOT
+          deb http://archive.ubuntu.com/ubuntu/ bionic main restricted universe multiverse
+          deb http://archive.ubuntu.com/ubuntu/ bionic-updates main restricted universe multiverse
+          deb http://archive.ubuntu.com/ubuntu/ bionic-security main restricted universe multiverse
+          deb http://archive.ubuntu.com/ubuntu/ bionic-backports main restricted universe multiverse
+          EOT
+          
+          sudo apt-get update
           sudo apt-get install build-essential scons pkg-config libx11-dev libxcursor-dev libxinerama-dev libgl1-mesa-dev libglu-dev libasound2-dev libpulse-dev libudev-dev libxi-dev libxrandr-dev yasm
 
-      - name: (Windows) Install dependencies
+      - name: (Focal) Change package sources and install base dependencies
+        if: ${{ matrix.runner == 'ubuntu-20.04' }}
+        shell: sh
+        run: |
+          sudo rm -f /etc/apt/sources.list.d/*
+          sudo tee -a /etc/apt/sources.list << EOT
+          deb http://archive.ubuntu.com/ubuntu/ focal main restricted universe multiverse
+          deb http://archive.ubuntu.com/ubuntu/ focal-updates main restricted universe multiverse
+          deb http://archive.ubuntu.com/ubuntu/ focal-security main restricted universe multiverse
+          deb http://archive.ubuntu.com/ubuntu/ focal-backports main restricted universe multiverse
+          EOT
+          
+          sudo apt-get update
+          sudo apt-get install build-essential scons pkg-config libx11-dev libxcursor-dev libxinerama-dev libgl1-mesa-dev libglu-dev libasound2-dev libpulse-dev libudev-dev libxi-dev libxrandr-dev yasm
+
+      - name: (Windows) Install mingw64
         if: ${{ matrix.identifier == 'windows' }}
         shell: sh
         run: |
           sudo apt-get install mingw-w64
           sudo update-alternatives --set x86_64-w64-mingw32-gcc /usr/bin/x86_64-w64-mingw32-gcc-posix
           sudo update-alternatives --set x86_64-w64-mingw32-g++ /usr/bin/x86_64-w64-mingw32-g++-posix
+
+      - name: (Android) Set up Java 11
+        if: ${{ matrix.identifier == 'android' }}
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+
+      - name: (Android) Setup Android SDK
+        if: ${{ matrix.identifier == 'android' }}
+        uses: android-actions/setup-android@v2
+
+      - name: (Android) Install Android Tools
+        if: ${{ matrix.identifier == 'android' }}
+        shell: sh
+        run: |
+          "$ANDROID_SDK_ROOT"/cmdline-tools/latest/bin/sdkmanager --sdk_root="$ANDROID_SDK_ROOT" "platform-tools" "build-tools;30.0.3" "platforms;android-29" "cmdline-tools;latest" "cmake;3.10.2.4988404" "ndk;21.4.7075529"
+
+### COMPILE GODOT ###
+
+      - uses: actions/checkout@v2
+        with:
+          repository: godotengine/godot
+          ref: ${{ env.GODOT_BASE_BRANCH }}
+          path: godot
 
       - name: Setup Godot build cache
         uses: ./godot/.github/actions/godot-cache
@@ -66,7 +111,13 @@ jobs:
       - name: Make global bin/ folder (to fix godot-build error)
         shell: sh
         run: |
+          echo $ANDROID_SDK_ROOT
           mkdir ./bin/
+
+      - uses: actions/checkout@v2
+        with:
+          repository: nathanfranke/gdaudioyt
+          path: godot/modules/gdaudioyt
 
       - name: Compile Godot Tools
         uses: ./godot/.github/actions/godot-build
@@ -79,7 +130,7 @@ jobs:
       - name: Write Build Configuration
         shell: sh
         run: |
-          cat << EOT >> '${{ github.workspace }}/godot/custom.py'
+          tee -a '${{ github.workspace }}/godot/custom.py' << EOT
           disable_3d = "yes"
           production = "yes"
           deprecated = "no"
@@ -110,13 +161,69 @@ jobs:
           module_webp_enabled = "no"
           EOT
 
-      - name: Compile Godot Export Template
+      - name: (Linux) Compile Godot Export Template
+        if: ${{ matrix.identifier == 'linux' }}
         uses: ./godot/.github/actions/godot-build
         with:
           sconsflags: --directory='${{ github.workspace }}/godot'
-          platform: ${{ matrix.platform }}
+          platform: x11
           target: release
           tools: false
+
+      - name: (Windows) Compile Godot Export Template
+        if: ${{ matrix.identifier == 'windows' }}
+        uses: ./godot/.github/actions/godot-build
+        with:
+          sconsflags: --directory='${{ github.workspace }}/godot'
+          platform: windows
+          target: release
+          tools: false
+
+      - name: (Android) Compile Godot Export Template (armv7)
+        if: ${{ matrix.identifier == 'android' }}
+        uses: ./godot/.github/actions/godot-build
+        with:
+          sconsflags: --directory='${{ github.workspace }}/godot' android_arch=armv7
+          platform: android
+          target: release
+          tools: false
+
+      - name: (Android) Compile Godot Export Template (arm64v8)
+        if: ${{ matrix.identifier == 'android' }}
+        uses: ./godot/.github/actions/godot-build
+        with:
+          sconsflags: --directory='${{ github.workspace }}/godot' android_arch=arm64v8
+          platform: android
+          target: release
+          tools: false
+
+      - name: (Android) Generate Godot templates
+        if: ${{ matrix.identifier == 'android' }}
+        run: |
+          pushd godot/platform/android/java/
+          ./gradlew generateGodotTemplates
+          popd
+
+### SET UP KEYSTORE ###
+
+      - name: (Android) Create Keystore
+        if: ${{ matrix.identifier == 'android' }}
+        run: |
+          echo '${{ secrets.ANDROID_KEYSTORE }}' | base64 -di > release.keystore
+
+      - name: (Android) Set Keystore in Editor Settings
+        if: ${{ matrix.identifier == 'android' }}
+        run: |
+          touch '${{ github.workspace }}/godot/bin/_sc_'
+          mkdir -p '${{ github.workspace }}/godot/bin/editor_data/'
+          tee -a '${{ github.workspace }}/godot/bin/editor_data/editor_settings-3.tres' << EOT
+          [gd_resource type="EditorSettings" format=2]
+          [resource]
+          export/android/android_sdk_path = "$ANDROID_SDK_ROOT"
+          EOT
+          
+
+### EXPORT PROJECT ###
 
       - uses: actions/checkout@v2
         with:
@@ -126,10 +233,14 @@ jobs:
         if: ${{ matrix.identifier == 'linux' }}
         shell: sh
         run: |
-          cat << EOT >> '${{ github.workspace }}/project/export_presets.cfg'
+          tee -a '${{ github.workspace }}/project/export_presets.cfg' << EOT
           [preset.0]
           name="EXPORT_PRESET"
           platform="Linux/X11"
+          runnable=true
+          export_filter="all_resources"
+          include_filter=""
+          exclude_filter=""
           [preset.0.options]
           custom_template/release="${{ github.workspace }}/godot/bin/godot.x11.opt.64"
           EOT
@@ -138,13 +249,54 @@ jobs:
         if: ${{ matrix.identifier == 'windows' }}
         shell: sh
         run: |
-          cat << EOT >> '${{ github.workspace }}/project/export_presets.cfg'
+          tee -a '${{ github.workspace }}/project/export_presets.cfg' << EOT
           [preset.0]
           name="EXPORT_PRESET"
           platform="Windows Desktop"
+          runnable=true
+          export_filter="all_resources"
+          include_filter=""
+          exclude_filter=""
           [preset.0.options]
           custom_template/release="${{ github.workspace }}/godot/bin/godot.windows.opt.64.exe"
-          application/icon="res://App/Press/Logos/logo_bg.ico"
+          application/icon="res://App/Branding/Logos/logo_bg.ico"
+          EOT
+
+      - name: (Android) Create Export Preset
+        if: ${{ matrix.identifier == 'android' }}
+        shell: sh
+        run: |
+          tee -a '${{ github.workspace }}/project/export_presets.cfg' << EOT
+          [preset.0]
+          name="EXPORT_PRESET"
+          platform="Android"
+          runnable=true
+          export_filter="all_resources"
+          include_filter=""
+          exclude_filter=""
+          [preset.0.options]
+          custom_template/export_format=0
+          architectures/armeabi-v7a=true
+          architectures/arm64-v8a=true
+          architectures/x86=false
+          architectures/x86_64=false
+          custom_template/release="${{ github.workspace }}/godot/bin/android_release.apk"
+          keystore/debug="${{ github.workspace }}/release.keystore"
+          keystore/debug_user="empty"
+          keystore/debug_password="empty"
+          keystore/release="${{ github.workspace }}/release.keystore"
+          keystore/release_user="${{ secrets.ANDROID_KEYSTORE_USERNAME }}"
+          keystore/release_password="${{ secrets.ANDROID_KEYSTORE_PASSWORD }}"
+          version/code=1
+          version/name="1.0"
+          package/unique_name="sh.nathan.\$genname"
+          package/name="Player"
+          launcher_icons/main_192x192="res://App/Branding/Logos/logo_bg_192.png"
+          launcher_icons/adaptive_foreground_432x432="res://App/Branding/Logos/adaptive_fg.png"
+          launcher_icons/adaptive_background_432x432="res://App/Branding/Logos/adaptive_bg.png"
+          screen/immersive_mode=false
+          permissions/internet=true
+          permissions/vibrate=true
           EOT
 
       - name: Build Project
@@ -152,6 +304,8 @@ jobs:
         run: |
           mkdir '${{ github.workspace }}/build'
           xvfb-run '${{ github.workspace }}/godot/bin/godot.x11.opt.tools.64' --audio-driver Dummy --path '${{ github.workspace }}/project' --export EXPORT_PRESET '${{ github.workspace }}/build/OpenPlayer.${{ matrix.extension }}'
+
+### UPLOAD ARTIFACT ###
 
       - name: Get version name
         id: version
