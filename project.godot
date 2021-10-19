@@ -140,7 +140,8 @@ mix_rate=48000
 
 MetaCleaner="*res://App/Global/MetaCleaner.gd"
 Global="*res://App/Global/Global.gd"
-Copyright="*res://App/Global/Copyright.gd"
+Copyright="res://App/Global/Copyright.gd"
+Nicense="*res://addons/nicense/nicense.gd"
 
 [debug]
 
@@ -153,6 +154,10 @@ window/size/height=720
 window/dpi/allow_hidpi=true
 window/energy_saving/keep_screen_on=false
 window/handheld/orientation="sensor_portrait"
+
+[editor_plugins]
+
+enabled=PoolStringArray( "res://addons/nicense/plugin.cfg" )
 
 [importer_defaults]
 

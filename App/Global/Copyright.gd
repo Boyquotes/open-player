@@ -1,34 +1,13 @@
 extends Node
 
-var software := {}
-var licenses := {}
-
-func _add_software(title: String, parts: Array) -> void:
-	var sections := []
-	sections.push_back(title)
-	for part in parts:
-		var section := ""
-		if part.has("text"):
-			section += "\n%s" % part.text
-		if part.has("copyright"):
-			for copyright in part.copyright:
-				section += "\nCopyright (c) %s" % copyright
-		if part.has("license"):
-			section += "\nLicense: %s" % part.license
-		
-		sections.push_back(section.strip_edges())
-	
-	software[title] = PoolStringArray(sections).join("\n\n")
-
-func _add_license(title: String, text: String) -> void:
-	licenses[title] = text.strip_edges()
-
 func _ready() -> void:
-	_add_software("OpenPlayer", [{
-		"copyright": ["2021, Nathan Franke"],
-		"license": "GPL-3+"
-	}])
-	_add_license("GPL-3+", """This program is free software: you can redistribute it and/or modify
+	Nicense.add_product(Nicense.Product.new("OpenPlayer", [
+		Nicense.Copyright.new(
+			["2021, Nathan Franke"],
+			"GPL-3+"
+		)
+	]))
+	Nicense.add_license(Nicense.License.new("GPL-3+", """This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation, either version 3 of the License, or
 (at your option) any later version.
@@ -711,21 +690,17 @@ into proprietary programs.  If your program is a subroutine library, you
 may consider it more useful to permit linking proprietary applications with
 the library.  If this is what you want to do, use the GNU Lesser General
 Public License instead of this License.  But first, please read
-<https://www.gnu.org/licenses/why-not-lgpl.html>.""")
+<https://www.gnu.org/licenses/why-not-lgpl.html>."""))
 	
 	if Engine.has_singleton("Godotcord"):
-		_add_software("Godotcord", [{
-			"copyright": ["2020, Dominik Sucker"],
-			"license": "MIT"
-		}])
+		Nicense.add_product(Nicense.Product.new("Godotcord", [
+			Nicense.Copyright.new(
+				["2020, Dominik Sucker"],
+				"MIT"
+			)
+		]))
 	
-	_add_software("Play Button Icon", [{
-		"text": """play button by Raúl Inc from thenounproject.com
+	Nicense.add_product(Nicense.Product.new("Play Button Icon", [
+		"""play button by Raúl Inc from thenounproject.com
 https://thenounproject.com/term/play-button/3907606/"""
-	}])
-	
-	for item in Engine.get_copyright_info():
-		_add_software(item.name, item.parts)
-	var raw_licenses := Engine.get_license_info()
-	for item in raw_licenses:
-		_add_license(item, raw_licenses[item])
+	]))

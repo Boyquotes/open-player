@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://App/Modules/Screens/Settings/SettingsScreen.gd" type="Script" id=1]
+[ext_resource path="res://addons/nicense/nicense_button.gd" type="Script" id=2]
 
 [sub_resource type="StyleBoxEmpty" id=7]
 content_margin_left = 8.0
@@ -106,12 +107,13 @@ margin_right = 1264.0
 margin_bottom = 170.0
 text = "SETTINGS_DISCORD_RICH_PRESENCE"
 
-[node name="ShowCopyright" type="Button" parent="VBoxContainer"]
+[node name="NicenseButton" type="Button" parent="VBoxContainer"]
 margin_top = 178.0
 margin_right = 199.0
 margin_bottom = 198.0
 size_flags_horizontal = 0
 text = "SETTINGS_SHOW_COPYRIGHT"
+script = ExtResource( 2 )
 
 [node name="Windows" type="Control" parent="."]
 margin_left = 8.0
@@ -171,4 +173,3 @@ tab_align = 0
 [connection signal="item_selected" from="VBoxContainer/Language" to="." method="_on_Language_item_selected"]
 [connection signal="item_selected" from="VBoxContainer/Theme" to="." method="_on_Theme_item_selected"]
 [connection signal="toggled" from="VBoxContainer/DiscordRichPresence" to="." method="_on_DiscordRichPresence_toggled"]
-[connection signal="pressed" from="VBoxContainer/ShowCopyright" to="." method="_on_ShowCopyright_pressed"]

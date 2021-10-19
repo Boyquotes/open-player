@@ -4,11 +4,10 @@ onready var language_option := $VBoxContainer/Language
 
 onready var theme_option := $VBoxContainer/Theme
 
-onready var copyright_window := $Windows/Copyright
-onready var software_tabs := copyright_window.get_node("MarginContainer/TabContainer/Software")
-onready var licenses_tabs := copyright_window.get_node("MarginContainer/TabContainer/Licenses")
-
 func _ready() -> void:
+	update_config()
+	Global.ok(Global.profile.connect("changed", self, "update_config"))
+	
 	### LOCALES ###
 	
 	var locales := TranslationServer.get_loaded_locales()
@@ -31,27 +30,6 @@ func _ready() -> void:
 		var id: int = theme_option.get_item_count()
 		theme_option.add_item(item.get_meta("name"), id)
 		theme_option.set_item_metadata(id, item)
-	
-	### COPYRIGHT ###
-	
-	for item in Copyright.software:
-		var label := RichTextLabel.new()
-		label.text = Copyright.software[item]
-		software_tabs.add_child(label)
-		var title: String = item
-		var max_width := 20
-		if title.length() > max_width:
-			title = title.left(max_width) + "…"
-		software_tabs.set_tab_title(label.get_index(), title)
-	
-	for item in Copyright.licenses:
-		var label := RichTextLabel.new()
-		label.text = Copyright.licenses[item]
-		licenses_tabs.add_child(label)
-		licenses_tabs.set_tab_title(label.get_index(), item)
-	
-	update_config()
-	Global.ok(Global.profile.connect("changed", self, "update_config"))
 
 func update_config() -> void:
 	$VBoxContainer/Animations/VBoxContainer/AnimationsEnabled.pressed = Global.profile.animations_enabled
@@ -86,6 +64,3 @@ func _on_Theme_item_selected(index: int) -> void:
 
 func _on_DiscordRichPresence_toggled(value: bool) -> void:
 	Global.profile.discord_rich_presence = value
-
-func _on_ShowCopyright_pressed() -> void:
-	copyright_window.popup_centered_clamped(Vector2(800.0, 480.0))

@@ -60,11 +60,6 @@ func _notification(what: int) -> void:
 
 ### UTILITIES ###
 
-func exit_silently() -> void:
-	Engine.print_error_messages = false
-	ProjectSettings.set("debug/settings/stdout/print_fps", false)
-	get_tree().quit()
-
 func get_absolute_path(local: String) -> String:
 	return ProjectSettings.globalize_path(local)
 
