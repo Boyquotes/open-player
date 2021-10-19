@@ -142,6 +142,7 @@ func _on_TrackView_gui_input(event: InputEvent) -> void:
 		if event is InputEventMouseButton:
 			if event.button_index == BUTTON_LEFT:
 				if not event.pressed:
+					yield(get_tree(), "idle_frame")
 					_selecting_jobs.clear()
 		if event is InputEventScreenDrag:
 			_select_update(event.index, event.position)

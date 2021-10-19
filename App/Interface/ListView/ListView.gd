@@ -321,6 +321,7 @@ func _on_Container_gui_input(event: InputEvent) -> void:
 		if event is InputEventMouseButton:
 			if event.button_index == BUTTON_LEFT:
 				if not event.pressed:
+					yield(get_tree(), "idle_frame")
 					_touch_scrolling_indices.clear()
 					_dragging_jobs.clear()
 		if event is InputEventScreenDrag:
