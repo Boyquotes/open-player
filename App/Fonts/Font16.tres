@@ -5,7 +5,6 @@
 [ext_resource path="res://App/Fonts/DejaVuSans/DejaVuSans.ttf" type="DynamicFontData" id=3]
 
 [resource]
-use_filter = true
 extra_spacing_top = 2
 extra_spacing_bottom = 2
 font_data = ExtResource( 3 )

@@ -27,3 +27,5 @@ size_flags_horizontal = 3
 one_shot = true
 
 [node name="Tween" type="Tween" parent="."]
+
+[connection signal="gui_input" from="Container" to="." method="_on_Container_gui_input"]

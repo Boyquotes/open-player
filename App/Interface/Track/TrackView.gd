@@ -138,7 +138,11 @@ func _on_TrackView_gui_input(event: InputEvent) -> void:
 					if _selecting_jobs.erase(event.index):
 						_open_context()
 				_select_end(event.index)
-		
+		# TODO: Remove after https://github.com/godotengine/godot/issues/27149
+		if event is InputEventMouseButton:
+			if event.button_index == BUTTON_LEFT:
+				if not event.pressed:
+					_selecting_jobs.clear()
 		if event is InputEventScreenDrag:
 			_select_update(event.index, event.position)
 	else:

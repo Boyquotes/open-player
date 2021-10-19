@@ -34,20 +34,20 @@ item_scene = ExtResource( 6 )
 editable = true
 
 [node name="Container" parent="FoldersView" index="0"]
-visible = false
 margin_right = 1266.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="FoldersView"]
+[node name="Extra" type="VBoxContainer" parent="FoldersView"]
 margin_right = 1266.0
-margin_bottom = 706.0
+margin_bottom = 48.0
+mouse_filter = 2
 size_flags_horizontal = 3
-size_flags_vertical = 3
 custom_constants/separation = 0
 
-[node name="Container" type="Control" parent="FoldersView/VBoxContainer"]
+[node name="Space" type="Control" parent="FoldersView/Extra"]
 margin_right = 1266.0
+mouse_filter = 2
 
-[node name="Add" parent="FoldersView/VBoxContainer" instance=ExtResource( 2 )]
+[node name="Add" parent="FoldersView/Extra" instance=ExtResource( 2 )]
 margin_left = 609.0
 margin_right = 657.0
 margin_bottom = 48.0
@@ -109,7 +109,7 @@ margin_bottom = 343.0
 
 [connection signal="visibility_changed" from="." to="." method="_on_FoldersScreen_visibility_changed"]
 [connection signal="opened" from="FoldersView" to="." method="open"]
-[connection signal="pressed" from="FoldersView/VBoxContainer/Add" to="." method="_on_Add_pressed"]
+[connection signal="pressed" from="FoldersView/Extra/Add" to="." method="_on_Add_pressed"]
 [connection signal="removed" from="FolderContainer/PlayableTrackList" to="." method="_on_PlayableTrackList_removed"]
 [connection signal="pressed" from="FolderContainer/PlayableTrackList/Top/Drop" to="." method="_on_Drop_pressed"]
 

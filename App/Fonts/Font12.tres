@@ -6,7 +6,6 @@
 
 [resource]
 size = 12
-use_filter = true
 font_data = ExtResource( 3 )
 fallback/0 = ExtResource( 2 )
 fallback/1 = ExtResource( 1 )

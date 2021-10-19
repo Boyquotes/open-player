@@ -10,12 +10,9 @@ export var editable: bool
 export var touch_scroll_curve: Curve
 export var touch_scroll_margin := 20.0
 
-onready var container := _get_container()
+onready var container := $Container as Control
 onready var long_press := $LongPress
 onready var tween: Tween = $Tween
-
-func _get_container() -> Control:
-	return $Container as Control
 
 var list: List setget _set_list
 func _set_list(value: List) -> void:
@@ -41,8 +38,6 @@ func _set_list(value: List) -> void:
 		Global.ok(list.connect("ordered", self, "_list_ordered"))
 
 func _ready() -> void:
-	Global.ok(container.connect("gui_input", self, "_on_Container_gui_input"))
-	
 	set_process(false)
 	yield(get_tree(), "idle_frame")
 	prepare_instance()
@@ -175,20 +170,22 @@ func _instance_process() -> void:
 	
 	assert(from >= 0 and to <= list.size())
 	
-	for i in _instances:
-		if i < from or i >= to:
-			var dragging := false
-			for job in _dragging_jobs.values():
-				if job.index == i:
-					dragging = true
+	# Don't remove nodes if scrolling since then touch release event won't propagate.
+	if _touch_scrolling_indices.empty():
+		for i in _instances:
+			if i < from or i >= to:
+				var dragging := false
+				for job in _dragging_jobs.values():
+					if job.index == i:
+						dragging = true
+						break
+				if dragging:
 					break
-			if dragging:
-				break
-			
-			var instance: Control = _instances[i]
-			if not instance.get_rect().intersects(visible_rect):
-				Global.yes(_instances.erase(i))
-				_destroy_instance(instance)
+				
+				var instance: Control = _instances[i]
+				if not instance.get_rect().intersects(visible_rect):
+					Global.yes(_instances.erase(i))
+					_destroy_instance(instance)
 	
 	var start_time := OS.get_ticks_usec()
 	for i in range(from, to):
@@ -294,7 +291,8 @@ func _drag_write(index: int, position: Vector2) -> void:
 var _touch_scrolling_indices := {}
 
 func _touch_update_filter() -> void:
-	mouse_filter = Control.MOUSE_FILTER_IGNORE if _touch_scrolling_indices.empty() else Control.MOUSE_FILTER_PASS
+	pass
+	#mouse_filter = Control.MOUSE_FILTER_IGNORE if _touch_scrolling_indices.empty() else Control.MOUSE_FILTER_PASS
 
 func _on_Container_gui_input(event: InputEvent) -> void:
 	if OS.has_touchscreen_ui_hint():
@@ -310,14 +308,21 @@ func _on_Container_gui_input(event: InputEvent) -> void:
 				_touch_update_filter()
 				yield(timer, "timeout")
 				if not data.stopped:
-					if OS.get_name() in ["Android", "iOS"]:
-						Input.vibrate_handheld(Global.VIBRATE_TIME)
+					if Input.is_mouse_button_pressed(BUTTON_LEFT):
+						if OS.get_name() in ["Android", "iOS"]:
+							Input.vibrate_handheld(Global.VIBRATE_TIME)
 					var _flag := _touch_scrolling_indices.erase(event.index)
 					_touch_update_filter()
 			else:
 				var _flag1 := _touch_scrolling_indices.erase(event.index)
 				var _flag2 := _dragging_jobs.erase(event.index)
 				_touch_update_filter()
+		# TODO: Remove after https://github.com/godotengine/godot/issues/27149
+		if event is InputEventMouseButton:
+			if event.button_index == BUTTON_LEFT:
+				if not event.pressed:
+					_touch_scrolling_indices.clear()
+					_dragging_jobs.clear()
 		if event is InputEventScreenDrag:
 			var data = _touch_scrolling_indices.get(event.index)
 			if data != null:
