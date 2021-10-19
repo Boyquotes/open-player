@@ -10,3 +10,7 @@ export_presets.cfg
 # Mono-specific ignores
 .mono/
 data_*/
+
+# Android
+android/build/*
+!android/build/AndroidManifest.xml
