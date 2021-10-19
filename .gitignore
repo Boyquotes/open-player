@@ -14,3 +14,4 @@ data_*/
 # Android
 android/build/*
 !android/build/AndroidManifest.xml
+!android/build/build.gradle
