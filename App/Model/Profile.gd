@@ -40,9 +40,10 @@ func _set_animation_speed(value: float) -> void:
 	animation_speed = value
 	emit_changed()
 
-export var language := "en_US" setget _set_language
+export var language: String = OS.get_locale() setget _set_language
 func _set_language(value: String) -> void:
 	language = value
+	print_debug("Changing language to ", language)
 	TranslationServer.set_locale(language)
 	emit_changed()
 
