@@ -1,9 +1,8 @@
-# OpenPlayer - Music that doesn't waste your time.
+# OpenPlayer - Music player that doesn't waste your time.
 
-![Devices using OpenPlayer](https://raw.githubusercontent.com/nathanfranke/open-player/main/App/Branding/Devices/devices.png)
+![Devices using OpenPlayer](https://raw.githubusercontent.com/nathanfranke/open-player/main/App/Branding/Screenshots/devices.png)
 
-* Import MP3 and OGG Vorbis music from your computer.
-* Stream audio from [YouTube](https://www.youtube.com/).
+OpenPlayer is a free and open source music player that can import audio from your device and easily search and stream from YouTube.
 
 ## Compiling:
 

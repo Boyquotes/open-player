@@ -259,7 +259,7 @@ jobs:
           exclude_filter=""
           [preset.0.options]
           custom_template/release="${{ github.workspace }}/godot/bin/godot.windows.opt.64.exe"
-          application/icon="res://App/Branding/Logos/logo_bg.ico"
+          application/icon="res://App/Branding/Windows/logo_bg.ico"
           EOT
 
       - name: (Android) Create Export Preset
@@ -291,9 +291,9 @@ jobs:
           version/name="1.0"
           package/unique_name="sh.nathan.\$genname"
           package/name="Player"
-          launcher_icons/main_192x192="res://App/Branding/Logos/logo_bg_192.png"
-          launcher_icons/adaptive_foreground_432x432="res://App/Branding/Logos/adaptive_fg.png"
-          launcher_icons/adaptive_background_432x432="res://App/Branding/Logos/adaptive_bg.png"
+          launcher_icons/main_192x192="res://App/Branding/Android/adaptive_main.png"
+          launcher_icons/adaptive_foreground_432x432="res://App/Branding/Android/adaptive_fg.png"
+          launcher_icons/adaptive_background_432x432="res://App/Branding/Android/adaptive_bg.png"
           screen/immersive_mode=false
           permissions/internet=true
           permissions/vibrate=true

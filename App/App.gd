@@ -11,10 +11,54 @@ func _ready() -> void:
 	Global.ok(Global.profile.tracks.connect("removed", self, "_profile_track_removed"))
 	
 	if "--generate-branding" in OS.get_cmdline_args():
+		Global.save_profile = false
+		Global.profile.animations_enabled = false
+		
+		for track in Global.profile.tracks.iter():
+			queue.add(track)
+		
+		### SCREENSHOTS ###
+		
+		if true:
+			self.active_view = "import"
+			
+			var screen = _branding_screen(Vector2(1080, 1920))
+			if screen is GDScriptFunctionState:
+				screen = yield(screen, "completed")
+			
+			Global.ok(screen.save_png("res://App/Branding/Screenshots/portrait1.png"))
+		
+		if true:
+			self.active_view = "tracks"
+			
+			var screen = _branding_screen(Vector2(1080, 1920))
+			if screen is GDScriptFunctionState:
+				screen = yield(screen, "completed")
+			
+			Global.ok(screen.save_png("res://App/Branding/Screenshots/portrait2.png"))
+		
+		if true:
+			self.active_view = "settings"
+			
+			var screen = _branding_screen(Vector2(1080, 1920))
+			if screen is GDScriptFunctionState:
+				screen = yield(screen, "completed")
+			
+			Global.ok(screen.save_png("res://App/Branding/Screenshots/portrait3.png"))
+		
+		if true:
+			self.active_view = "tracks"
+			
+			var screen = _branding_screen(Vector2(1440, 2560))
+			if screen is GDScriptFunctionState:
+				screen = yield(screen, "completed")
+			
+			Global.ok(screen.save_png("res://App/Branding/Screenshots/tablet.png"))
+		
 		### DEVICES ###
 		
 		var overlay := Image.new()
-		Global.ok(overlay.load("res://App/Press/Devices/devices_overlay.png"))
+		Global.ok(overlay.load("res://App/Branding/Screenshots/devices_overlay.png"))
 		overlay.lock()
 		for x in overlay.get_width():
 			for y in overlay.get_height():
@@ -27,63 +71,56 @@ func _ready() -> void:
 		canvas.create(overlay.get_width(), overlay.get_height(), false, Image.FORMAT_RGBA8)
 		
 		if true:
-			var task = _press_write(canvas, Rect2(368, 144, 1408, 792))
+			self.active_view = "tracks"
+			
+			var task = _branding_screen_blit(canvas, Rect2(368, 144, 1408, 792))
 			if task is GDScriptFunctionState:
 				yield(task, "completed")
 		
 		if true:
-			var task = _press_write(canvas, Rect2(144, 376, 360, 720))
+			self.active_view = "tracks"
+			
+			var task = _branding_screen_blit(canvas, Rect2(144, 376, 360, 720))
 			if task is GDScriptFunctionState:
-				yield(task, "completed")
+				task = yield(task, "completed")
 		
-		_press_put(canvas, overlay, Vector2())
+		_branding_blit(canvas, overlay, Vector2())
 		
-		Global.ok(canvas.save_png("res://App/Press/Devices/devices.png"))
+		Global.ok(canvas.save_png("res://App/Branding/Screenshots/devices.png"))
 		
 		get_tree().quit()
 		return
 
-func _prepare_screen() -> void:
-	Global.save_profile = false
-	Global.profile.animations_enabled = false
-	
-	if queue.empty():
-		for track in Global.profile.tracks.iter():
-			queue.add(track)
-	
-	self.active_view = "tracks"
-	
-	yield(get_tree().create_timer(0.1), "timeout")
-	
-	if has_node("Layouts/Portrait"):
-		$Layouts/Portrait.queue_container.showing = true
-	
-	yield(get_tree().create_timer(0.3), "timeout")
-	
-	self.position = 60.0
-	
-	yield(get_tree().create_timer(0.1), "timeout")
-
-func _press_write(canvas: Image, rect: Rect2) -> void:
-	OS.window_size = rect.size
+func _branding_screen(size: Vector2) -> Image:
+	OS.window_size = size / 4.0
 	
 	yield(get_tree().create_timer(0.5), "timeout")
 	
-	get_viewport().size = rect.size * 2.0
+	get_viewport().size = size
 	
 	yield(get_tree().create_timer(0.1), "timeout")
 	
-	var task = _prepare_screen()
-	if task is GDScriptFunctionState:
-		yield(task, "completed")
+	self.position = 60.0
+	
+	if has_node("Layouts/Portrait"):
+		$Layouts/Portrait.queue_container.showing = self.active_view == "tracks"
+	
+	yield(get_tree().create_timer(0.5), "timeout")
 	
 	var image := get_viewport().get_texture().get_data()
 	image.flip_y()
-	image.shrink_x2()
 	
-	_press_put(canvas, image, rect.position)
+	return image
 
-func _press_put(image: Image, put: Image, pos: Vector2) -> void:
+func _branding_screen_blit(canvas: Image, rect: Rect2) -> void:
+	var screen = _branding_screen(rect.size * 2.0)
+	if screen is GDScriptFunctionState:
+		screen = yield(screen, "completed")
+	
+	screen.shrink_x2()
+	_branding_blit(canvas, screen, rect.position)
+
+func _branding_blit(image: Image, put: Image, pos: Vector2) -> void:
 	put.convert(Image.FORMAT_RGBA8)
 	image.blend_rect(put, Rect2(0.0, 0.0, put.get_width(), put.get_height()), pos)
 
