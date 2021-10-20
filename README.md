@@ -1,10 +1,22 @@
+[![GitHub release](https://img.shields.io/github/v/release/nathanfranke/open-player?include_prereleases&label=Download&sort=date&style=for-the-badge)](https://github.com/nathanfranke/open-player/releases)
+[![GitHub Repo stars](https://img.shields.io/github/stars/nathanfranke/open-player?style=for-the-badge)](https://github.com/nathanfranke/open-player)
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/nathanfranke/open-player/%F0%9F%9B%A0%EF%B8%8F%20Builds?style=for-the-badge)](https://github.com/nathanfranke/open-player/actions)
+
 # OpenPlayer - Music player that doesn't waste your time.
 
 ![Devices using OpenPlayer](https://raw.githubusercontent.com/nathanfranke/open-player/main/App/Branding/Screenshots/devices.png)
 
 OpenPlayer is a free and open source music player that can import audio from your device and easily search and stream from YouTube.
 
+## Download:
+
+[![GitHub release](https://img.shields.io/github/v/release/nathanfranke/open-player?include_prereleases&label=Download&sort=date&style=for-the-badge)](https://github.com/nathanfranke/open-player/releases)
+
+OpenPlayer is currently available for Windows, Linux, and Android.
+
 ## Compiling:
+
+If you would like to create a custom build that includes Godotcord and/or any modifications, follow these steps:
 
 1) Clone the [Godot Engine](https://github.com/godotengine/godot/) repository, and checkout the `3.x` branch. Alternatively, [download it as a zip](https://github.com/godotengine/godot/archive/refs/heads/3.x.zip).
 2) Clone the [gdaudioyt](https://github.com/nathanfranke/gdaudioyt/) repository. Alternatively, [download it as a zip](https://github.com/nathanfranke/gdaudioyt/archive/refs/heads/main.zip). Copy it to the `modules` directory inside the Godot Engine source code.
