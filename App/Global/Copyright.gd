@@ -696,7 +696,7 @@ Public License instead of this License.  But first, please read
 		Nicense.add_product(Nicense.Product.new("Godotcord", [
 			Nicense.Copyright.new(
 				["2020, Dominik Sucker"],
-				"MIT"
+				"Expat"
 			)
 		]))
 	
