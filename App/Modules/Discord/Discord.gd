@@ -1,18 +1,61 @@
 extends Node
 
-var godotcord
-var godotcord_activity_manager
+class Driver:
+	func create(id: String) -> int:
+		return OK
+	
+	func destroy() -> void:
+		pass
+	
+	func clear() -> void:
+		pass
+	
+	func run_callbacks() -> void:
+		pass
+	
+	func update_activity(text: String, timestamp := 0) -> void:
+		pass
 
-onready var cooldown: Timer = $Cooldown
+class GodotcordDriver:
+	extends Driver
+	
+	var godotcord
+	var godotcord_activity_manager
+	
+	func _init():
+		godotcord = Engine.get_singleton("Godotcord")
+		godotcord_activity_manager = Engine.get_singleton("GodotcordActivityManager")
+	
+	func create(id: String) -> int:
+		return godotcord.init(int(id), godotcord.CreateFlags_NO_REQUIRE_DISCORD)
+	
+	func clear() -> void:
+		godotcord_activity_manager.clear_activity()
+	
+	func run_callbacks() -> void:
+		godotcord.run_callbacks()
+	
+	func update_activity(text: String, timestamp := 0) -> void:
+		var activity = ClassDB.instance("GodotcordActivity")
+		
+		activity.large_image = "logo"
+		activity.small_image = "get"
+		activity.small_text = "Download OpenPlayer at https://op.nathan.sh/"
+		activity.details = text
+		activity.start = timestamp
+		
+		godotcord_activity_manager.set_activity(activity)
+
+var driver: Driver
+
+onready var update_cooldown: Timer = $Cooldown
 
 func _ready() -> void:
-	if not Engine.has_singleton("Godotcord"):
-		printraw("Godotcord not found.\n")
+	if Engine.has_singleton("Godotcord"):
+		driver = GodotcordDriver.new()
+	else:
 		queue_free()
 		return
-	
-	godotcord = Engine.get_singleton("Godotcord")
-	godotcord_activity_manager = Engine.get_singleton("GodotcordActivityManager")
 	
 	Global.ok(Global.profile.connect("changed", self, "_on_profile_changed"))
 	Global.ok(Global.player.connect("state_changed", self, "_on_state_changed"))
@@ -20,11 +63,14 @@ func _ready() -> void:
 	Global.ok(Global.player.connect("position_changed", self, "_on_position_changed"))
 	
 	_update_activity()
-	printraw("Godotcord is ready!\n")
+
+func _exit_tree() -> void:
+	if _initialized:
+		driver.destroy()
 
 func _process(_delta: float) -> void:
 	if _initialized:
-		godotcord.run_callbacks()
+		driver.run_callbacks()
 
 func _on_state_changed(_playing: bool) -> void:
 	_update_activity()
@@ -42,39 +88,33 @@ var _initialized := false
 func _update_activity() -> void:
 	if not Global.profile.discord_rich_presence:
 		if _initialized:
-			godotcord_activity_manager.clear_activity()
+			driver.clear()
 		return
 	
 	if not _initialized:
-		var err: int = godotcord.init(867716605148397569, godotcord.CreateFlags_NO_REQUIRE_DISCORD)
+		var err := driver.create("867716605148397569")
 		if err != OK:
-			printraw("Godotcord initialization failed: %d.\n" % err)
 			queue_free()
 			return
 		
 		_initialized = true
 	
-	if not cooldown.is_stopped():
+	if not update_cooldown.is_stopped():
 		_queue_update = true
 		return
-	cooldown.start()
-	
-	var activity = ClassDB.instance("GodotcordActivity")
-	activity.large_image = "logo"
-	activity.small_image = "get"
-	activity.small_text = "Download OpenPlayer at https://op.nathan.sh/"
+	update_cooldown.start()
 	
 	var track := Global.player.current_track
 	if track != null:
 		if Global.player.playing:
-			activity.details = "%s - %s" % [track.author, track.title]
-			activity.start = OS.get_unix_time() - int(round(Global.player.position))
+			driver.update_activity(
+				"%s - %s" % [track.author, track.title],
+				OS.get_unix_time() - int(Global.player.position)
+			)
 		else:
-			activity.details = "Paused"
+			driver.update_activity("Paused")
 	else:
-		activity.details = "Idle"
-	
-	godotcord_activity_manager.set_activity(activity)
+		driver.update_activity("Idle")
 
 var _queue_update := false
 func _on_Timer_timeout() -> void:

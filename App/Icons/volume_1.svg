@@ -1,48 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
-
-<svg
-   width="96"
-   height="96"
-   viewBox="0 0 25.399999 25.399999"
-   version="1.1"
-   id="svg53"
-   sodipodi:docname="volume1.svg"
-   inkscape:version="1.1 (c4e8f9ed74, 2021-05-24)"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:svg="http://www.w3.org/2000/svg">
-  <sodipodi:namedview
-     id="namedview55"
-     pagecolor="#ffffff"
-     bordercolor="#666666"
-     borderopacity="1.0"
-     inkscape:pageshadow="2"
-     inkscape:pageopacity="0.0"
-     inkscape:pagecheckerboard="true"
-     inkscape:document-units="mm"
-     showgrid="false"
-     units="px"
-     inkscape:zoom="4.8604938"
-     inkscape:cx="36.313183"
-     inkscape:cy="51.640844"
-     inkscape:window-width="1920"
-     inkscape:window-height="1024"
-     inkscape:window-x="1920"
-     inkscape:window-y="0"
-     inkscape:window-maximized="1"
-     inkscape:current-layer="layer1" />
-  <defs
-     id="defs50" />
-  <g
-     inkscape:label="Layer 1"
-     inkscape:groupmode="layer"
-     id="layer1">
-    <path
-       d="m 10.79082,6.9997883 a 0.3175,0.3175 0 0 0 -0.195792,0.079375 L 7.2083617,9.9895799 H 3.8481534 c -0.2645833,0 -0.4841875,0.1322921 -0.650875,0.2963331 a 0.91810416,0.91810416 0 0 0 -0.2963333,0.650875 v 3.466042 c 0,0.267229 0.1322917,0.486833 0.2963333,0.653521 a 0.91810416,0.91810416 0 0 0 0.650875,0.296333 H 7.2083617 L 10.595028,18.2631 a 0.3175,0.3175 0 0 0 0.52123,-0.238125 V 7.2828924 A 0.3175,0.3175 0 0 0 10.79082,6.9680383 Z m 2.518833,1.7462499 a 0.47624999,0.47624999 0 0 0 -0.330729,0.8122709 4.4185416,4.4185416 0 0 1 0,6.2441659 0.47624999,0.47624999 0 1 0 0.669396,0.672042 5.3710416,5.3710416 0 0 0 0,-7.5935413 0.47624999,0.47624999 0 0 0 -0.338667,-0.142875 z"
-       id="path12"
-       inkscape:label="Volume 33%"
-       style="stroke-width:0.264583;fill:#ffffff" />
-  </g>
+<svg id="svg53" width="96" height="96" version="1.1" viewBox="0 0 25.4 25.4" xmlns="http://www.w3.org/2000/svg">
+ <path id="path12" transform="scale(.26458)" d="m40.785 26.336v0.11914a1.2 1.2 0 0 0-0.74023 0.30078l-12.801 11h-12.699c-0.99999 0-1.8309 0.49915-2.4609 1.1191a3.47 3.47 0 0 0-1.1191 2.4609v13.1c0 1.01 0.49915 1.8407 1.1191 2.4707a3.47 3.47 0 0 0 2.4609 1.1191h12.699l12.801 11a1.2 1.2 0 0 0 1.9707-0.90039v-40.6a1.2 1.2 0 0 0-1.2305-1.1895zm9.5195 6.6895v0.03125a1.8 1.8 0 0 0-1.25 3.0684 16.7 16.7 0 0 1 0 23.602 1.8 1.8 0 1 0 2.5293 2.5391 20.3 20.3 0 0 0 0-28.699 1.8 1.8 0 0 0-1.2793-0.54102z" fill="#fff"/>
 </svg>
