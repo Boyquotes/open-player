@@ -259,7 +259,7 @@ jobs:
           exclude_filter=""
           [preset.0.options]
           custom_template/release="${{ github.workspace }}/godot/bin/godot.windows.opt.64.exe"
-          application/icon="res://App/Branding/Windows/logo_bg.ico"
+          application/icon="res://App/Branding/Windows/icon.ico"
           EOT
 
       - name: (Android) Create Export Preset

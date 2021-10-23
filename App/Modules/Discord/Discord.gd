@@ -1,7 +1,7 @@
 extends Node
 
 class Driver:
-	func create(id: String) -> int:
+	func create(_id: String) -> int:
 		return OK
 	
 	func destroy() -> void:
@@ -13,7 +13,7 @@ class Driver:
 	func run_callbacks() -> void:
 		pass
 	
-	func update_activity(text: String, timestamp := 0) -> void:
+	func update_activity(_text: String, _timestamp := 0) -> void:
 		pass
 
 class GodotcordDriver:
@@ -39,6 +39,7 @@ class GodotcordDriver:
 		var activity = ClassDB.instance("GodotcordActivity")
 		
 		activity.large_image = "logo"
+		activity.large_text = "OpenPlayer - Music Player by nathanfranke"
 		activity.small_image = "get"
 		activity.small_text = "Download OpenPlayer at https://op.nathan.sh/"
 		activity.details = text

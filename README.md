@@ -67,7 +67,7 @@ If you would like to create a custom build that includes Godotcord and/or any mo
 		<details>
 		<summary>Extra Steps: Windows</summary>
 
-		- Set `application/icon` to `res://App/Branding/Logos/logo_bg.ico`.
+		- Set `application/icon` to `res://App/Branding/Logos/icon.ico`.
 		</details>
 
 		<details>
