@@ -1,17 +1,22 @@
 extends Control
 class_name App
 
+func _enter_tree() -> void:
+	# Change theme on enter tree before children are added.
+	_on_theme_changed()
+	Global.ok(Global.profile.connect("theme_changed", self, "_on_theme_changed"))
+
+func _on_theme_changed() -> void:
+	theme = Global.profile.theme
+
 func _ready() -> void:
 	randomize()
-	
-	_profile_theme_changed(Global.profile.theme)
-	Global.ok(Global.profile.connect("theme_changed", self, "_profile_theme_changed"))
 	
 	Global.ok(connect("track_finished", self, "next_track"))
 	Global.ok(Global.profile.tracks.connect("removed", self, "_profile_track_removed"))
 	
 	if "--generate-branding" in OS.get_cmdline_args():
-		Global.save_profile = false
+		Global.autosave_timer.stop()
 		Global.profile.animations_enabled = false
 		
 		for track in Global.profile.tracks.iter():
@@ -123,10 +128,6 @@ func _branding_screen_blit(canvas: Image, rect: Rect2) -> void:
 func _branding_blit(image: Image, put: Image, pos: Vector2) -> void:
 	put.convert(Image.FORMAT_RGBA8)
 	image.blend_rect(put, Rect2(0.0, 0.0, put.get_width(), put.get_height()), pos)
-
-func _profile_theme_changed(new_theme: Theme) -> void:
-	theme = new_theme
-	Global.emit_signal("theme_changed")
 
 func _profile_track_removed(entry: TrackList.Entry) -> void:
 	var index := queue.find(entry.value)

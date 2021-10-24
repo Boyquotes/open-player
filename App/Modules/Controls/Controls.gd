@@ -13,7 +13,7 @@ onready var speed := $Right/HBoxContainer/SpeedOption
 
 func _ready() -> void:
 	_update_style()
-	Global.ok(Global.connect("theme_changed", self, "_update_style"))
+	Global.ok(Global.profile.connect("theme_changed", self, "_update_style"))
 	
 	_update_volume(Global.profile.volume)
 	Global.ok(Global.profile.connect("volume_changed", self, "_update_volume"))
@@ -46,14 +46,14 @@ func _unhandled_input(event: InputEvent) -> void:
 				Global.player.next_track(true)
 	if event.is_action_pressed("previous_track", true):
 		Global.player.previous_track()
-	if event.is_action_pressed("skip_backward", true):
-		Global.player.position -= 30.0 if Input.is_action_pressed("skip_modifier") else 5.0
-	if event.is_action_pressed("toggle_playing", true):
-		Global.player.toggle_playing()
-	if event.is_action_pressed("skip_forward", true):
-		Global.player.position += 30.0 if Input.is_action_pressed("skip_modifier") else 5.0
 	if event.is_action_pressed("next_track", true):
 		Global.player.next_track(true)
+	if event.is_action_pressed("skip_backward", true):
+		Global.player.position -= 30.0 if Input.is_action_pressed("skip_modifier") else 5.0
+	if event.is_action_pressed("skip_forward", true):
+		Global.player.position += 30.0 if Input.is_action_pressed("skip_modifier") else 5.0
+	if event.is_action_pressed("toggle_playing", true):
+		Global.player.toggle_playing()
 
 func _popup_above(button: Button, popup: Popup) -> void:
 	popup.rect_position = button.rect_global_position + Vector2.RIGHT * (button.rect_size.x - popup.rect_size.x) / 2.0 + Vector2.UP * popup.rect_size.y

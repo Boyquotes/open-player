@@ -59,7 +59,7 @@ func _update_title() -> void:
 
 func _ready() -> void:
 	_update_style()
-	Global.ok(Global.connect("theme_changed", self, "_update_style"))
+	Global.ok(Global.profile.connect("theme_changed", self, "_update_style"))
 
 func _notification(what: int) -> void:
 	match what:

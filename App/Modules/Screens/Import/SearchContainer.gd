@@ -11,7 +11,7 @@ func update_style() -> void:
 
 func _ready() -> void:
 	update_style()
-	Global.ok(Global.connect("theme_changed", self, "update_style"))
+	Global.ok(Global.profile.connect("theme_changed", self, "update_style"))
 
 func _on_SearchBox_text_changed(_new_text: String) -> void:
 	search_timer.start(0.0)

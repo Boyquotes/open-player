@@ -3,8 +3,8 @@
 [ext_resource path="res://App/Interface/ListView/ListView.gd" type="Script" id=1]
 
 [sub_resource type="Curve" id=1]
-max_value = 500.0
-_data = [ Vector2( 0, 500 ), 0.0, -935.909, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+max_value = 1000.0
+_data = [ Vector2( 0, 1000 ), 0.0, -2026.43, 0, 0, Vector2( 1, 54.5454 ), -131.725, 0.0, 0, 0 ]
 
 [node name="ListView" type="ScrollContainer"]
 anchor_right = 1.0
@@ -16,7 +16,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 touch_scroll_curve = SubResource( 1 )
-touch_scroll_margin = 60.0
 
 [node name="Container" type="Control" parent="."]
 margin_right = 1280.0

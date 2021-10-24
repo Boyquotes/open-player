@@ -75,14 +75,14 @@ func update_active() -> void:
 
 func _ready() -> void:
 	_update_style()
-	Global.ok(Global.connect("theme_changed", self, "_update_style"))
+	Global.ok(Global.profile.connect("theme_changed", self, "_update_style"))
 	
 	Global.ok(connect("selected", self, "_on_selected"))
 	
 	update_active()
 
 func _exit_tree() -> void:
-	Global.disconnect("theme_changed", self, "_update_style")
+	Global.profile.disconnect("theme_changed", self, "_update_style")
 	disconnect("selected", self, "_on_selected")
 
 func _on_selected() -> void:

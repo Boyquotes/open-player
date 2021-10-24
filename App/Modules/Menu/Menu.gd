@@ -25,13 +25,13 @@ func _update_style() -> void:
 
 func _ready() -> void:
 	_update_style()
-	Global.ok(Global.connect("theme_changed", self, "_update_style"))
+	Global.ok(Global.profile.connect("theme_changed", self, "_update_style"))
 	
 	_update_active_view(Global.player.active_view)
 	Global.ok(Global.player.connect("active_view_changed", self, "_update_active_view"))
 
 func _exit_tree() -> void:
-	Global.disconnect("theme_changed", self, "_update_style")
+	Global.profile.disconnect("theme_changed", self, "_update_style")
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("search"):

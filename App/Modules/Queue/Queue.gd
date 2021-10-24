@@ -23,7 +23,7 @@ func _ready() -> void:
 	view.list = Global.player.queue
 	
 	_update_style()
-	Global.ok(Global.connect("theme_changed", self, "_update_style"))
+	Global.ok(Global.profile.connect("theme_changed", self, "_update_style"))
 	
 	_update_queue_mode(Global.player.queue_mode)
 	Global.ok(Global.player.connect("queue_mode_changed", self, "_update_queue_mode"))
@@ -31,7 +31,7 @@ func _ready() -> void:
 	Global.ok(Global.player.connect("track_changed", self, "_on_track_changed"))
 
 func _exit_tree() -> void:
-	Global.disconnect("theme_changed", self, "_update_style")
+	Global.profile.disconnect("theme_changed", self, "_update_style")
 	Global.player.disconnect("queue_mode_changed", self, "_update_queue_mode")
 	Global.player.disconnect("track_changed", self, "_on_track_changed")
 

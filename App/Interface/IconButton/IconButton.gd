@@ -59,7 +59,7 @@ func _update_style() -> void:
 
 func _ready() -> void:
 	_update_style()
-	Global.ok(Global.connect("theme_changed", self, "_update_style"))
+	Global.ok(Global.profile.connect("theme_changed", self, "_update_style"))
 
 func _process(_delta: float) -> void:
 	rect_min_size.x = rect_size.y

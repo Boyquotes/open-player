@@ -23,7 +23,7 @@ func _set_text(value: String) -> void:
 
 export var hide_on_release := true
 
-func update_style() -> void:
+func _update_style() -> void:
 	label.add_font_override("font", get_font("hint", "Label"))
 	
 	var color := get_color("hint_color")
@@ -31,7 +31,8 @@ func update_style() -> void:
 	arrow.modulate = color
 
 func _ready() -> void:
-	update_style()
+	_update_style()
+	Global.ok(Global.profile.connect("theme_changed", self, "_update_style"))
 	
 	set_showing(false)
 	

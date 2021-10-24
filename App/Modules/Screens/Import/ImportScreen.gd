@@ -15,10 +15,10 @@ func _update_style() -> void:
 	search_button.modulate = search_button.get_color("icon")
 
 func _ready() -> void:
-	_update_style()
-	Global.ok(Global.connect("theme_changed", self, "_update_style"))
-	
 	Global.ok(Global.connect("go_back", self, "_on_go_back"))
+	
+	_update_style()
+	Global.ok(Global.profile.connect("theme_changed", self, "_update_style"))
 
 func _on_go_back(request: Global.GoBackRequest) -> void:
 	if files_container.showing:

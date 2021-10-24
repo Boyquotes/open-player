@@ -8,7 +8,7 @@ export var item_scene: PackedScene
 export var editable: bool
 
 export var touch_scroll_curve: Curve
-export var touch_scroll_margin := 20.0
+export var touch_scroll_margin := 100.0
 
 onready var container := $Container as Control
 onready var long_press := $LongPress
@@ -83,8 +83,8 @@ func _list_removed(entry: List.Entry) -> void:
 	
 	var removed_instance = _instances.get(entry.index)
 	if removed_instance != null:
+		Global.yes(_instances.erase(entry.index))
 		_destroy_instance(removed_instance)
-	Global.yes(_instances.erase(entry.index))
 	
 	for i in temp_instances:
 		var instance = temp_instances[i]
@@ -118,6 +118,11 @@ func _list_ordered(mapping: Dictionary) -> void:
 			_update_position(instance)
 		else:
 			var _flag := _instances.erase(i)
+	
+	if mapping.size() == list.size():
+		if Global.profile.animations_enabled:
+			yield(get_tree().create_timer(MOVE_TIME / Global.profile.animation_speed), "timeout")
+		_ensure_active_visible()
 
 var active: List.Entry setget _set_active
 func _set_active(value) -> void:
@@ -162,8 +167,8 @@ var _instances := {}
 func _instance_process() -> void:
 	var visible_rect := Rect2(-container.rect_position, rect_size)
 	
-	var raw_from := int(visible_rect.position.y / _instance_size.y)
-	var raw_to := int(ceil(visible_rect.end.y / _instance_size.y) + 1.0)
+	var raw_from := int(visible_rect.position.y / _instance_size.y) - 3
+	var raw_to := int(ceil(visible_rect.end.y / _instance_size.y) + 1.0) + 3
 	
 	var from := int(max(raw_from, 0))
 	var to := int(min(raw_to, list.size()))
@@ -290,10 +295,6 @@ func _drag_write(index: int, position: Vector2) -> void:
 
 var _touch_scrolling_indices := {}
 
-func _touch_update_filter() -> void:
-	pass
-	#mouse_filter = Control.MOUSE_FILTER_IGNORE if _touch_scrolling_indices.empty() else Control.MOUSE_FILTER_PASS
-
 func _on_Container_gui_input(event: InputEvent) -> void:
 	if OS.has_touchscreen_ui_hint():
 		if event is InputEventScreenTouch:
@@ -305,18 +306,15 @@ func _on_Container_gui_input(event: InputEvent) -> void:
 					"stopped": false
 				}
 				_touch_scrolling_indices[event.index] = data
-				_touch_update_filter()
 				yield(timer, "timeout")
 				if not data.stopped:
 					if Input.is_mouse_button_pressed(BUTTON_LEFT):
 						if OS.get_name() in ["Android", "iOS"]:
 							Input.vibrate_handheld(Global.VIBRATE_TIME)
 					var _flag := _touch_scrolling_indices.erase(event.index)
-					_touch_update_filter()
 			else:
 				var _flag1 := _touch_scrolling_indices.erase(event.index)
 				var _flag2 := _dragging_jobs.erase(event.index)
-				_touch_update_filter()
 		# TODO: Remove after https://github.com/godotengine/godot/issues/27149
 		if event is InputEventMouseButton:
 			if event.button_index == BUTTON_LEFT:
