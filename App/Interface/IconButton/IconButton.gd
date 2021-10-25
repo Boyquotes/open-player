@@ -39,6 +39,7 @@ func _set_hint(value: String) -> void:
 	if not _is_ready:
 		yield(self, "ready")
 	
+	text = hint
 	hint_node.text = hint
 
 export var selected := false setget _set_selected

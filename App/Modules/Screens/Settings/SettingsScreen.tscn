@@ -58,7 +58,6 @@ custom_constants/separation = 4
 [node name="AnimationsEnabled" type="CheckButton" parent="VBoxContainer/Animations/VBoxContainer"]
 margin_right = 1250.0
 margin_bottom = 32.0
-focus_mode = 0
 custom_styles/hover = SubResource( 3 )
 custom_styles/pressed = SubResource( 4 )
 custom_styles/hover_pressed = SubResource( 6 )

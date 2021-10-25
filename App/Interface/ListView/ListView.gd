@@ -11,7 +11,6 @@ export var touch_scroll_curve: Curve
 export var touch_scroll_margin := 100.0
 
 onready var container := $Container as Control
-onready var long_press := $LongPress
 onready var tween: Tween = $Tween
 
 var list: List setget _set_list
@@ -65,10 +64,7 @@ func _list_inserted(entry: List.Entry) -> void:
 			temp_instances[i + 1] = _instances[i]
 	
 	for i in temp_instances:
-		var instance = temp_instances[i]
-		_instances[i] = instance
-		instance.get(PROPERTY_ENTRY).index = i
-		_update_position(instance)
+		_change_index(i, temp_instances[i])
 	
 	var _flag := _instances.erase(entry.index)
 
@@ -89,9 +85,7 @@ func _list_removed(entry: List.Entry) -> void:
 	for i in temp_instances:
 		var instance = temp_instances[i]
 		if instance != null:
-			_instances[i] = instance
-			instance.get(PROPERTY_ENTRY).index = i
-			_update_position(instance)
+			_change_index(i, instance)
 		else:
 			var _flag := _instances.erase(i)
 
@@ -113,9 +107,7 @@ func _list_ordered(mapping: Dictionary) -> void:
 		
 		var instance = temp_instances[v]
 		if instance != null:
-			_instances[i] = instance
-			instance.get(PROPERTY_ENTRY).index = i
-			_update_position(instance)
+			_change_index(i, instance)
 		else:
 			var _flag := _instances.erase(i)
 	
@@ -123,6 +115,11 @@ func _list_ordered(mapping: Dictionary) -> void:
 		if Global.profile.animations_enabled:
 			yield(get_tree().create_timer(MOVE_TIME / Global.profile.animation_speed), "timeout")
 		_ensure_active_visible()
+
+func _change_index(index: int, instance: Control) -> void:
+	_instances[index] = instance
+	instance.get(PROPERTY_ENTRY).index = index
+	_update_position(index, instance)
 
 var active: List.Entry setget _set_active
 func _set_active(value) -> void:
@@ -167,8 +164,8 @@ var _instances := {}
 func _instance_process() -> void:
 	var visible_rect := Rect2(-container.rect_position, rect_size)
 	
-	var raw_from := int(visible_rect.position.y / _instance_size.y) - 3
-	var raw_to := int(ceil(visible_rect.end.y / _instance_size.y) + 1.0) + 3
+	var raw_from := int(floor(visible_rect.position.y / _instance_size.y) - 1.0)
+	var raw_to := int(ceil(visible_rect.end.y / _instance_size.y) + 1.0)
 	
 	var from := int(max(raw_from, 0))
 	var to := int(min(raw_to, list.size()))
@@ -221,17 +218,15 @@ func _create_instance(entry: List.Entry) -> Node:
 	
 	instance.set_anchors_and_margins_preset(PRESET_TOP_WIDE)
 	
-	_update_position(instance)
+	_update_position(entry.index, instance)
 	
 	return instance
 
 var _instance_targets := {}
-func _update_position(instance: Control) -> void:
-	var entry: List.Entry = instance.get(PROPERTY_ENTRY)
-	
+func _update_position(index: int, instance: Control) -> void:
 	var _flag := tween.stop(instance, "rect_position")
 	
-	var target := entry.index * _instance_size * Vector2.DOWN
+	var target := index * _instance_size * Vector2.DOWN
 	var animate := Global.profile.animations_enabled and instance in _instance_targets
 	if animate:
 		Global.yes(tween.interpolate_property(instance, "rect_position", null, target, MOVE_TIME / Global.profile.animation_speed))
@@ -240,6 +235,16 @@ func _update_position(instance: Control) -> void:
 		instance.rect_position = target
 	
 	_instance_targets[instance] = target
+	
+	var node_index := 0
+	for i in _instances:
+		if i < index:
+			node_index += 1
+	
+	container.move_child(instance, node_index)
+	#instance.name = "Item%d" % index
+	#instance.focus_previous = NodePath("../Item%d" % (index - 1))
+	#instance.focus_next = NodePath("../Item%d" % (index + 1))
 
 # --- DRAGGING ---
 
@@ -278,6 +283,11 @@ func _drag_update(job: DraggingJob, delta: float) -> void:
 			mapping[i] = i + step
 		
 		list.order(mapping)
+		
+		# Hack: Hide and show this node to un-press all children buttons.
+		var instance = _instances[next_index]
+		instance.visible = false
+		instance.visible = true
 	
 	job.index = next_index
 

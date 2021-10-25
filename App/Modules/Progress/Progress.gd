@@ -30,7 +30,7 @@ func _on_ProgressBar_gui_input(event: InputEvent) -> void:
 		else:
 			Global.player.seeking = false
 	if event is InputEventMouseMotion:
-		if event.button_mask & BUTTON_LEFT:
+		if Global.player.seeking:
 			target_position = event.position.x
 	
 	if target_position != null:

@@ -1,6 +1,6 @@
 extends Node
 
-const TOUCH_HOLD_TIME := 0.4
+const TOUCH_HOLD_TIME := 0.3
 const VIBRATE_TIME := 20
 const CLICK_DRAG_MARGIN_SQ := 15.0 * 15.0
 
@@ -33,12 +33,16 @@ func _get_profile_path(v: int) -> String:
 	return "user://profile.%d.tres" % v
 
 func _load_profile() -> Profile:
+	print_debug("Loading profile...")
+	
 	var path := _get_profile_path(_PROFILE_VERSION)
 	if ResourceLoader.exists(path):
 		return load(path) as Profile
 	return Profile.new()
 
 func _save_profile() -> void:
+	print_debug("Saving profile...")
+	
 	var path := _get_profile_path(_PROFILE_VERSION)
 	ok(ResourceSaver.save(path + ".part.tres", profile))
 	

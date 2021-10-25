@@ -49,7 +49,7 @@ margin_left = 336.0
 margin_right = 366.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 30, 0 )
-focus_mode = 2
+text = "FOLDERS_REMOVE"
 texture = ExtResource( 3 )
 hint = "FOLDERS_REMOVE"
 
@@ -58,6 +58,7 @@ margin_left = 370.0
 margin_right = 400.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 30, 0 )
+text = "TRACK_PLAY_ALL"
 texture = ExtResource( 4 )
 hint = "TRACK_PLAY_ALL"
 
@@ -75,6 +76,7 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 400.0
 margin_bottom = 370.0
+mouse_default_cursor_shape = 2
 editable = true
 
 [node name="Empty" type="Label" parent="Contents"]

@@ -25,7 +25,9 @@ func _get_results() -> Array:
 	if search.empty():
 		return []
 	
-	var results = yield(YouTube.search(search), "completed")
+	var query := "%s song" % search
+	
+	var results = yield(YouTube.search(query), "completed")
 	
 	return results
 
