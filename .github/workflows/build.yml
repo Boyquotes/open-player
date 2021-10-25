@@ -100,10 +100,14 @@ jobs:
           path: godot
 
       - name: Setup Godot build cache
-        uses: ./godot/.github/actions/godot-cache
+        uses: actions/cache@v2
         with:
-          cache-name: ${{ matrix.identifier }}
-        continue-on-error: true
+          path: ${{github.workspace}}/.scons-cache/
+          key: ${{ matrix.identifier }}-${{github.ref}}-${{github.sha}}
+          restore-keys: |
+            ${{ matrix.identifier }}-${{github.ref}}-${{github.sha}}
+            ${{ matrix.identifier }}-${{github.ref}}-
+            ${{ matrix.identifier }}-
 
       - name: Setup python and scons
         uses: ./godot/.github/actions/godot-deps
