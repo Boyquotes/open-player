@@ -344,8 +344,8 @@ func _on_Container_gui_input(event: InputEvent) -> void:
 	else:
 		if event is InputEventMouseButton:
 			if event.button_index == BUTTON_LEFT:
-				if not event.pressed:
-					var _flag := _dragging_jobs.erase(-1)
+				# TODO: Add released check after https://github.com/godotengine/godot/issues/27149
+				var _flag := _dragging_jobs.erase(-1)
 		if event is InputEventMouseMotion:
-			if event.button_mask & BUTTON_LEFT:
+			if event.button_mask & BUTTON_MASK_LEFT:
 				_drag_write(-1, event.position)

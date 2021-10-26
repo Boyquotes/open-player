@@ -68,5 +68,5 @@ func _on_FolderView_gui_input(event: InputEvent) -> void:
 				else:
 					_select_end(-1)
 		if event is InputEventMouseMotion:
-			if event.button_mask & BUTTON_LEFT:
+			if event.button_mask & BUTTON_MASK_LEFT:
 				_select_update(-1, event.position)
