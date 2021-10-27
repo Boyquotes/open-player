@@ -2,7 +2,7 @@
 [![GitHub Repo stars](https://img.shields.io/github/stars/nathanfranke/open-player?style=for-the-badge)](https://github.com/nathanfranke/open-player)
 [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/nathanfranke/open-player/%F0%9F%9B%A0%EF%B8%8F%20Builds?style=for-the-badge)](https://github.com/nathanfranke/open-player/actions)
 
-# OpenPlayer - Music player that doesn't waste your time.
+# OpenPlayer - Music that doesn't waste your time.
 
 ![Devices using OpenPlayer](https://raw.githubusercontent.com/nathanfranke/open-player/main/App/Branding/Screenshots/devices.png)
 
@@ -77,8 +77,8 @@ TODO: Add this back when Discord Game SDK supports buttons. Using pypresence for
 	module_webp_enabled = "no"
 	```
 	</details>
-7) [Compile export templates for your target platform](https://docs.godotengine.org/en/stable/development/compiling/index.html).
-8) Using your build of the godot editor tools:
+6) [Compile export templates for your target platform](https://docs.godotengine.org/en/stable/development/compiling/index.html).
+7) Using your build of the godot editor tools:
 	- Import the `open-player` project.
 	- Make a new export preset for your desired platform.
 	- Set the custom release/debug templates.
@@ -105,7 +105,7 @@ TODO: Add this back when Discord Game SDK supports buttons. Using pypresence for
 			- `package/unique_name`
 			- `package/name`
 		</details>
-9)  Export the project.
+8)  Export the project.
 
 ## License:
 
