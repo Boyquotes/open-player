@@ -128,6 +128,9 @@ func _set_active(value) -> void:
 	if not is_inside_tree():
 		yield(self, "ready")
 	
+	# Workaround for container resize delay.
+	yield(get_tree(), "idle_frame")
+	
 	_ensure_active_visible()
 
 func _ensure_active_visible() -> void:
