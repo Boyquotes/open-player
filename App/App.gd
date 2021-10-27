@@ -12,89 +12,98 @@ func _on_theme_changed() -> void:
 func _ready() -> void:
 	randomize()
 	
-	Global.ok(connect("track_finished", self, "next_track"))
 	Global.ok(Global.profile.tracks.connect("removed", self, "_profile_track_removed"))
 	
 	if "--generate-branding" in OS.get_cmdline_args():
-		Global.autosave_timer.stop()
-		Global.profile.animations_enabled = false
-		
-		for track in Global.profile.tracks.iter():
-			queue.add(track)
-		
-		### SCREENSHOTS ###
-		
-		if true:
-			self.active_view = "import"
-			
-			var screen = _branding_screen(Vector2(1080, 1920))
-			if screen is GDScriptFunctionState:
-				screen = yield(screen, "completed")
-			
-			Global.ok(screen.save_png("res://App/Branding/Screenshots/portrait1.png"))
-		
-		if true:
-			self.active_view = "tracks"
-			
-			var screen = _branding_screen(Vector2(1080, 1920))
-			if screen is GDScriptFunctionState:
-				screen = yield(screen, "completed")
-			
-			Global.ok(screen.save_png("res://App/Branding/Screenshots/portrait2.png"))
-		
-		if true:
-			self.active_view = "settings"
-			
-			var screen = _branding_screen(Vector2(1080, 1920))
-			if screen is GDScriptFunctionState:
-				screen = yield(screen, "completed")
-			
-			Global.ok(screen.save_png("res://App/Branding/Screenshots/portrait3.png"))
-		
-		if true:
-			self.active_view = "tracks"
-			
-			var screen = _branding_screen(Vector2(1440, 2560))
-			if screen is GDScriptFunctionState:
-				screen = yield(screen, "completed")
-			
-			Global.ok(screen.save_png("res://App/Branding/Screenshots/tablet.png"))
-		
-		### DEVICES ###
-		
-		var overlay := Image.new()
-		Global.ok(overlay.load("res://App/Branding/Screenshots/devices_overlay.png"))
-		overlay.lock()
-		for x in overlay.get_width():
-			for y in overlay.get_height():
-				var color := overlay.get_pixel(x, y)
-				if color == Color.black:
-					overlay.set_pixel(x, y, Color.transparent)
-		overlay.unlock()
-		
-		var canvas := Image.new()
-		canvas.create(overlay.get_width(), overlay.get_height(), false, Image.FORMAT_RGBA8)
-		
-		if true:
-			self.active_view = "tracks"
-			
-			var task = _branding_screen_blit(canvas, Rect2(368, 144, 1408, 792))
-			if task is GDScriptFunctionState:
-				yield(task, "completed")
-		
-		if true:
-			self.active_view = "tracks"
-			
-			var task = _branding_screen_blit(canvas, Rect2(144, 376, 360, 720))
-			if task is GDScriptFunctionState:
-				task = yield(task, "completed")
-		
-		_branding_blit(canvas, overlay, Vector2())
-		
-		Global.ok(canvas.save_png("res://App/Branding/Screenshots/devices.png"))
-		
-		get_tree().quit()
+		_generate_branding()
 		return
+
+func _profile_track_removed(entry: TrackList.Entry) -> void:
+	var index := queue.find(entry.value)
+	if index >= 0:
+		queue.remove(index)
+
+### BRANDING ###
+
+func _generate_branding() -> void:
+	Global.autosave_timer.stop()
+	Global.profile.animations_enabled = false
+	
+	for track in Global.profile.tracks.iter():
+		queue.add(track)
+	
+	### SCREENSHOTS ###
+	
+	if true:
+		self.active_view = "import"
+		
+		var screen = _branding_screen(Vector2(1080, 1920))
+		if screen is GDScriptFunctionState:
+			screen = yield(screen, "completed")
+		
+		Global.ok(screen.save_png("res://App/Branding/Screenshots/portrait1.png"))
+	
+	if true:
+		self.active_view = "tracks"
+		
+		var screen = _branding_screen(Vector2(1080, 1920))
+		if screen is GDScriptFunctionState:
+			screen = yield(screen, "completed")
+		
+		Global.ok(screen.save_png("res://App/Branding/Screenshots/portrait2.png"))
+	
+	if true:
+		self.active_view = "settings"
+		
+		var screen = _branding_screen(Vector2(1080, 1920))
+		if screen is GDScriptFunctionState:
+			screen = yield(screen, "completed")
+		
+		Global.ok(screen.save_png("res://App/Branding/Screenshots/portrait3.png"))
+	
+	if true:
+		self.active_view = "tracks"
+		
+		var screen = _branding_screen(Vector2(1440, 2560))
+		if screen is GDScriptFunctionState:
+			screen = yield(screen, "completed")
+		
+		Global.ok(screen.save_png("res://App/Branding/Screenshots/tablet.png"))
+	
+	### DEVICES ###
+	
+	var overlay := Image.new()
+	Global.ok(overlay.load("res://App/Branding/Screenshots/devices_overlay.png"))
+	overlay.lock()
+	for x in overlay.get_width():
+		for y in overlay.get_height():
+			var color := overlay.get_pixel(x, y)
+			if color == Color.black:
+				overlay.set_pixel(x, y, Color.transparent)
+	overlay.unlock()
+	
+	var canvas := Image.new()
+	canvas.create(overlay.get_width(), overlay.get_height(), false, Image.FORMAT_RGBA8)
+	
+	if true:
+		self.active_view = "tracks"
+		
+		var task = _branding_screen_blit(canvas, Rect2(368, 144, 1408, 792))
+		if task is GDScriptFunctionState:
+			yield(task, "completed")
+	
+	if true:
+		self.active_view = "tracks"
+		
+		var task = _branding_screen_blit(canvas, Rect2(144, 376, 360, 720))
+		if task is GDScriptFunctionState:
+			task = yield(task, "completed")
+	
+	_branding_blit(canvas, overlay, Vector2())
+	
+	Global.ok(canvas.save_png("res://App/Branding/Screenshots/devices.png"))
+	
+	get_tree().quit()
 
 func _branding_screen(size: Vector2) -> Image:
 	OS.window_size = size / 4.0
@@ -129,10 +138,7 @@ func _branding_blit(image: Image, put: Image, pos: Vector2) -> void:
 	put.convert(Image.FORMAT_RGBA8)
 	image.blend_rect(put, Rect2(0.0, 0.0, put.get_width(), put.get_height()), pos)
 
-func _profile_track_removed(entry: TrackList.Entry) -> void:
-	var index := queue.find(entry.value)
-	if index >= 0:
-		queue.remove(index)
+### DECREASE FRAMERATE WHEN TABBED OUT ###
 
 func _notification(what: int) -> void:
 	match what:
@@ -140,6 +146,8 @@ func _notification(what: int) -> void:
 			OS.low_processor_usage_mode = false
 		NOTIFICATION_WM_FOCUS_OUT:
 			OS.low_processor_usage_mode = true
+
+### QUEUE ###
 
 signal track_changed(entry)
 
@@ -252,6 +260,8 @@ class Queue:
 
 var queue := Queue.new(self)
 
+### PLAYING ###
+
 signal state_changed(playing)
 
 var playing := true setget _set_playing
@@ -283,6 +293,8 @@ func replay() -> void:
 	self.playing = true
 	self.position = 0.0
 
+### SEEKING ###
+
 signal seeking_changed(seeking)
 
 var seeking := false setget _set_seeking
@@ -294,7 +306,8 @@ func _set_seeking(value: bool) -> void:
 	
 	emit_signal("seeking_changed", seeking)
 
-signal track_finished
+### POSITION ###
+
 signal position_changed(position)
 
 # Changing this will not call the position changed signal.
@@ -324,11 +337,20 @@ func _set_player_position(value: float) -> void:
 func _get_player_position() -> float:
 	return real_position
 
+### DURATION ###
+
 func get_duration() -> float:
 	if current != null:
 		return current.value.duration
 	
 	return 0.0
+
+### PREVIOUS/NEXT ###
+
+func previous_track() -> void:
+	if track_history.size() > 1:
+		var _remove_current: TrackList.Entry = track_history.pop_back()
+		self.current = track_history.pop_back()
 
 func next_track(manual := false) -> void:
 	var next := get_next_track()
@@ -342,10 +364,7 @@ func next_track(manual := false) -> void:
 	
 	self.current = next
 
-func previous_track() -> void:
-	if track_history.size() > 1:
-		var _remove_current: TrackList.Entry = track_history.pop_back()
-		self.current = track_history.pop_back()
+### VOLUME ###
 
 signal volume_changed(volume)
 
@@ -355,6 +374,8 @@ func _set_volume(value: float) -> void:
 	
 	emit_signal("volume_changed", volume)
 
+### SPEED ###
+
 signal speed_changed(volume)
 
 var speed := 1.0 setget _set_speed
@@ -362,6 +383,8 @@ func _set_speed(value: float) -> void:
 	speed = value
 	
 	emit_signal("speed_changed", speed)
+
+### BUFFERING ###
 
 signal buffering_changed(buffering)
 
@@ -374,13 +397,14 @@ func _set_buffering(value: bool) -> void:
 	
 	emit_signal("buffering_changed", buffering)
 
+### ACTIVE VIEW ###
+
 signal active_view_changed(screen)
 
-var active_view = "home" setget _set_active_view
-func _set_active_view(value) -> void:
-	if typeof(active_view) == typeof(value):
-		if active_view == value:
-			return
+var active_view := "home" setget _set_active_view
+func _set_active_view(value: String) -> void:
+	if active_view == value:
+		return
 	
 	active_view = value
 	

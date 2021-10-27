@@ -10,20 +10,22 @@ func _ready() -> void:
 	_update_speed(Global.player.speed)
 	Global.ok(Global.player.connect("speed_changed", self, "_update_speed"))
 	
-	_update_state()
-	Global.ok(Global.player.connect("state_changed", self, "_update_state"))
-	Global.ok(Global.player.connect("seeking_changed", self, "_update_state"))
+	_update_state_seeking()
+	Global.ok(Global.player.connect("state_changed", self, "_update_state_seeking"))
+	Global.ok(Global.player.connect("seeking_changed", self, "_update_state_seeking"))
 	
 	_update_volume(Global.profile.volume)
 	Global.ok(Global.profile.connect("volume_changed", self, "_update_volume"))
 
 func _process(_delta: float) -> void:
+	var buffering := false
+	
 	if handle.stream != null:
 		Global.player.real_position = handle.get_playback_position()
-		if handle.get_stream_playback().has_method("is_buffering"):
-			Global.player.buffering = handle.get_stream_playback().is_buffering()
-	else:
-		Global.player.buffering = false
+		if Global.player.playing and handle.get_stream_playback().has_method("is_buffering"):
+			buffering = handle.get_stream_playback().is_buffering()
+	
+	Global.player.buffering = buffering
 
 func _update_track(entry: TrackList.Entry, position := 0.0) -> void:
 	handle.stream = null
@@ -34,7 +36,7 @@ func _update_track(entry: TrackList.Entry, position := 0.0) -> void:
 		handle.stream = stream
 		handle.play(position)
 
-func _update_state(_flag = null) -> void:
+func _update_state_seeking(_flag = null) -> void:
 	if Global.player.current != null:
 		var playing := Global.player.playing
 		
@@ -55,5 +57,5 @@ func _update_volume(volume: float) -> void:
 
 func _on_AudioStreamPlayer_finished() -> void:
 	if handle.stream != null:
-		handle.play()
-		Global.player.emit_signal("track_finished")
+		#handle.play()
+		Global.player.next_track()

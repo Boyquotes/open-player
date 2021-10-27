@@ -10,20 +10,39 @@ OpenPlayer is a free and open source music player that can import audio from you
 
 ## Download:
 
+OpenPlayer is currently available for **Windows**, **Linux**, and **Android**.
+
 [![GitHub release](https://img.shields.io/github/v/release/nathanfranke/open-player?include_prereleases&label=Download&sort=date&style=for-the-badge)](https://github.com/nathanfranke/open-player/releases)
 
-OpenPlayer is currently available for Windows, Linux, and Android.
+### Discord Rich Presence:
+
+If you want Discord Rich Presence, follow the steps for your platform.
+
+Windows:
+1) [Download Python](https://www.python.org/downloads/) (if needed).
+2) Right-click the Start menu and select "Command Prompt".
+3) Type `pip install pypresence`, then press <kbd>Enter</kbd>.
+
+Linux:
+1) Open a terminal ( <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>T</kbd> ).
+2) Type `pip install pypresence`, then press <kbd>Enter</kbd>.
+
+![Discord Rich Presence](https://raw.githubusercontent.com/nathanfranke/open-player/main/App/Branding/Discord/example.png)
 
 ## Compiling:
 
-If you would like to create a custom build that includes Godotcord and/or any modifications, follow these steps:
+If you modified OpenPlayer and/or would like to create a custom build, follow these steps:
+
+<!--
+TODO: Add this back when Discord Game SDK supports buttons. Using pypresence for now.
+[//]: <> _(Optional: For Discord Rich Presence)_ Clone the [godotcord](https://github.com/Drachenfrucht1/godotcord) repository. Alternatively, [download it as a zip](https://github.com/Drachenfrucht1/godotcord/archive/refs/heads/master.zip). Copy it to the `modules` directory inside the Godot Engine source code. [Follow the setup guide here](https://github.com/Drachenfrucht1/godotcord).
+-->
 
 1) Clone the [Godot Engine](https://github.com/godotengine/godot/) repository, and checkout the `3.x` branch. Alternatively, [download it as a zip](https://github.com/godotengine/godot/archive/refs/heads/3.x.zip).
 2) Clone the [gdaudioyt](https://github.com/nathanfranke/gdaudioyt/) repository. Alternatively, [download it as a zip](https://github.com/nathanfranke/gdaudioyt/archive/refs/heads/main.zip). Copy it to the `modules` directory inside the Godot Engine source code.
-3) _(Optional: For Discord Rich Presence)_ Clone the [godotcord](https://github.com/Drachenfrucht1/godotcord) repository. Alternatively, [download it as a zip](https://github.com/Drachenfrucht1/godotcord/archive/refs/heads/master.zip). Copy it to the `modules` directory inside the Godot Engine source code. [Follow the setup guide here](https://github.com/Drachenfrucht1/godotcord).
-4) Clone the [open-player](https://github.com/nathanfranke/open-player) repository. Alternatively, [download it as a zip](https://github.com/nathanfranke/open-player/archive/refs/heads/main.zip).
-5) [Compile tools for your current platform](https://docs.godotengine.org/en/stable/development/compiling/index.html).
-6) _(Optional: For optimized build)_ Create a file named `custom.py` in the Godot Engine source code.
+3) Clone the [open-player](https://github.com/nathanfranke/open-player) repository. Alternatively, [download it as a zip](https://github.com/nathanfranke/open-player/archive/refs/heads/main.zip).
+4) [Compile tools for your current platform](https://docs.godotengine.org/en/stable/development/compiling/index.html).
+5) _(Optional: For optimized build)_ Create a file named `custom.py` in the Godot Engine source code.
 	<details>
 	<summary>File Content</summary>
 

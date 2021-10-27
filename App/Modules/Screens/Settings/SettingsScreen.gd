@@ -5,9 +5,6 @@ onready var language_option := $VBoxContainer/Language
 onready var theme_option := $VBoxContainer/Theme
 
 func _ready() -> void:
-	update_config()
-	Global.ok(Global.profile.connect("changed", self, "update_config"))
-	
 	### LOCALES ###
 	
 	var locales := TranslationServer.get_loaded_locales()
@@ -30,12 +27,17 @@ func _ready() -> void:
 		var id: int = theme_option.get_item_count()
 		theme_option.add_item(item.get_meta("name"), id)
 		theme_option.set_item_metadata(id, item)
+	
+	### UPDATE CONFIG ###
+	
+	_update_config()
+	Global.ok(Global.profile.connect("changed", self, "_update_config"))
 
-func update_config() -> void:
+func _update_config() -> void:
 	$VBoxContainer/Animations/VBoxContainer/AnimationsEnabled.pressed = Global.profile.animations_enabled
 	$VBoxContainer/Animations/VBoxContainer/AnimationSpeed.visible = Global.profile.animations_enabled
 	$VBoxContainer/Animations/VBoxContainer/AnimationSpeed/HSlider.value = Global.profile.animation_speed
-	$VBoxContainer/DiscordRichPresence.visible = Engine.has_singleton("Godotcord")
+	$VBoxContainer/DiscordRichPresence.visible = Global.has_meta("discord_rich_presence_available")
 	$VBoxContainer/DiscordRichPresence.pressed = Global.profile.discord_rich_presence
 	
 	for i in language_option.get_item_count():
