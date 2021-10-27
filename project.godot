@@ -12,92 +12,92 @@ _global_script_classes=[ {
 "base": "Control",
 "class": "App",
 "language": "GDScript",
-"path": "res://App/App.gd"
+"path": "res://app/app.gd"
 }, {
 "base": "HBoxContainer",
 "class": "Controls",
 "language": "GDScript",
-"path": "res://App/Modules/Controls/Controls.gd"
+"path": "res://app/modules/controls/controls.gd"
 }, {
 "base": "VBoxContainer",
 "class": "Dashboard",
 "language": "GDScript",
-"path": "res://App/Modules/Menu/Menu.gd"
+"path": "res://app/modules/menu/menu.gd"
 }, {
 "base": "Container",
 "class": "DropContainer",
 "language": "GDScript",
-"path": "res://App/Interface/DropContainer/DropContainer.gd"
+"path": "res://app/interface/drop_container/drop_container.gd"
 }, {
 "base": "PanelContainer",
 "class": "DummyContainer",
 "language": "GDScript",
-"path": "res://App/Interface/DummyContainer/DummyContainer.gd"
+"path": "res://app/interface/dummy_container/dummy_container.gd"
 }, {
 "base": "TrackList",
 "class": "Folder",
 "language": "GDScript",
-"path": "res://App/Model/Folder.gd"
+"path": "res://app/model/folder.gd"
 }, {
 "base": "Resource",
 "class": "List",
 "language": "GDScript",
-"path": "res://App/Model/List.gd"
+"path": "res://app/model/list.gd"
+}, {
+"base": "TrackList",
+"class": "MyTracks",
+"language": "GDScript",
+"path": "res://app/model/my_tracks.gd"
 }, {
 "base": "Resource",
 "class": "Profile",
 "language": "GDScript",
-"path": "res://App/Model/Profile.gd"
+"path": "res://app/model/profile.gd"
 }, {
 "base": "HBoxContainer",
 "class": "Progress",
 "language": "GDScript",
-"path": "res://App/Modules/Progress/Progress.gd"
+"path": "res://app/modules/progress/progress.gd"
 }, {
-"base": "PanelContainer",
+"base": "DummyContainer",
 "class": "QueueItem",
 "language": "GDScript",
-"path": "res://App/Modules/Queue/QueueItem.gd"
+"path": "res://app/modules/queue/queue_item.gd"
 }, {
 "base": "Resource",
 "class": "Track",
 "language": "GDScript",
-"path": "res://App/Model/Track.gd"
+"path": "res://app/model/track.gd"
 }, {
 "base": "List",
 "class": "TrackList",
 "language": "GDScript",
-"path": "res://App/Model/TrackList.gd"
+"path": "res://app/model/track_list.gd"
 }, {
 "base": "Resource",
 "class": "TrackSource",
 "language": "GDScript",
-"path": "res://App/Model/TrackSource.gd"
+"path": "res://app/model/track_source.gd"
 }, {
 "base": "TrackSource",
 "class": "TrackSourceMP3",
 "language": "GDScript",
-"path": "res://App/Model/TrackSourceMP3.gd"
+"path": "res://app/model/track_source_mp3.gd"
 }, {
 "base": "TrackSource",
 "class": "TrackSourceOGG",
 "language": "GDScript",
-"path": "res://App/Model/TrackSourceOGG.gd"
+"path": "res://app/model/track_source_ogg.gd"
 }, {
 "base": "TrackSource",
 "class": "TrackSourceWAV",
 "language": "GDScript",
-"path": "res://App/Model/TrackSourceWAV.gd"
+"path": "res://app/model/track_source_wav.gd"
 }, {
 "base": "TrackSource",
 "class": "TrackSourceYouTube",
 "language": "GDScript",
-"path": "res://App/Model/TrackSourceYouTube.gd"
-}, {
-"base": "TrackList",
-"class": "Tracks",
-"language": "GDScript",
-"path": "res://App/Model/Tracks.gd"
+"path": "res://app/model/track_source_youtube.gd"
 } ]
 _global_script_class_icons={
 "App": "",
@@ -107,6 +107,7 @@ _global_script_class_icons={
 "DummyContainer": "",
 "Folder": "",
 "List": "",
+"MyTracks": "",
 "Profile": "",
 "Progress": "",
 "QueueItem": "",
@@ -116,31 +117,30 @@ _global_script_class_icons={
 "TrackSourceMP3": "",
 "TrackSourceOGG": "",
 "TrackSourceWAV": "",
-"TrackSourceYouTube": "",
-"Tracks": ""
+"TrackSourceYouTube": ""
 }
 
 [application]
 
 config/name="OpenPlayer"
-run/main_scene="res://App/App.tscn"
+run/main_scene="res://app/app.tscn"
 run/low_processor_mode_sleep_usec=100000
-boot_splash/image="res://App/Branding/Logos/logo.png"
+boot_splash/image="res://app/branding/logos/logo.png"
 boot_splash/fullsize=false
 boot_splash/bg_color=Color( 0.0588235, 0.0588235, 0.0588235, 1 )
-config/icon="res://App/Branding/Logos/logo.svg"
+config/icon="res://app/branding/logos/logo.svg"
 config/quit_on_go_back=false
 
 [audio]
 
-default_bus_layout="res://App/default_bus_layout.tres"
+default_bus_layout="res://app/default_bus_layout.tres"
 mix_rate=48000
 
 [autoload]
 
-MetaCleaner="*res://App/Global/MetaCleaner.gd"
-Global="*res://App/Global/Global.gd"
-Copyright="res://App/Global/Copyright.gd"
+MetaCleaner="*res://app/global/meta_cleaner.gd"
+Global="*res://app/global/global.gd"
+Copyright="res://app/global/copyright.gd"
 Nicense="*res://addons/nicense/nicense.gd"
 
 [debug]
@@ -243,7 +243,7 @@ search={
 
 [locale]
 
-translations=PoolStringArray( "res://App/Localization/translations.en_US.translation", "res://App/Localization/translations.de_DE.translation", "res://App/Localization/translations.ru_RU.translation" )
+translations=PoolStringArray( "res://app/translations.en_US.translation", "res://app/translations.de_DE.translation", "res://app/translations.ru_RU.translation" )
 locale_filter=[ 0, [ "en" ] ]
 
 [network]

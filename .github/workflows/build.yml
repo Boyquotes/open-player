@@ -14,15 +14,15 @@ jobs:
           - name: Linux
             identifier: linux
             runner: ubuntu-18.04
-            extension: "x86_64"
+            executable: "open-player"
           - name: Windows
             identifier: windows
             runner: ubuntu-20.04
-            extension: "exe"
+            executable: "open-player.exe"
           - name: Android
             identifier: android
             runner: ubuntu-20.04
-            extension: "apk"
+            executable: "open-player.apk"
 
     steps:
 
@@ -254,7 +254,7 @@ jobs:
           exclude_filter=""
           [preset.0.options]
           custom_template/release="${{ github.workspace }}/godot/bin/godot.windows.opt.64.exe"
-          application/icon="res://App/Branding/Windows/icon.ico"
+          application/icon="res://app/branding/windows/icon.ico"
           EOT
 
       - name: (Android) Create Export Preset
@@ -286,9 +286,9 @@ jobs:
           version/name="1.0"
           package/unique_name="sh.nathan.\$genname"
           package/name="Player"
-          launcher_icons/main_192x192="res://App/Branding/Android/adaptive_main.png"
-          launcher_icons/adaptive_foreground_432x432="res://App/Branding/Android/adaptive_fg.png"
-          launcher_icons/adaptive_background_432x432="res://App/Branding/Android/adaptive_bg.png"
+          launcher_icons/main_192x192="res://app/branding/android/adaptive_main.png"
+          launcher_icons/adaptive_foreground_432x432="res://app/branding/android/adaptive_fg.png"
+          launcher_icons/adaptive_background_432x432="res://app/branding/android/adaptive_bg.png"
           screen/immersive_mode=false
           permissions/internet=true
           permissions/vibrate=true
@@ -298,16 +298,32 @@ jobs:
         shell: sh
         run: |
           mkdir '${{ github.workspace }}/build'
-          xvfb-run '${{ github.workspace }}/godot/bin/godot.x11.opt.tools.64' --audio-driver Dummy --path '${{ github.workspace }}/project' --export EXPORT_PRESET '${{ github.workspace }}/build/OpenPlayer.${{ matrix.extension }}'
+          xvfb-run '${{ github.workspace }}/godot/bin/godot.x11.opt.tools.64' --audio-driver Dummy --path '${{ github.workspace }}/project' --export EXPORT_PRESET '${{ github.workspace }}/build/${{ matrix.executable }}'
+
+      - name: (Linux) Add Distribution Files
+        if: ${{ matrix.identifier == 'linux' }}
+        shell: sh
+        run: |
+          cp '${{ github.workspace }}/project/app/branding/linux/icon.svg' 'icon.svg'
+          
+          tee -a '${{ github.workspace }}/build/open-player.desktop' << EOT
+          [Desktop Entry]
+          Name=OpenPlayer
+          Comment=Music that doesn't waste your time.
+          Exec=open-player
+          Icon=open-player
+          Terminal=false
+          Type=Application
+          EOT
 
 ### UPLOAD ARTIFACT ###
 
       - name: Get version name
         id: version
-        run: echo ::set-output name=version::${GITHUB_REF#refs/*/}
+        run: echo ::set-output name=version::${GITHUB_REF#refs/v*/}
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
         with:
-          name: OpenPlayer_${{ steps.version.outputs.version }}_${{ matrix.name }}
+          name: open-player_${{ steps.version.outputs.version }}_${{ matrix.identifier }}
           path: ${{ github.workspace }}/build/

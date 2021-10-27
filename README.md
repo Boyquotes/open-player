@@ -4,13 +4,13 @@
 
 # OpenPlayer - Music that doesn't waste your time.
 
-![Devices using OpenPlayer](https://raw.githubusercontent.com/nathanfranke/open-player/main/App/Branding/Screenshots/devices.png)
+![Devices using OpenPlayer](https://raw.githubusercontent.com/nathanfranke/open-player/main/app/branding/screenshots/devices.png)
 
 OpenPlayer is a free and open source music player that can import audio from your device and easily search and stream from YouTube.
 
 ## Download:
 
-OpenPlayer is currently available for **Windows**, **Linux**, and **Android**.
+OpenPlayer officially supports **Windows**, **Linux**, and **Android**.
 
 [![GitHub release](https://img.shields.io/github/v/release/nathanfranke/open-player?include_prereleases&label=Download&sort=date&style=for-the-badge)](https://github.com/nathanfranke/open-player/releases)
 
@@ -19,7 +19,7 @@ OpenPlayer is currently available for **Windows**, **Linux**, and **Android**.
 If you want Discord Rich Presence, follow the steps for your platform.
 
 Windows:
-1) [Download Python](https://www.python.org/downloads/) (if needed).
+1) [Install Python](https://www.python.org/downloads/) (if needed).
 2) Right-click the Start menu and select "Command Prompt".
 3) Type `pip install pypresence`, then press <kbd>Enter</kbd>.
 
@@ -27,7 +27,7 @@ Linux:
 1) Open a terminal ( <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>T</kbd> ).
 2) Type `pip install pypresence`, then press <kbd>Enter</kbd>.
 
-![Discord Rich Presence](https://raw.githubusercontent.com/nathanfranke/open-player/main/App/Branding/Discord/example.png)
+![Discord Rich Presence](https://raw.githubusercontent.com/nathanfranke/open-player/main/app/branding/discord/example.png)
 
 ## Compiling:
 
@@ -86,7 +86,7 @@ TODO: Add this back when Discord Game SDK supports buttons. Using pypresence for
 		<details>
 		<summary>Extra Steps: Windows</summary>
 
-		- Set `application/icon` to `res://App/Branding/Logos/icon.ico`.
+		- Set `application/icon` to `res://app/branding/windows/icon.ico`.
 		</details>
 
 		<details>
@@ -94,8 +94,8 @@ TODO: Add this back when Discord Game SDK supports buttons. Using pypresence for
 
 		- Set the debug and/or release keystore.
 		- Set `launcher_icons/main_192x192` to `res://App/Branding/Logos/logo_bg_192.png`.
-		- Set `launcher_icons/adaptive_foreground_432x432` to `res://App/Branding/Logos/adaptive_fg.png`.
-		- Set `launcher_icons/adaptive_background_432x432` to `res://App/Branding/Logos/adaptive_bg.png`.
+		- Set `launcher_icons/adaptive_foreground_432x432` to `res://app/branding/android/adaptive_fg.png`.
+		- Set `launcher_icons/adaptive_background_432x432` to `res://app/branding/android/adaptive_bg.png`.
 		- Set `screen/immersive_mode` to `false`.
 		- Set `permissions/internet` to `true`.
 		- Set `permissions/vibrate` to `true`.

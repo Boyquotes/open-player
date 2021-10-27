@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://app/interface/icon_button/icon_button.gd" type="Script" id=1]
+[ext_resource path="res://app/branding/logos/logo.svg" type="Texture" id=2]
+[ext_resource path="res://app/interface/hint/hint.tscn" type="PackedScene" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+
+[node name="IconButton" type="Button"]
+modulate = Color( 0, 0, 0, 1 )
+margin_bottom = 128.0
+rect_min_size = Vector2( 128, 0 )
+mouse_filter = 1
+mouse_default_cursor_shape = 2
+custom_fonts/font = SubResource( 1 )
+flat = true
+clip_text = true
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+texture = ExtResource( 2 )
+
+[node name="Texture" type="TextureRect" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+rect_min_size = Vector2( 64, 64 )
+texture = ExtResource( 2 )
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Hint" parent="." instance=ExtResource( 3 )]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 0.0
+margin_bottom = 0.0
+
+[connection signal="resized" from="." to="." method="_update_style" flags=3]

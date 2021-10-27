@@ -1,0 +1,49 @@
+keys,en_US,de_DE,ru_RU
+MENU_HOME,Home,Heim,Главная
+MENU_IMPORT,Import,Importieren,Импорт
+MENU_TRACKS,Music,Musik,Музыка
+MENU_FOLDERS,Playlists,Wiedergabelisten,Плейлисты
+MENU_SETTINGS,Settings,Einstellungen,Настройки
+IMPORT_FILES,Import from device,Vom Gerät laden,Загрузить с устройства
+IMPORT_SEARCH,Search YouTube,YouTube durchsuchen,Искать в YouTube
+IMPORT_SEARCH_PLACEHOLDER,Search YouTube...,YouTube Suchen…,Искать в YouTube…
+IMPORT_TRACKS_TITLE,Imported Tracks,Importierte Tracks,импортированные треки
+IMPORT_TRACKS_LOADING,Loading Tracks…,Titel werden geladen…,загрузка треков
+MY_TRACKS_NAME,My Music,Meine Musik,Моя музыка
+MY_TRACKS_EMPTY,You have not discovered any music!\nCheck the import tab.,Sie haben keine Musik entdeckt!\nÜberprüfen Sie den Import-Tab.,Вы не обнаружили никакой музыки!\nПроверить вкладку импорт
+FOLDERS_CREATE,Create Playlist,Wiedergabeliste erstellen,Создать плейлист
+FOLDERS_DEFAULT_NAME,Playlist {0},Wiedergabeliste {0},Плейлист {0}
+FOLDERS_EMPTY,This playlist does not have any songs.,Diese Playlist enthält keine Songs.,В плейлисте нету песен
+FOLDERS_REMOVE,Remove Playlist,Playlist entfernen,Удалить плейлист
+SETTINGS_ANIMATIONS_ENABLED,Animations Enabled,Animationen aktiviert,Анимации включены
+SETTINGS_ANIMATION_SPEED,Animation Speed,Animations Geschwindigkeit,Скорость Анимации
+SETTINGS_LANGUAGE,Language: {0},Sprache: {0},Язык: {0}
+SETTINGS_THEME,Theme: {0},Thema: {0},Тема: {0}
+SETTINGS_DISCORD_RICH_PRESENCE,Discord Rich Presence,Discord Rich Presence,Discord Rich Presence
+SETTINGS_SHOW_COPYRIGHT,Show Copyright,Urheberrecht anzeigen,Показать права
+TRACK_PLAY_ALL,Play All,Alle wiedergeben,Играть всё
+TRACK_ADD_TO_QUEUE,Add to Queue,Zur Warteschlange hinzufügen,Add to Queue
+TRACK_REMOVE,Remove Song,Lied entfernen,Удалить музыку
+TRACK_MENU_PLAY_NEXT,Play Next,Weiter spielen,играть следующую
+TRACK_MENU_ADD_TO_MY_TRACKS,Add to my music,Zu meiner Musik hinzufügen,добавить в мою музыку
+TRACK_MENU_ADD_TO_FOLDER,Add to playlist,Zur Wiedergabeliste hinzufügen,Добавить в плейлист
+TRACK_MENU_EDIT,Edit,Bearbeiten,Edit
+TRACK_MENU_WATCH_ON_YOUTUBE,Watch on YouTube,Auf YouTube ansehen,Смотреть на YouTube
+TRACK_MENU_COPY_YOUTUBE_URL,Copy YouTube URL,YouTube-URL kopieren,Копировать URL с YouTube
+TRACK_MENU_COPY_YOUTUBE_ID,Copy YouTube ID,YouTube-ID kopieren,Копировать YouTube ID
+TRACK_EDITOR_WINDOW,Editing {0},Bearbeiten {0},Editing {0}
+TRACK_EDITOR_AUTHOR,Author,Autor*in,Author
+TRACK_EDITOR_TITLE,Title,Titel,Title
+TRACK_EDITOR_SAVE,Save,Speichern,Save
+QUEUE_TITLE,Now Playing,Läuft gerade,Сейчас играет
+QUEUE_SHUFFLE,Shuffle,Mischen,Шарканье
+QUEUE_MODE_ONCE,Play Queue Once,Warteschlange einmal abspielen,Играть Очередь один раз
+QUEUE_MODE_REPEAT,Repeat Queue,Warteschlange wiederholen,Повторить Очередь
+QUEUE_MODE_REPEAT_SINGLE,Repeat Song,Lied wiederholen,Повторить песню
+CONTROL_VOLUME,Volume,Volumen,Громкость
+CONTROL_PREVIOUS_TRACK,Previous Song,Vorheriges Lied,Предыдущая песня
+CONTROL_NEXT_TRACK,Next Song,Nächstes Lied,Следующая песня
+CONTROL_SEEK_BACK,Seek Back,Zurück suchen,Искать назад
+CONTROL_SEEK_FORWARD,Seek Forward,Vorwärts suchen,Искать вперед
+CONTROL_PAUSE,Pause,Pause,Пауза
+CONTROL_PLAY,Play,Spielen,Пуск
