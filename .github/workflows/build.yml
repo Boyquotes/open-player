@@ -3,10 +3,6 @@ on:
   push:
   workflow_dispatch:
 
-concurrency: 
-  group: builds
-  cancel-in-progress: true
-
 jobs:
   build:
     runs-on: ${{ matrix.runner }}
