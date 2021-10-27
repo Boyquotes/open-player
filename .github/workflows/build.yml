@@ -320,7 +320,7 @@ jobs:
 
       - name: Get version name
         id: version
-        run: echo ::set-output name=version::${GITHUB_REF#refs/v*/}
+        run: echo ::set-output name=version::${GITHUB_REF#refs/*/}
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v2

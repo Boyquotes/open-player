@@ -8,7 +8,7 @@ var entry: List.Entry
 
 func _ready() -> void:
 	view.list = Global.profile.folders
-	Global.profile.folders.connect("removed", self, "_on_folder_removed")
+	Global.ok(Global.profile.folders.connect("removed", self, "_on_folder_removed"))
 	
 	Global.ok(Global.connect("go_back", self, "_on_go_back"))
 

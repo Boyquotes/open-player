@@ -114,9 +114,9 @@ func _add(play: bool) -> void:
 	Global.player.queue.add(entry.value, play)
 
 func _open_context() -> void:
-	var menu := preload("res://app/interface/track/menu/track_menu.tscn").instance()
-	menu.entry = entry
-	get_tree().current_scene.add_child(menu)
+	var instance := preload("res://app/interface/track/menu/track_menu.tscn").instance()
+	instance.entry = entry
+	get_tree().current_scene.add_child(instance)
 
 func _on_Remove_pressed() -> void:
 	emit_signal("removed")

@@ -92,9 +92,9 @@ func _on_PopupMenu_id_pressed(id: int) -> void:
 		MENU_ADD_TO_MY_TRACKS:
 			Global.profile.tracks.ensure_has(entry.value)
 		MENU_EDIT:
-			var menu := preload("res://app/interface/track/editor/track_editor.tscn").instance()
-			menu.track = entry.value
-			get_tree().current_scene.add_child(menu)
+			var instance := preload("res://app/interface/track/editor/track_editor.tscn").instance()
+			instance.track = entry.value
+			get_tree().current_scene.add_child(instance)
 		MENU_YOUTUBE_WATCH, MENU_YOUTUBE_COPY_URL, MENU_YOUTUBE_COPY_ID: # YouTube
 			var source: TrackSourceYouTube = entry.value.source
 			var youtube_id := source.id
