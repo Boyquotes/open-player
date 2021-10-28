@@ -14,15 +14,15 @@ jobs:
           - name: Linux
             identifier: linux
             runner: ubuntu-18.04
-            executable: "open-player"
+            executable: "openplayer"
           - name: Windows
             identifier: windows
             runner: ubuntu-20.04
-            executable: "open-player.exe"
+            executable: "openplayer.exe"
           - name: Android
             identifier: android
             runner: ubuntu-20.04
-            executable: "open-player.apk"
+            executable: "openplayer.apk"
 
     steps:
 
@@ -90,6 +90,15 @@ jobs:
           ref: 3.x
           path: godot
 
+      - uses: actions/checkout@v2
+        with:
+          repository: nathanfranke/gdaudioyt
+          path: godot/modules/gdaudioyt
+
+      - uses: actions/checkout@v2
+        with:
+          path: project
+
       - name: Setup Godot build cache
         uses: actions/cache@v2
         with:
@@ -106,13 +115,7 @@ jobs:
       - name: Make global bin/ folder (to fix godot-build error)
         shell: sh
         run: |
-          echo $ANDROID_SDK_ROOT
           mkdir ./bin/
-
-      - uses: actions/checkout@v2
-        with:
-          repository: nathanfranke/gdaudioyt
-          path: godot/modules/gdaudioyt
 
       - name: Compile Godot Tools
         uses: ./godot/.github/actions/godot-build
@@ -122,39 +125,10 @@ jobs:
           target: release_debug
           tools: true
 
-      - name: Write Build Configuration
+      - name: Copy Build Configuration
         shell: sh
         run: |
-          tee -a '${{ github.workspace }}/godot/custom.py' << EOT
-          disable_3d = "yes"
-          production = "yes"
-          deprecated = "no"
-          minizip = "no"
-          module_arkit_enabled = "no"
-          module_bmp_enabled = "no"
-          module_bullet_enabled = "no"
-          module_camera_enabled = "no"
-          module_csg_enabled = "no"
-          module_dds_enabled = "no"
-          module_enet_enabled = "no"
-          module_etc_enabled = "no"
-          module_gdnative_enabled = "no"
-          module_gdnavigation_enabled = "no"
-          module_gridmap_enabled = "no"
-          module_hdr_enabled = "no"
-          module_jpg_enabled = "no"
-          module_jsonrpc_enabled = "no"
-          module_ogg_enabled = "no"
-          module_opensimplex_enabled = "no"
-          module_tga_enabled = "no"
-          module_theora_enabled = "no"
-          module_tinyexr_enabled = "no"
-          module_upnp_enabled = "no"
-          module_visual_script_enabled = "no"
-          module_vorbis_enabled = "no"
-          module_webm_enabled = "no"
-          module_webp_enabled = "no"
-          EOT
+          cp '${{ github.workspace }}/project/misc/custom.py' '${{ github.workspace }}/godot/custom.py'
 
       - name: (Linux) Compile Godot Export Template
         if: ${{ matrix.identifier == 'linux' }}
@@ -219,10 +193,6 @@ jobs:
           
 
 ### EXPORT PROJECT ###
-
-      - uses: actions/checkout@v2
-        with:
-          path: project
 
       - name: (Linux) Create Export Preset
         if: ${{ matrix.identifier == 'linux' }}
@@ -305,16 +275,7 @@ jobs:
         shell: sh
         run: |
           cp '${{ github.workspace }}/project/app/branding/linux/icon.svg' 'icon.svg'
-          
-          tee -a '${{ github.workspace }}/build/open-player.desktop' << EOT
-          [Desktop Entry]
-          Name=OpenPlayer
-          Comment=Music that doesn't waste your time.
-          Exec=open-player
-          Icon=open-player
-          Terminal=false
-          Type=Application
-          EOT
+          cp '${{ github.workspace }}/project/misc/openplayer.desktop' 'openplayer.desktop'
 
 ### UPLOAD ARTIFACT ###
 
@@ -325,5 +286,5 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
         with:
-          name: open-player_${{ steps.version.outputs.version }}_${{ matrix.identifier }}
+          name: openplayer_${{ steps.version.outputs.version }}_${{ matrix.identifier }}
           path: ${{ github.workspace }}/build/

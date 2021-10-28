@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=OpenPlayer
+Comment=Music that doesn't waste your time.
+Exec=openplayer
+Icon=openplayer
+Terminal=false
+Type=Application
