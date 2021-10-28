@@ -200,7 +200,7 @@ jobs:
         run: |
           tee -a '${{ github.workspace }}/project/export_presets.cfg' << EOT
           [preset.0]
-          name="EXPORT_PRESET"
+          name="Export"
           platform="Linux/X11"
           runnable=true
           export_filter="all_resources"
@@ -216,7 +216,7 @@ jobs:
         run: |
           tee -a '${{ github.workspace }}/project/export_presets.cfg' << EOT
           [preset.0]
-          name="EXPORT_PRESET"
+          name="Export"
           platform="Windows Desktop"
           runnable=true
           export_filter="all_resources"
@@ -233,7 +233,7 @@ jobs:
         run: |
           tee -a '${{ github.workspace }}/project/export_presets.cfg' << EOT
           [preset.0]
-          name="EXPORT_PRESET"
+          name="Export"
           platform="Android"
           runnable=true
           export_filter="all_resources"
@@ -268,7 +268,7 @@ jobs:
         shell: sh
         run: |
           mkdir '${{ github.workspace }}/build'
-          xvfb-run '${{ github.workspace }}/godot/bin/godot.x11.opt.tools.64' --audio-driver Dummy --path '${{ github.workspace }}/project' --export EXPORT_PRESET '${{ github.workspace }}/build/${{ matrix.executable }}'
+          xvfb-run '${{ github.workspace }}/godot/bin/godot.x11.opt.tools.64' --audio-driver Dummy --path '${{ github.workspace }}/project' --export 'Export' '${{ github.workspace }}/build/${{ matrix.executable }}'
 
       - name: (Linux) Add Distribution Files
         if: ${{ matrix.identifier == 'linux' }}

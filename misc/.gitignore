@@ -1,3 +1,5 @@
-*.gz
-/pkg
-/src
+*
+!.gdignore
+!custom.py
+!openplayer.desktop
+!PKGBUILD

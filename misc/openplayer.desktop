@@ -1,3 +1,4 @@
+#!/usr/bin/env xdg-open
 [Desktop Entry]
 Name=OpenPlayer
 Comment=Music that doesn't waste your time.
