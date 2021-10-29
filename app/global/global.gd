@@ -33,7 +33,7 @@ func _get_profile_path(v: int) -> String:
 	return "user://profile.%d.tres" % v
 
 func _load_profile() -> Profile:
-	print_debug("Loading profile...")
+	debug("Loading profile...")
 	
 	var path := _get_profile_path(_PROFILE_VERSION)
 	if ResourceLoader.exists(path):
@@ -41,7 +41,7 @@ func _load_profile() -> Profile:
 	return Profile.new()
 
 func _save_profile() -> void:
-	print_debug("Saving profile...")
+	debug("Saving profile...")
 	
 	var path := _get_profile_path(_PROFILE_VERSION)
 	ok(ResourceSaver.save(path + ".part.tres", profile))
@@ -86,12 +86,12 @@ func display_time(time: float, show_deciseconds := false) -> String:
 	
 	return string
 
-func update_mouse_cursor() -> void:
-	yield(get_tree(), "idle_frame")
-	get_viewport().warp_mouse(get_viewport().get_mouse_position())
-
 func ok(err: int) -> void:
 	assert(err == OK)
 
 func yes(flag: bool) -> void:
 	assert(flag)
+
+func debug(message: String) -> void:
+	# Don't run this code in release builds.
+	assert(print(message) or true)

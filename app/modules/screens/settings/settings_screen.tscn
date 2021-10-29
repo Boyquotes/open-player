@@ -106,11 +106,23 @@ margin_right = 1264.0
 margin_bottom = 170.0
 text = "SETTINGS_DISCORD_RICH_PRESENCE"
 
-[node name="NicenseButton" type="Button" parent="VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 margin_top = 178.0
-margin_right = 199.0
+margin_right = 1264.0
 margin_bottom = 198.0
-size_flags_horizontal = 0
+size_flags_horizontal = 3
+
+[node name="DonateButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+margin_right = 630.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+text = "SETTINGS_DONATE"
+
+[node name="NicenseButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+margin_left = 634.0
+margin_right = 1264.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
 text = "SETTINGS_SHOW_COPYRIGHT"
 script = ExtResource( 1 )
 
@@ -172,3 +184,4 @@ tab_align = 0
 [connection signal="item_selected" from="VBoxContainer/Language" to="." method="_on_Language_item_selected"]
 [connection signal="item_selected" from="VBoxContainer/Theme" to="." method="_on_Theme_item_selected"]
 [connection signal="toggled" from="VBoxContainer/DiscordRichPresence" to="." method="_on_DiscordRichPresence_toggled"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/DonateButton" to="." method="_on_DonateButton_pressed"]

@@ -3,7 +3,6 @@
 [ext_resource path="res://app/interface/dummy_container/dummy_container.gd" type="Script" id=1]
 [ext_resource path="res://app/modules/playable_track_list/playable_track_list.gd" type="Script" id=2]
 [ext_resource path="res://app/interface/icon_button/icon_button.tscn" type="PackedScene" id=3]
-[ext_resource path="res://app/icons/generic_remove.svg" type="Texture" id=4]
 [ext_resource path="res://app/interface/track/list/track_list_view.tscn" type="PackedScene" id=5]
 [ext_resource path="res://app/icons/generic_play.svg" type="Texture" id=6]
 
@@ -17,7 +16,13 @@ content_margin_right = 8.0
 content_margin_top = 8.0
 content_margin_bottom = 8.0
 
-[sub_resource type="StyleBoxEmpty" id=6]
+[sub_resource type="StyleBoxEmpty" id=8]
+
+[sub_resource type="StyleBoxEmpty" id=7]
+content_margin_left = 16.0
+content_margin_right = 16.0
+content_margin_top = 16.0
+content_margin_bottom = 16.0
 
 [node name="PlayableTrackList" type="VBoxContainer"]
 margin_right = 400.0
@@ -33,7 +38,7 @@ margin_right = 400.0
 margin_bottom = 30.0
 
 [node name="Title" type="LineEdit" parent="Top"]
-margin_right = 332.0
+margin_right = 366.0
 margin_bottom = 30.0
 focus_mode = 1
 size_flags_horizontal = 3
@@ -43,15 +48,6 @@ custom_styles/normal = SubResource( 3 )
 align = 1
 max_length = 20
 caret_blink = true
-
-[node name="Remove" parent="Top" instance=ExtResource( 3 )]
-margin_left = 336.0
-margin_right = 366.0
-margin_bottom = 30.0
-rect_min_size = Vector2( 30, 0 )
-text = "FOLDERS_REMOVE"
-texture = ExtResource( 4 )
-hint = "FOLDERS_REMOVE"
 
 [node name="Play" parent="Top" instance=ExtResource( 3 )]
 margin_left = 370.0
@@ -68,7 +64,7 @@ margin_right = 400.0
 margin_bottom = 400.0
 mouse_filter = 1
 size_flags_vertical = 3
-custom_styles/panel = SubResource( 6 )
+custom_styles/panel = SubResource( 8 )
 script = ExtResource( 1 )
 
 [node name="TrackListView" parent="Contents" instance=ExtResource( 5 )]
@@ -80,13 +76,14 @@ mouse_default_cursor_shape = 2
 editable = true
 
 [node name="Empty" type="Label" parent="Contents"]
-margin_top = 178.0
+margin_top = 162.0
 margin_right = 400.0
-margin_bottom = 192.0
+margin_bottom = 208.0
+custom_styles/normal = SubResource( 7 )
 align = 1
+autowrap = true
 
 [connection signal="focus_exited" from="Top/Title" to="." method="_on_Title_focus_exited"]
 [connection signal="text_changed" from="Top/Title" to="." method="_on_Title_text_changed"]
 [connection signal="text_entered" from="Top/Title" to="." method="_on_Title_text_entered"]
-[connection signal="pressed" from="Top/Remove" to="." method="_on_Remove_pressed"]
 [connection signal="pressed" from="Top/Play" to="." method="_on_Play_pressed"]

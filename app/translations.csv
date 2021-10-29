@@ -1,25 +1,31 @@
 keys,en_US,de_DE,ru_RU
+GENERIC_CONFIRM_DIALOG,Please Confirm…,,
+GENERIC_OK,Ok,,
+GENERIC_CANCEL,Cancel,,
 MENU_HOME,Home,Heim,Главная
 MENU_IMPORT,Import,Importieren,Импорт
 MENU_TRACKS,Music,Musik,Музыка
 MENU_FOLDERS,Playlists,Wiedergabelisten,Плейлисты
 MENU_SETTINGS,Settings,Einstellungen,Настройки
 IMPORT_FILES,Import from device,Vom Gerät laden,Загрузить с устройства
-IMPORT_SEARCH,Search YouTube,YouTube durchsuchen,Искать в YouTube
+IMPORT_SEARCH,Search YouTube,YouTube Suchen,Искать в YouTube
 IMPORT_SEARCH_PLACEHOLDER,Search YouTube...,YouTube Suchen…,Искать в YouTube…
 IMPORT_TRACKS_TITLE,Imported Tracks,Importierte Tracks,импортированные треки
 IMPORT_TRACKS_LOADING,Loading Tracks…,Titel werden geladen…,загрузка треков
 MY_TRACKS_NAME,My Music,Meine Musik,Моя музыка
-MY_TRACKS_EMPTY,You have not discovered any music!\nCheck the import tab.,Sie haben keine Musik entdeckt!\nÜberprüfen Sie den Import-Tab.,Вы не обнаружили никакой музыки!\nПроверить вкладку импорт
-FOLDERS_CREATE,Create Playlist,Wiedergabeliste erstellen,Создать плейлист
-FOLDERS_DEFAULT_NAME,Playlist {0},Wiedergabeliste {0},Плейлист {0}
-FOLDERS_EMPTY,This playlist does not have any songs.,Diese Playlist enthält keine Songs.,В плейлисте нету песен
-FOLDERS_REMOVE,Remove Playlist,Playlist entfernen,Удалить плейлист
+MY_TRACKS_EMPTY,You have not discovered any music! Check the import tab.,Sie haben keine Musik entdeckt! Überprüfen Sie den Import-Tab.,Вы не обнаружили никакой музыки! Проверить вкладку импорт
+FOLDERS_EMPTY,You do not have any playlists! Click the add button to create one.,"Sie haben keine Wiedergabelisten! Klicken Sie auf die Schaltfläche Hinzufügen, um eine zu erstellen.",You do not have any playlists! Click the add button to create one.
+FOLDER_CREATE,Create Playlist,Wiedergabeliste erstellen,Создать плейлист
+FOLDER_DEFAULT_NAME,Playlist {0},Wiedergabeliste {0},Плейлист {0}
+FOLDER_EMPTY,This playlist does not have any songs.,Diese Playlist enthält keine Songs.,В плейлисте нету песен
+FOLDER_REMOVE,Remove Playlist,Playlist entfernen,Удалить плейлист
+FOLDER_REMOVE_CONFIRM,Are you sure you wanna delete this playlist?,,
 SETTINGS_ANIMATIONS_ENABLED,Animations Enabled,Animationen aktiviert,Анимации включены
 SETTINGS_ANIMATION_SPEED,Animation Speed,Animations Geschwindigkeit,Скорость Анимации
 SETTINGS_LANGUAGE,Language: {0},Sprache: {0},Язык: {0}
 SETTINGS_THEME,Theme: {0},Thema: {0},Тема: {0}
 SETTINGS_DISCORD_RICH_PRESENCE,Discord Rich Presence,Discord Rich Presence,Discord Rich Presence
+SETTINGS_DONATE,Donate,Spenden,Donate
 SETTINGS_SHOW_COPYRIGHT,Show Copyright,Urheberrecht anzeigen,Показать права
 TRACK_PLAY_ALL,Play All,Alle wiedergeben,Играть всё
 TRACK_ADD_TO_QUEUE,Add to Queue,Zur Warteschlange hinzufügen,Add to Queue

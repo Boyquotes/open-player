@@ -66,3 +66,6 @@ func _on_Theme_item_selected(index: int) -> void:
 
 func _on_DiscordRichPresence_toggled(value: bool) -> void:
 	Global.profile.discord_rich_presence = value
+
+func _on_DonateButton_pressed() -> void:
+	Global.ok(OS.shell_open("https://www.paypal.com/donate?hosted_button_id=JSYDFFV55JZYL"))

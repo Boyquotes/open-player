@@ -1,23 +1,10 @@
 extends VBoxContainer
 
-signal removed
-
 var track_scene := preload("res://app/interface/track/track_view.tscn")
 
 onready var title: LineEdit = $Top/Title
-onready var remove := $Top/Remove
-
 onready var view := $Contents/TrackListView
 onready var empty := $Contents/Empty
-
-export var removable := true setget _set_removable
-func _set_removable(value: bool) -> void:
-	removable = value
-	
-	if not is_inside_tree():
-		yield(self, "ready")
-	
-	remove.visible = removable
 
 func _update_style() -> void:
 	title.add_font_override("font", title.get_font("list_title"))
@@ -28,7 +15,7 @@ func _update_empty() -> void:
 		if list is MyTracks:
 			empty.text = tr("MY_TRACKS_EMPTY")
 		elif list is Folder:
-			empty.text = tr("FOLDERS_EMPTY")
+			empty.text = tr("FOLDER_EMPTY")
 
 var list: TrackList setget _set_list
 func _set_list(value: TrackList) -> void:
@@ -71,9 +58,6 @@ func _on_inserted(_entry: TrackList.Entry) -> void:
 
 func _on_removed(_entry: TrackList.Entry) -> void:
 	_update_empty()
-
-func _on_Remove_pressed() -> void:
-	emit_signal("removed")
 
 func _on_Play_pressed() -> void:
 	var tracks := list.contents()

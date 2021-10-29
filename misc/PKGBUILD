@@ -1,0 +1,50 @@
+pkgname=openplayer
+pkgver=1.0.0
+pkgrel=1
+pkgdesc="Music that doesn't waste your time."
+arch=('x86_64')
+url='https://github.com/nathanfranke/openplayer/'
+license=('GPL3')
+depends=('alsa-lib' 'glu' 'libx11' 'libxcursor' 'libxinerama' 'libxrandr' 'freetype2' 'mesa' 'libwebp' 'pulseaudio' 'openssl')
+makedepends=('scons')
+source=(
+		'godot::git+https://github.com/godotengine/godot.git#branch=3.x'
+		'gdaudioyt::git+https://github.com/nathanfranke/gdaudioyt.git#tag=1.0.0'
+		'openplayer::git+https://github.com/nathanfranke/openplayer.git#tag=1.0.0'
+)
+sha256sums=('SKIP' 'SKIP' 'SKIP')
+
+build() {
+	jobs=$(nproc)
+	
+	# Clear Build Configuration
+	rm -f 'godot/custom.py'
+	# Install gdaudioyt
+	cp -r 'gdaudioyt/.' 'godot/modules/gdaudioyt/'
+	# Compile Godot Tools
+	#scons -j"$jobs" --directory='godot/' p=x11 target=release_debug optimized=yes
+	# Copy Build Configuration
+	cp 'openplayer/misc/custom.py' 'godot/'
+	# Compile Godot Export Template
+	#scons -j"$jobs" --directory='godot/' p=x11 tools=no target=release optimized=yes
+	
+	tee -a 'openplayer/export_presets.cfg' << EOT
+[preset.0]
+name="Export"
+platform="Linux/X11"
+runnable=true
+export_filter="all_resources"
+include_filter=""
+exclude_filter=""
+[preset.0.options]
+custom_template/release="$(pwd)/godot/bin/godot.x11.opt.64"
+EOT
+	'godot/bin/godot.x11.opt.tools.64' --audio-driver Dummy --path 'openplayer' --export 'Export' "$(pwd)/app.x86_64"
+}
+
+package() {
+	install -Dm755 'app.x86_64' "${pkgdir}/usr/bin/openplayer"
+	install -Dm644 'app.pck' "${pkgdir}/usr/bin/openplayer.pck"
+	install -Dm644 'openplayer/misc/openplayer.desktop' "${pkgdir}/usr/share/applications/openplayer.desktop"
+	install -Dm644 'openplayer/app/branding/linux/icon.svg' "${pkgdir}/usr/share/pixmaps/openplayer.svg"
+}

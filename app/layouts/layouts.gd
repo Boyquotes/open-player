@@ -13,13 +13,13 @@ func _ready() -> void:
 
 func _on_resized() -> void:
 	var size := get_viewport().size
-	var power := 2.0
+	var power := 1.5
 	var step := 1.0
 	
 	var ratio := size.aspect()
 	if ratio < 1.0:
 		self.layout_scene = preload("res://app/layouts/portrait.tscn")
-		step = move_toward(size.x / 540.0, 1.0, 0.1)
+		step = move_toward(size.x / 480.0, 1.0, 0.1)
 	else:
 		self.layout_scene = preload("res://app/layouts/landscape.tscn")
 		step = move_toward(size.y / 800.0, 1.0, 0.2)

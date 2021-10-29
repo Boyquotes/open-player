@@ -60,7 +60,10 @@ func _update_style() -> void:
 
 func _ready() -> void:
 	_update_style()
-	Global.ok(Global.profile.connect("theme_changed", self, "_update_style"))
+	var err1 := connect("resized", self, "_update_style", [], CONNECT_DEFERRED)
+	assert(err1 == OK)
+	var err2 := Global.profile.connect("theme_changed", self, "_update_style")
+	assert(err2 == OK)
 
 func _process(_delta: float) -> void:
 	rect_min_size.x = rect_size.y
