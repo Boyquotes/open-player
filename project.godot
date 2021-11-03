@@ -39,6 +39,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://app/model/folder.gd"
 }, {
+"base": "Control",
+"class": "Hint",
+"language": "GDScript",
+"path": "res://app/interface/hint/hint.gd"
+}, {
+"base": "Button",
+"class": "IconButton",
+"language": "GDScript",
+"path": "res://app/interface/icon_button/icon_button.gd"
+}, {
 "base": "Resource",
 "class": "List",
 "language": "GDScript",
@@ -106,6 +116,8 @@ _global_script_class_icons={
 "DropContainer": "",
 "DummyContainer": "",
 "Folder": "",
+"Hint": "res://app/interface/hint/hint.svg",
+"IconButton": "res://app/interface/icon_button/icon_button.svg",
 "List": "",
 "MyTracks": "",
 "Profile": "",

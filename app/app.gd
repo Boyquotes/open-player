@@ -147,7 +147,7 @@ func _notification(what: int) -> void:
 		NOTIFICATION_WM_FOCUS_OUT:
 			OS.low_processor_usage_mode = true
 
-### QUEUE ###
+### TRACKS ###
 
 signal track_changed(entry)
 
@@ -172,41 +172,28 @@ func _set_current_track(_value: Track) -> void:
 func _get_current_track() -> Track:
 	return current.value if current != null else null
 
-enum QueueMode {
-	REPEAT,
-	REPEAT_SINGLE,
-	ONCE,
-	MAX
-}
-
-signal queue_mode_changed(queue_mode)
-
-var queue_mode: int = QueueMode.REPEAT setget _set_queue_mode
-func _set_queue_mode(value: int) -> void:
-	if queue_mode == value:
-		return
-	
-	queue_mode = value
-	
-	emit_signal("queue_mode_changed", queue_mode)
-
-func queue_cycle_modes() -> void:
-	self.queue_mode = (queue_mode + 1) % QueueMode.MAX
-
-func get_next_track(mode := queue_mode) -> TrackList.Entry:
-	if current != null:
-		match mode:
-			QueueMode.REPEAT:
-				return queue.entry((current.index + 1) % queue.size())
-			QueueMode.REPEAT_SINGLE:
-				return current
-			QueueMode.ONCE:
-				if current.index < queue.size() - 1:
-					return queue.entry((current.index + 1) % queue.size())
-	return null
+### QUEUE ###
 
 class Queue:
 	extends TrackList
+	
+	enum {
+		QUEUE_REPEAT,
+		QUEUE_REPEAT_SINGLE,
+		QUEUE_ONCE,
+		QUEUE_MAX
+	}
+	
+	signal mode_changed(mode)
+	
+	var mode: int = QUEUE_REPEAT setget _set_mode
+	func _set_mode(value: int) -> void:
+		if mode == value:
+			return
+		
+		mode = value
+		
+		emit_signal("mode_changed", mode)
 	
 	var app: App
 	func _init(_app):
@@ -249,16 +236,31 @@ class Queue:
 		
 		order(mapping)
 	
-	func play_next(track: Track) -> void:
-		Global.profile.tracks.ensure_has(track)
-		
-		var index := size()
-		if app.current != null:
-			index = app.current.index + 1
-		
-		insert(index, track)
+	func cycle_modes() -> void:
+		self.mode = (mode + 1) % QUEUE_MAX
 
 var queue := Queue.new(self)
+
+func get_next_track(mode := queue.mode) -> TrackList.Entry:
+	if current != null:
+		match mode:
+			Queue.QUEUE_REPEAT:
+				return queue.entry((current.index + 1) % queue.size())
+			Queue.QUEUE_REPEAT_SINGLE:
+				return current
+			Queue.QUEUE_ONCE:
+				if current.index < queue.size() - 1:
+					return queue.entry((current.index + 1) % queue.size())
+	return null
+
+func play_next(track: Track) -> void:
+	Global.profile.tracks.ensure_has(track)
+	
+	var index := queue.size()
+	if current != null:
+		index = current.index + 1
+	
+	queue.insert(index, track)
 
 ### PLAYING ###
 
@@ -358,7 +360,7 @@ func next_track(manual := false) -> void:
 	if current == next:
 		if manual:
 			# Manual next track: Switch instead of looping the same track.
-			next = get_next_track(QueueMode.REPEAT)
+			next = get_next_track(Queue.QUEUE_REPEAT)
 		else:
 			replay()
 	

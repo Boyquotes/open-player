@@ -1,21 +1,23 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://app/modules/controls/buttons/control_button.gd" type="Script" id=1]
-[ext_resource path="res://app/interface/icon_button/icon_button.tscn" type="PackedScene" id=2]
-[ext_resource path="res://app/icons/control_skip.svg" type="Texture" id=3]
+[ext_resource path="res://app/icons/control_back.svg" type="Texture" id=2]
 
-[node name="SeekBack" instance=ExtResource( 2 )]
-script = ExtResource( 1 )
-texture = ExtResource( 3 )
-icon_size = 0.7
-flip = true
-hint = "CONTROL_SEEK_BACK"
-operation = "seek_back"
+[sub_resource type="DynamicFont" id=1]
 
-[node name="Texture" parent="." index="0"]
-rect_min_size = Vector2( 89.6, 89.6 )
-texture = ExtResource( 3 )
-flip_h = true
-
-[node name="Hint" parent="." index="1"]
+[node name="SeekBack" type="Button"]
+margin_right = 76.0
+margin_bottom = 70.0
+mouse_filter = 1
+mouse_default_cursor_shape = 2
+custom_constants/hseparation = 0
+custom_fonts/font = SubResource( 1 )
 text = "CONTROL_SEEK_BACK"
+icon = ExtResource( 2 )
+flat = true
+clip_text = true
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+operation = "seek_back"

@@ -22,8 +22,12 @@ func _set_showing(value: bool) -> void:
 		assert(flag2)
 	else:
 		_position = target
+		sort()
 
-func _process(_delta: float) -> void:
+func _ready() -> void:
+	Global.ok(tween.connect("tween_step", self, "_on_tween_step"))
+
+func _on_tween_step(_object: Object, _key: NodePath, _elapsed: float, _value: Object) -> void:
 	sort()
 
 func _on_DropContainer_sort_children() -> void:
@@ -32,7 +36,6 @@ func _on_DropContainer_sort_children() -> void:
 func sort() -> void:
 	for child in get_children():
 		if child is Control:
-			#print(name, _position < 1.0)
 			child.visible = _position < 1.0
 			child.rect_position = Vector2(0.0, _position * rect_size.y)
 			child.rect_size = rect_size

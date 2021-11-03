@@ -1,12 +1,41 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://app/modules/playable_track_list/playable_track_list.tscn" type="PackedScene" id=1]
 [ext_resource path="res://app/modules/screens/my_tracks/my_tracks.gd" type="Script" id=2]
+
+[sub_resource type="StyleBoxEmpty" id=2]
+content_margin_left = 4.0
+content_margin_right = 4.0
+content_margin_top = 4.0
+content_margin_bottom = 4.0
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
 [node name="Tracks" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 
+[node name="Top" parent="." index="0"]
+margin_bottom = 40.0
+
+[node name="Title" parent="Top" index="0"]
+margin_right = 356.0
+margin_bottom = 40.0
+
+[node name="Play" parent="Top" index="1"]
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 360.0
+margin_bottom = 40.0
+custom_styles/hover = SubResource( 2 )
+custom_styles/pressed = SubResource( 2 )
+custom_styles/normal = SubResource( 2 )
+
 [node name="Contents" parent="." index="1"]
+margin_top = 40.0
 custom_styles/panel = SubResource( 1 )
+
+[node name="TrackListView" parent="Contents" index="0"]
+margin_bottom = 360.0
+
+[node name="Empty" parent="Contents" index="1"]
+margin_top = 157.0
+margin_bottom = 203.0

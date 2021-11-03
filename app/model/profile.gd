@@ -23,8 +23,8 @@ func _set_animation_speed(value: float) -> void:
 export var language: String = OS.get_locale() setget _set_language
 func _set_language(value: String) -> void:
 	language = value
-	Global.debug("Changing language to '%s'." % language)
 	TranslationServer.set_locale(language)
+	Global.debug("Changed language to '%s'." % language)
 	emit_changed()
 
 export var discord_rich_presence := true setget _set_discord_rich_presence

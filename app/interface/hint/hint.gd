@@ -1,105 +1,112 @@
 extends Control
+class_name Hint, "res://app/interface/hint/hint.svg"
 
-const HINT_SCREEN_EDGE_MARGIN := 4.0
-const HINT_VERTICAL_DISTANCE := 12.0
+const FADE_TIME := 0.1
+const SCREEN_EDGE_MARGIN := 8.0
+const VERTICAL_DISTANCE := 16.0
 
-onready var _is_ready := true
-onready var canvas_layer := $CanvasLayer
-onready var anchor: Control = canvas_layer.get_node("Anchor")
-onready var panel: PanelContainer = anchor.get_node("Panel")
-onready var label: Label = panel.get_node("Label")
-onready var arrow: Control = anchor.get_node("Arrow")
-onready var tween: Tween = $Tween
-
-export var text: String setget _set_text
+export var text := "Hint Text" setget _set_text
 func _set_text(value: String) -> void:
 	text = value
 	
 	if not is_inside_tree():
 		return
 	
-	label.text = text
-	call_deferred("update_position")
+	_update_transform()
 
-export var hide_on_release := true
-
-func _update_style() -> void:
-	label.add_font_override("font", get_font("hint", "Label"))
-	
-	var color := get_color("hint_color")
-	panel.get_stylebox("panel").bg_color = color
-	arrow.modulate = color
+onready var anchor := Control.new()
+onready var label := Label.new()
+onready var pointer := TextureRect.new()
+onready var tween := Tween.new()
 
 func _ready() -> void:
+	mouse_filter = MOUSE_FILTER_PASS
+	
+	### SCENE ###
+	
+	var canvas_layer := CanvasLayer.new()
+	add_child(canvas_layer)
+	
+	anchor.rect_size = Vector2.ZERO
+	anchor.modulate.a = 0.0
+	anchor.theme = preload("res://app/themes/dark.tres")
+	canvas_layer.add_child(anchor)
+	
+	anchor.add_child(label)
+	
+	pointer.texture = preload("res://app/icons/generic_pointer.svg")
+	anchor.add_child(pointer)
+	
+	add_child(tween)
+	
+	### STYLE ###
+	
 	_update_style()
 	Global.ok(Global.profile.connect("theme_changed", self, "_update_style"))
 	
-	set_showing(false)
+	### TRANSFORMS ###
 	
-	var node: Node = self
-	while node != null and node is Control:
-		Global.ok(node.connect("item_rect_changed", self, "update_position"))
-		node = node.get_parent()
+	_update_transform()
+	set_notify_transform(true)
 	
-	update_position()
-
-func _exit_tree() -> void:
-	set_showing(false, true)
+	### SHOWING ###
+	
+	Global.ok(connect("mouse_entered", self, "_on_mouse_entered"))
+	Global.ok(connect("mouse_exited", self, "_on_mouse_exited"))
+	Global.ok(connect("visibility_changed", self, "_on_visibility_changed"))
 
 func _notification(what: int) -> void:
 	match what:
+		NOTIFICATION_WM_MOUSE_ENTER:
+			if get_rect().has_point(get_local_mouse_position()):
+				_set_showing(true)
 		NOTIFICATION_WM_MOUSE_EXIT:
-			set_showing(false)
+			_set_showing(false)
+		NOTIFICATION_TRANSFORM_CHANGED:
+			_update_transform()
 
-func _input(event: InputEvent) -> void:
-	if event is InputEventScreenTouch:
-		if not get_global_rect().has_point(event.position):
-			set_showing(false)
+func _update_style() -> void:
+	label.add_stylebox_override("normal", get_stylebox("hint"))
+	pointer.modulate = get_color("hint")
 
-func _on_Hint_gui_input(event) -> void:
-	if event is InputEventMouse:
-		if not text.empty():
-			set_showing(true)
-	if event is InputEventScreenTouch:
-		if not event.pressed:
-			if hide_on_release:
-				set_showing(false)
-
-func _on_Hint_mouse_exited() -> void:
-	set_showing(false)
-
-var _is_showing := false
-func set_showing(show: bool, instant := false) -> void:
-	var target_color := Color.white if show else Color.transparent
-	if instant:
-		anchor.modulate = target_color
-	elif _is_showing != show:
-		Global.yes(tween.interpolate_property(anchor, "modulate", null, target_color, 0.1))
-		Global.yes(tween.start())
-	
-	if show:
-		update_position()
-	
-	_is_showing = show
-
-func update_position() -> void:
-	if not is_inside_tree():
-		return
+func _update_transform() -> void:
+	label.text = text
 	
 	var rect := get_global_rect()
 	var center := (rect.position.x + rect.end.x) / 2.0
-	if rect.position.y - panel.rect_size.y - HINT_VERTICAL_DISTANCE >= HINT_SCREEN_EDGE_MARGIN:
-		anchor.rect_position = Vector2(center, rect.position.y - HINT_VERTICAL_DISTANCE)
-		panel.set_margins_preset(Control.PRESET_CENTER_BOTTOM)
-		arrow.rect_rotation = 0.0
+	if rect.position.y - label.rect_size.y - VERTICAL_DISTANCE < SCREEN_EDGE_MARGIN:
+		anchor.rect_position = Vector2(center, rect.end.y + VERTICAL_DISTANCE)
+		label.set_margins_preset(PRESET_CENTER_TOP)
+		pointer.flip_v = true
+		pointer.set_margins_preset(PRESET_CENTER_BOTTOM)
 	else:
-		anchor.rect_position = Vector2(center, rect.end.y + HINT_VERTICAL_DISTANCE)
-		panel.set_margins_preset(Control.PRESET_CENTER_TOP)
-		arrow.rect_rotation = 180.0
+		anchor.rect_position = Vector2(center, rect.position.y - VERTICAL_DISTANCE)
+		label.set_margins_preset(PRESET_CENTER_BOTTOM)
+		pointer.flip_v = false
+		pointer.set_margins_preset(PRESET_CENTER_TOP)
 	
-	var min_x := HINT_SCREEN_EDGE_MARGIN
-	var max_x := get_viewport_rect().size.x - panel.rect_size.x - HINT_SCREEN_EDGE_MARGIN
-	panel.rect_global_position.x = clamp(panel.rect_global_position.x, min_x, max_x)
+	var min_x := SCREEN_EDGE_MARGIN
+	var max_x := get_viewport_rect().size.x - label.rect_size.x - SCREEN_EDGE_MARGIN
+	label.rect_global_position.x = clamp(label.rect_global_position.x, min_x, max_x)
 
-func _on_Hint_hide() -> void:
-	set_showing(false)
+func _on_item_rect_changed() -> void:
+	_update_transform()
+
+func _set_showing(showing: bool) -> void:
+	var target := 1.0 if showing else 0.0
+	if not Engine.editor_hint and Global.profile.animations_enabled:
+		var duration := FADE_TIME / Global.profile.animation_speed
+		Global.yes(tween.interpolate_property(anchor, "modulate:a", null, target, duration))
+		Global.yes(tween.start())
+	else:
+		anchor.modulate.a = target
+
+func _on_mouse_entered() -> void:
+	_set_showing(true)
+
+func _on_mouse_exited() -> void:
+	_set_showing(false)
+
+func _on_visibility_changed() -> void:
+	if not is_visible_in_tree():
+		_set_showing(false)

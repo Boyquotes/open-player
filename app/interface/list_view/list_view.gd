@@ -245,9 +245,6 @@ func _update_position(index: int, instance: Control) -> void:
 			node_index += 1
 	
 	container.move_child(instance, node_index)
-	#instance.name = "Item%d" % index
-	#instance.focus_previous = NodePath("../Item%d" % (index - 1))
-	#instance.focus_next = NodePath("../Item%d" % (index + 1))
 
 # --- DRAGGING ---
 
@@ -287,7 +284,7 @@ func _drag_update(job: DraggingJob, delta: float) -> void:
 		
 		list.order(mapping)
 		
-		# Hack: Hide and show this node to un-press all children buttons.
+		# HACK: Hide and show this node to un-press all children buttons.
 		var instance = _instances[next_index]
 		instance.visible = false
 		instance.visible = true

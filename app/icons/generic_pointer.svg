@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg id="svg8" width="64" height="56" version="1.1" viewBox="0 0 16.933 14.817" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<svg id="svg8" width="14" height="12" version="1.1" viewBox="0 0 3.7041 3.1751" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
  <metadata id="metadata5">
   <rdf:RDF>
    <cc:Work rdf:about="">
@@ -8,5 +8,5 @@
    </cc:Work>
   </rdf:RDF>
  </metadata>
- <path id="path841" transform="matrix(.26459 0 0 .26459 -.00035714 0)" d="m0.0019531 0 31.998 56 31.998-56h-63.996z" fill="#fff"/>
+ <path id="path841" d="m1.5963e-4 0 1.8521 3.1751 1.8521-3.1751z" fill="#fff" stroke-width=".057287"/>
 </svg>

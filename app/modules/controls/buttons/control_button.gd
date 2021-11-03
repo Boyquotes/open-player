@@ -1,9 +1,12 @@
 tool
-extends "res://app/interface/icon_button/icon_button.gd"
+extends IconButton
 
 export(String, "", "previous_track", "next_track", "seek_back", "seek_forward") var operation: String
 
-func _pressed() -> void:
+func _ready() -> void:
+	Global.ok(connect("pressed", self, "_on_pressed"))
+
+func _on_pressed() -> void:
 	match operation:
 		"previous_track":
 			Global.player.previous_track()

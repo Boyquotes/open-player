@@ -2,7 +2,7 @@ extends PanelContainer
 
 signal selected
 
-onready var title := $Title
+onready var button: Button = $Button
 
 var entry: List.Entry setget _set_entry
 func _set_entry(value: List.Entry) -> void:
@@ -18,12 +18,15 @@ func _set_entry(value: List.Entry) -> void:
 	entry.value.connect("changed", self, "_update_folder")
 
 func _update_folder() -> void:
-	title.text = entry.value.title
+	button.text = entry.value.title
 
 func _update_style() -> void:
-	add_stylebox_override("panel", get_stylebox("folder"))
+	var style := get_stylebox("folder")
+	button.add_stylebox_override("normal", style)
+	button.add_stylebox_override("pressed", style)
+	button.add_stylebox_override("hover", style)
 	
-	title.add_font_override("font", title.get_font("folder_title"))
+	button.add_font_override("font", get_font("folder"))
 
 func _ready() -> void:
 	_update_style()
@@ -70,3 +73,12 @@ func _on_FolderView_gui_input(event: InputEvent) -> void:
 		if event is InputEventMouseMotion:
 			if event.button_mask & BUTTON_MASK_LEFT:
 				_select_update(-1, event.position)
+
+func _on_Button_pressed() -> void:
+	button.pressed = false
+	
+	# HACK: If we are re-ordering the list view, ignore the button press.
+	if not is_visible_in_tree():
+		return
+	
+	emit_signal("selected")

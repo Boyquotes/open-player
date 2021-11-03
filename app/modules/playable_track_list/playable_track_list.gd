@@ -6,9 +6,6 @@ onready var title: LineEdit = $Top/Title
 onready var view := $Contents/TrackListView
 onready var empty := $Contents/Empty
 
-func _update_style() -> void:
-	title.add_font_override("font", title.get_font("list_title"))
-
 func _update_empty() -> void:
 	empty.visible = list.empty()
 	if empty.visible:
@@ -31,18 +28,21 @@ func _set_list(value: TrackList) -> void:
 		Global.ok(list.connect("inserted", self, "_on_inserted"))
 		Global.ok(list.connect("removed", self, "_on_removed"))
 		
-		_update_title()
+		_update_locale()
 		_update_empty()
 
-func _update_title() -> void:
+func _update_locale() -> void:
 	if list is MyTracks:
-		title.text = tr("MY_TRACKS_NAME")
+		title.text = tr("MY_TRACKS_TITLE")
 		title.editable = false
 		title.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	elif list is Folder:
 		title.text = list.title
 		title.editable = true
 		title.mouse_filter = Control.MOUSE_FILTER_STOP
+
+func _update_style() -> void:
+	title.add_font_override("font", title.get_font("list_title"))
 
 func _ready() -> void:
 	_update_style()
@@ -51,7 +51,7 @@ func _ready() -> void:
 func _notification(what: int) -> void:
 	match what:
 		NOTIFICATION_TRANSLATION_CHANGED:
-			_update_title()
+			_update_locale()
 
 func _on_inserted(_entry: TrackList.Entry) -> void:
 	_update_empty()

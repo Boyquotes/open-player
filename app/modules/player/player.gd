@@ -57,5 +57,5 @@ func _update_volume(volume: float) -> void:
 
 func _on_AudioStreamPlayer_finished() -> void:
 	if handle.stream != null:
-		#handle.play()
+		handle.play()
 		Global.player.next_track()

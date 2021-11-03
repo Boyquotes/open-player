@@ -1,18 +1,27 @@
-pkgname=openplayer
-pkgver=1.0.0
+_pkgver() {
+	cd openplayer
+	git describe --long --tags | sed 's/\([^-]*-g\)/r\1/;s/-/./g' || echo latest
+}
+
+pkgname=openplayer-git
+pkgver=$(_pkgver)
 pkgrel=1
 pkgdesc="Music that doesn't waste your time."
 arch=('x86_64')
-url='https://github.com/nathanfranke/openplayer/'
+url='https://github.com/nathanfranke/open-player/'
 license=('GPL3')
 depends=('alsa-lib' 'glu' 'libx11' 'libxcursor' 'libxinerama' 'libxrandr' 'freetype2' 'mesa' 'libwebp' 'pulseaudio' 'openssl')
 makedepends=('scons')
 source=(
 		'godot::git+https://github.com/godotengine/godot.git#branch=3.x'
-		'gdaudioyt::git+https://github.com/nathanfranke/gdaudioyt.git#tag=1.0.0'
-		'openplayer::git+https://github.com/nathanfranke/openplayer.git#tag=1.0.0'
+		'gdaudioyt::git+https://github.com/nathanfranke/gdaudioyt.git'
+		'openplayer::git+https://github.com/nathanfranke/open-player.git'
 )
 sha256sums=('SKIP' 'SKIP' 'SKIP')
+
+prepare() {
+	pkgver=$(_pkgver)
+}
 
 build() {
 	jobs=$(nproc)

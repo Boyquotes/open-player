@@ -12,14 +12,15 @@ IMPORT_SEARCH,Search YouTube,YouTube Suchen,Искать в YouTube
 IMPORT_SEARCH_PLACEHOLDER,Search YouTube...,YouTube Suchen…,Искать в YouTube…
 IMPORT_TRACKS_TITLE,Imported Tracks,Importierte Tracks,импортированные треки
 IMPORT_TRACKS_LOADING,Loading Tracks…,Titel werden geladen…,загрузка треков
-MY_TRACKS_NAME,My Music,Meine Musik,Моя музыка
+MY_TRACKS_TITLE,My Music,Meine Musik,Моя музыка
 MY_TRACKS_EMPTY,You have not discovered any music! Check the import tab.,Sie haben keine Musik entdeckt! Überprüfen Sie den Import-Tab.,Вы не обнаружили никакой музыки! Проверить вкладку импорт
+FOLDERS_TITLE,Playlists,Wiedergabelisten,Playlists
 FOLDERS_EMPTY,You do not have any playlists! Click the add button to create one.,"Sie haben keine Wiedergabelisten! Klicken Sie auf die Schaltfläche Hinzufügen, um eine zu erstellen.",You do not have any playlists! Click the add button to create one.
 FOLDER_CREATE,Create Playlist,Wiedergabeliste erstellen,Создать плейлист
 FOLDER_DEFAULT_NAME,Playlist {0},Wiedergabeliste {0},Плейлист {0}
 FOLDER_EMPTY,This playlist does not have any songs.,Diese Playlist enthält keine Songs.,В плейлисте нету песен
 FOLDER_REMOVE,Remove Playlist,Playlist entfernen,Удалить плейлист
-FOLDER_REMOVE_CONFIRM,Are you sure you wanna delete this playlist?,,
+FOLDER_REMOVE_CONFIRM,Are you sure you want to delete this playlist?,Möchten Sie diese Playlist wirklich löschen?,Are you sure you want to delete this playlist?
 SETTINGS_ANIMATIONS_ENABLED,Animations Enabled,Animationen aktiviert,Анимации включены
 SETTINGS_ANIMATION_SPEED,Animation Speed,Animations Geschwindigkeit,Скорость Анимации
 SETTINGS_LANGUAGE,Language: {0},Sprache: {0},Язык: {0}

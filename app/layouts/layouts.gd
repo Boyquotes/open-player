@@ -11,20 +11,20 @@ func _ready() -> void:
 	_on_resized()
 	Global.ok(connect("resized", self, "_on_resized"))
 
+func _square_round(value: float) -> float:
+	return pow(2.0, round(log(value) / log(2.0)))
+
 func _on_resized() -> void:
 	var size := get_viewport().size
-	var power := 1.5
 	var step := 1.0
 	
 	var ratio := size.aspect()
 	if ratio < 1.0:
 		self.layout_scene = preload("res://app/layouts/portrait.tscn")
-		step = move_toward(size.x / 480.0, 1.0, 0.1)
+		step = _square_round(move_toward(size.x / 960.0, 2.0, 0.6))
 	else:
 		self.layout_scene = preload("res://app/layouts/landscape.tscn")
-		step = move_toward(size.y / 800.0, 1.0, 0.2)
-	
-	step = pow(power, round(log(step) / log(power)))
+		step = _square_round(move_toward(size.y / 800.0, 1.0, 0.2))
 	
 	get_tree().set_screen_stretch(
 		SceneTree.STRETCH_MODE_2D,

@@ -1,69 +1,52 @@
 tool
 extends Button
+class_name IconButton, "res://app/interface/icon_button/icon_button.svg"
 
-onready var _is_ready := true
-onready var texture_rect: TextureRect = $Texture
-onready var hint_node = $Hint
+onready var hint := Hint.new()
 
-export var texture: Texture setget _set_texture
-func _set_texture(value: Texture) -> void:
-	texture = value
+func _init():
+	### PROPERTIES ###
 	
-	if not _is_ready:
-		return
+	clip_text = true
+	mouse_default_cursor_shape = CURSOR_POINTING_HAND
 	
-	_update_style()
+	### STYLE ###
+	
+	var style := StyleBoxEmpty.new()
+	style.content_margin_top = 4.0
+	style.content_margin_bottom = 4.0
+	style.content_margin_left = 4.0
+	style.content_margin_right = 4.0
+	
+	add_constant_override("hseparation", 0)
+	add_stylebox_override("normal", style)
+	add_stylebox_override("hover", style)
+	add_stylebox_override("pressed", style)
 
-export(float, 0.0, 1.0, 0.05) var icon_size := 0.5 setget _set_icon_size
-func _set_icon_size(value: float) -> void:
-	icon_size = value
-	
-	if not _is_ready:
-		return
-	
-	_update_style()
-
-export var flip: bool setget _set_flip
-func _set_flip(value: bool) -> void:
-	flip = value
-	
-	if not _is_ready:
-		yield(self, "ready")
-	
-	texture_rect.flip_h = flip
-
-export var hint: String setget _set_hint
-func _set_hint(value: String) -> void:
-	hint = value
-	
-	if not _is_ready:
-		yield(self, "ready")
-	
-	text = hint
-	hint_node.text = hint
-
-export var selected := false setget _set_selected
-func _set_selected(value: bool) -> void:
-	selected = value
-	
-	if not _is_ready:
-		return
-	
-	_update_style()
-
-func _update_style() -> void:
-	texture_rect.texture = texture
-	texture_rect.rect_min_size = rect_size * icon_size
-	texture_rect.set_anchors_and_margins_preset(Control.PRESET_CENTER)
-	
-	modulate = get_color("icon_selected") if selected else get_color("icon")
+func _set(name: String, value):
+	if name == "text":
+		text = value
+		
+		if is_inside_tree():
+			_update_text()
 
 func _ready() -> void:
+	_update_text()
+	
+	### SCENE ###
+	
+	hint.set_anchors_and_margins_preset(PRESET_WIDE)
+	add_child(hint)
+	
+	### SIGNALS ###
+	
 	_update_style()
-	var err1 := connect("resized", self, "_update_style", [], CONNECT_DEFERRED)
-	assert(err1 == OK)
-	var err2 := Global.profile.connect("theme_changed", self, "_update_style")
-	assert(err2 == OK)
+	Global.ok(Global.profile.connect("theme_changed", self, "_update_style"))
 
-func _process(_delta: float) -> void:
-	rect_min_size.x = rect_size.y
+func _update_text() -> void:
+	hint.text = text
+	hint.visible = not text.empty()
+
+func _update_style() -> void:
+	if not Engine.editor_hint:
+		modulate = get_color("icon")

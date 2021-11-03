@@ -1,9 +1,8 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://app/themes/dark.tres" type="Theme" id=1]
 [ext_resource path="res://app/fonts/Font20.tres" type="DynamicFont" id=2]
 [ext_resource path="res://app/interface/dummy_container/dummy_container.gd" type="Script" id=3]
-[ext_resource path="res://app/interface/icon_button/icon_button.tscn" type="PackedScene" id=4]
 [ext_resource path="res://app/modules/screens/import/import_screen.gd" type="Script" id=5]
 [ext_resource path="res://app/modules/screens/import/search_container.gd" type="Script" id=6]
 [ext_resource path="res://app/interface/loading/loading.tscn" type="PackedScene" id=7]
@@ -14,12 +13,31 @@
 [ext_resource path="res://app/modules/screens/import/files_track_list.gd" type="Script" id=12]
 [ext_resource path="res://app/icons/generic_search.svg" type="Texture" id=13]
 [ext_resource path="res://app/modules/playable_track_list/playable_track_list.tscn" type="PackedScene" id=14]
+[ext_resource path="res://app/interface/icon_button/icon_button.gd" type="Script" id=15]
+
+[sub_resource type="StyleBoxEmpty" id=8]
+content_margin_left = 4.0
+content_margin_right = 4.0
+content_margin_top = 4.0
+content_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxEmpty" id=9]
+content_margin_left = 4.0
+content_margin_right = 4.0
+content_margin_top = 4.0
+content_margin_bottom = 4.0
 
 [sub_resource type="StyleBoxEmpty" id=2]
 
+[sub_resource type="StyleBoxEmpty" id=10]
+content_margin_left = 4.0
+content_margin_right = 4.0
+content_margin_top = 4.0
+content_margin_bottom = 4.0
+
 [sub_resource type="StyleBoxEmpty" id=1]
 
-[sub_resource type="StyleBoxEmpty" id=3]
+[sub_resource type="StyleBoxEmpty" id=7]
 
 [node name="ImportScreen" type="PanelContainer"]
 margin_right = 400.0
@@ -48,20 +66,18 @@ custom_constants/separation = 8
 
 [node name="FilesButton" type="Button" parent="MarginContainer/VBoxContainer"]
 margin_right = 354.0
-margin_bottom = 31.0
+margin_bottom = 38.0
 custom_fonts/font = ExtResource( 2 )
 text = "IMPORT_FILES"
 icon = ExtResource( 9 )
-expand_icon = true
 
 [node name="SearchButton" type="Button" parent="MarginContainer/VBoxContainer"]
-margin_top = 39.0
+margin_top = 46.0
 margin_right = 354.0
-margin_bottom = 70.0
+margin_bottom = 84.0
 custom_fonts/font = ExtResource( 2 )
 text = "IMPORT_SEARCH"
 icon = ExtResource( 13 )
-expand_icon = true
 
 [node name="Files" type="Control" parent="."]
 margin_left = 7.0
@@ -103,12 +119,17 @@ script = ExtResource( 12 )
 [node name="Top" parent="FilesContainer/PlayableTrackList" index="0"]
 margin_right = 386.0
 
-[node name="Drop" parent="FilesContainer/PlayableTrackList/Top" index="0" instance=ExtResource( 4 )]
-margin_right = 30.0
-margin_bottom = 30.0
-rect_min_size = Vector2( 30, 0 )
-texture = ExtResource( 8 )
-icon_size = 0.75
+[node name="Drop" type="Button" parent="FilesContainer/PlayableTrackList/Top" index="0"]
+margin_right = 8.0
+margin_bottom = 22.0
+mouse_default_cursor_shape = 2
+custom_constants/hseparation = 0
+custom_styles/hover = SubResource( 8 )
+custom_styles/pressed = SubResource( 8 )
+custom_styles/normal = SubResource( 8 )
+icon = ExtResource( 8 )
+clip_text = true
+script = ExtResource( 15 )
 
 [node name="Title" parent="FilesContainer/PlayableTrackList/Top" index="1"]
 margin_left = 34.0
@@ -117,6 +138,9 @@ margin_right = 318.0
 [node name="Play" parent="FilesContainer/PlayableTrackList/Top" index="2"]
 margin_left = 356.0
 margin_right = 386.0
+custom_styles/hover = SubResource( 9 )
+custom_styles/pressed = SubResource( 9 )
+custom_styles/normal = SubResource( 9 )
 
 [node name="Contents" parent="FilesContainer/PlayableTrackList" index="1"]
 margin_right = 386.0
@@ -160,14 +184,19 @@ custom_constants/margin_bottom = 8
 margin_left = 8.0
 margin_top = 8.0
 margin_right = 378.0
-margin_bottom = 32.0
+margin_bottom = 48.0
 
-[node name="Drop" parent="SearchContainer/VBoxContainer/MarginContainer/HBoxContainer" instance=ExtResource( 4 )]
-margin_right = 30.0
-margin_bottom = 30.0
-rect_min_size = Vector2( 30, 0 )
-texture = ExtResource( 8 )
-icon_size = 0.75
+[node name="Drop" type="Button" parent="SearchContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+margin_right = 8.0
+margin_bottom = 22.0
+mouse_default_cursor_shape = 2
+custom_constants/hseparation = 0
+custom_styles/hover = SubResource( 10 )
+custom_styles/pressed = SubResource( 10 )
+custom_styles/normal = SubResource( 10 )
+icon = ExtResource( 8 )
+clip_text = true
+script = ExtResource( 15 )
 
 [node name="SearchBox" type="LineEdit" parent="SearchContainer/VBoxContainer/MarginContainer/HBoxContainer"]
 margin_right = 370.0
@@ -188,7 +217,7 @@ margin_right = 386.0
 margin_bottom = 386.0
 mouse_filter = 1
 size_flags_vertical = 3
-custom_styles/panel = SubResource( 3 )
+custom_styles/panel = SubResource( 7 )
 script = ExtResource( 3 )
 
 [node name="TrackListView" parent="SearchContainer/VBoxContainer/Results" instance=ExtResource( 11 )]

@@ -118,6 +118,9 @@ func _open_context() -> void:
 	instance.entry = entry
 	get_tree().current_scene.add_child(instance)
 
+func _on_AddToQueue_pressed() -> void:
+	add()
+
 func _on_Remove_pressed() -> void:
 	emit_signal("removed")
 
@@ -138,7 +141,7 @@ func _on_Button_button_down() -> void:
 func _on_Button_pressed() -> void:
 	button.pressed = false
 	
-	# Hack: If we are re-ordering the list view, ignore the button press.
+	# HACK: If we are re-ordering the list view, ignore the button press.
 	if not is_visible_in_tree():
 		return
 	

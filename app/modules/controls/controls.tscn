@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://app/icons/volume_2.svg" type="Texture" id=1]
 [ext_resource path="res://app/modules/controls/controls.gd" type="Script" id=2]
@@ -8,9 +8,15 @@
 [ext_resource path="res://app/modules/controls/buttons/play_pause.tscn" type="PackedScene" id=6]
 [ext_resource path="res://app/modules/controls/buttons/seek_forward.tscn" type="PackedScene" id=7]
 [ext_resource path="res://app/icons/volume_0.svg" type="Texture" id=8]
-[ext_resource path="res://app/interface/icon_button/icon_button.tscn" type="PackedScene" id=9]
+[ext_resource path="res://app/interface/icon_button/icon_button.gd" type="Script" id=9]
 [ext_resource path="res://app/icons/volume_1.svg" type="Texture" id=10]
 [ext_resource path="res://app/icons/volume_3.svg" type="Texture" id=11]
+
+[sub_resource type="StyleBoxEmpty" id=3]
+content_margin_left = 4.0
+content_margin_right = 4.0
+content_margin_top = 4.0
+content_margin_bottom = 4.0
 
 [sub_resource type="StyleBoxFlat" id=1]
 content_margin_left = 8.0
@@ -31,6 +37,36 @@ corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 expand_margin_top = 8.0
 
+[sub_resource type="StyleBoxEmpty" id=4]
+content_margin_left = 4.0
+content_margin_right = 4.0
+content_margin_top = 4.0
+content_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxEmpty" id=5]
+content_margin_left = 4.0
+content_margin_right = 4.0
+content_margin_top = 4.0
+content_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxEmpty" id=6]
+content_margin_left = 4.0
+content_margin_right = 4.0
+content_margin_top = 4.0
+content_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxEmpty" id=7]
+content_margin_left = 4.0
+content_margin_right = 4.0
+content_margin_top = 4.0
+content_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxEmpty" id=8]
+content_margin_left = 4.0
+content_margin_right = 4.0
+content_margin_top = 4.0
+content_margin_bottom = 4.0
+
 [node name="Controls" type="HBoxContainer"]
 anchor_right = 1.0
 rect_min_size = Vector2( 0, 48 )
@@ -42,29 +78,23 @@ __meta__ = {
 }
 volume_stages = [ ExtResource( 8 ), ExtResource( 10 ), ExtResource( 1 ), ExtResource( 11 ) ]
 
-[node name="Left" type="MarginContainer" parent="."]
-margin_left = 494.0
-margin_right = 598.0
-margin_bottom = 48.0
-custom_constants/margin_top = 8
-custom_constants/margin_bottom = 8
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Left"]
-margin_top = 8.0
-margin_right = 104.0
-margin_bottom = 40.0
-custom_constants/separation = 4
-
-[node name="Volume" parent="Left/HBoxContainer" instance=ExtResource( 9 )]
-margin_right = 32.0
-margin_bottom = 32.0
-rect_min_size = Vector2( 32, 0 )
+[node name="Volume" type="Button" parent="."]
+margin_left = 466.0
+margin_top = 12.0
+margin_right = 506.0
+margin_bottom = 52.0
+mouse_default_cursor_shape = 2
+size_flags_vertical = 4
+custom_constants/hseparation = 0
+custom_styles/hover = SubResource( 3 )
+custom_styles/pressed = SubResource( 3 )
+custom_styles/normal = SubResource( 3 )
 text = "CONTROL_VOLUME"
-texture = ExtResource( 11 )
-icon_size = 0.75
-hint = "CONTROL_VOLUME"
+icon = ExtResource( 11 )
+clip_text = true
+script = ExtResource( 9 )
 
-[node name="Popup" type="Popup" parent="Left/HBoxContainer/Volume"]
+[node name="Popup" type="Popup" parent="Volume"]
 margin_left = -100.0
 margin_right = -68.0
 margin_bottom = 200.0
@@ -73,7 +103,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PanelContainer" type="PanelContainer" parent="Left/HBoxContainer/Volume/Popup"]
+[node name="PanelContainer" type="PanelContainer" parent="Volume/Popup"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_right = -32.0
@@ -82,7 +112,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VSlider" type="VSlider" parent="Left/HBoxContainer/Volume/Popup/PanelContainer"]
+[node name="VSlider" type="VSlider" parent="Volume/Popup/PanelContainer"]
 margin_left = 8.0
 margin_top = 8.0
 margin_right = 24.0
@@ -97,65 +127,71 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PreviousTrack" parent="Left/HBoxContainer" instance=ExtResource( 4 )]
-margin_left = 36.0
-margin_right = 68.0
-margin_bottom = 32.0
+[node name="PreviousTrack" parent="." instance=ExtResource( 4 )]
+margin_left = 510.0
+margin_top = 12.0
+margin_right = 550.0
+margin_bottom = 52.0
 rect_min_size = Vector2( 32, 0 )
-text = "CONTROL_PREVIOUS_TRACK"
-icon_size = 0.75
+size_flags_vertical = 4
+custom_styles/hover = SubResource( 4 )
+custom_styles/pressed = SubResource( 4 )
+custom_styles/normal = SubResource( 4 )
 
-[node name="SeekBack" parent="Left/HBoxContainer" instance=ExtResource( 5 )]
-margin_left = 72.0
-margin_right = 104.0
-margin_bottom = 32.0
+[node name="SeekBack" parent="." instance=ExtResource( 5 )]
+margin_left = 554.0
+margin_top = 12.0
+margin_right = 594.0
+margin_bottom = 52.0
 rect_min_size = Vector2( 32, 0 )
-text = "CONTROL_SEEK_BACK"
-icon_size = 0.75
+size_flags_vertical = 4
+custom_styles/hover = SubResource( 5 )
+custom_styles/pressed = SubResource( 5 )
+custom_styles/normal = SubResource( 5 )
 
 [node name="PlayPause" parent="." instance=ExtResource( 6 )]
-margin_left = 602.0
-margin_right = 650.0
-margin_bottom = 48.0
-rect_min_size = Vector2( 48, 0 )
+margin_left = 598.0
+margin_right = 662.0
+margin_bottom = 64.0
+size_flags_vertical = 4
+custom_styles/hover = SubResource( 6 )
+custom_styles/pressed = SubResource( 6 )
+custom_styles/normal = SubResource( 6 )
 text = "CONTROL_PAUSE"
 
-[node name="Right" type="MarginContainer" parent="."]
-margin_left = 654.0
-margin_right = 786.0
-margin_bottom = 48.0
-custom_constants/margin_top = 8
-custom_constants/margin_bottom = 8
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Right"]
-margin_top = 8.0
-margin_right = 132.0
-margin_bottom = 40.0
-custom_constants/separation = 4
-
-[node name="SeekForward" parent="Right/HBoxContainer" instance=ExtResource( 7 )]
-margin_right = 32.0
-margin_bottom = 32.0
+[node name="SeekForward" parent="." instance=ExtResource( 7 )]
+margin_left = 666.0
+margin_top = 12.0
+margin_right = 706.0
+margin_bottom = 52.0
 rect_min_size = Vector2( 32, 0 )
-text = "CONTROL_SEEK_FORWARD"
-icon_size = 0.75
+size_flags_vertical = 4
+custom_constants/hseparation = 0
+custom_styles/hover = SubResource( 7 )
+custom_styles/pressed = SubResource( 7 )
+custom_styles/normal = SubResource( 7 )
 
-[node name="NextTrack" parent="Right/HBoxContainer" instance=ExtResource( 3 )]
-margin_left = 36.0
-margin_right = 68.0
-margin_bottom = 32.0
+[node name="NextTrack" parent="." instance=ExtResource( 3 )]
+margin_left = 710.0
+margin_top = 12.0
+margin_right = 750.0
+margin_bottom = 52.0
 rect_min_size = Vector2( 32, 0 )
-text = "CONTROL_NEXT_TRACK"
-icon_size = 0.75
+size_flags_vertical = 4
+custom_styles/hover = SubResource( 8 )
+custom_styles/pressed = SubResource( 8 )
+custom_styles/normal = SubResource( 8 )
 
-[node name="SpeedOption" type="Button" parent="Right/HBoxContainer"]
-margin_left = 72.0
-margin_right = 132.0
-margin_bottom = 32.0
+[node name="SpeedOption" type="Button" parent="."]
+margin_left = 754.0
+margin_top = 22.0
+margin_right = 814.0
+margin_bottom = 42.0
 rect_min_size = Vector2( 60, 0 )
+size_flags_vertical = 4
 text = "1x"
 
-[node name="PopupMenu" type="PopupMenu" parent="Right/HBoxContainer/SpeedOption"]
+[node name="PopupMenu" type="PopupMenu" parent="SpeedOption"]
 margin_left = 100.0
 margin_right = 155.0
 margin_bottom = 140.0
@@ -164,7 +200,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="pressed" from="Left/HBoxContainer/Volume" to="." method="_on_Volume_pressed"]
-[connection signal="value_changed" from="Left/HBoxContainer/Volume/Popup/PanelContainer/VSlider" to="." method="_on_VSlider_value_changed"]
-[connection signal="pressed" from="Right/HBoxContainer/SpeedOption" to="." method="_on_SpeedOption_pressed"]
-[connection signal="index_pressed" from="Right/HBoxContainer/SpeedOption/PopupMenu" to="." method="_on_PopupMenu_index_pressed"]
+[connection signal="pressed" from="Volume" to="." method="_on_Volume_pressed"]
+[connection signal="value_changed" from="Volume/Popup/PanelContainer/VSlider" to="." method="_on_VSlider_value_changed"]
+[connection signal="pressed" from="SpeedOption" to="." method="_on_SpeedOption_pressed"]
+[connection signal="index_pressed" from="SpeedOption/PopupMenu" to="." method="_on_PopupMenu_index_pressed"]

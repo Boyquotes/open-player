@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/control_skip.svg-c3a610696252a66395ee78d7543962c0.s3tc.stex"
-path.etc2="res://.import/control_skip.svg-c3a610696252a66395ee78d7543962c0.etc2.stex"
+path.s3tc="res://.import/control_previous.svg-397f68f177b02e5fbed2e8c64229bc6a.s3tc.stex"
+path.etc2="res://.import/control_previous.svg-397f68f177b02e5fbed2e8c64229bc6a.etc2.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc2" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://app/icons/control_skip.svg"
-dest_files=[ "res://.import/control_skip.svg-c3a610696252a66395ee78d7543962c0.s3tc.stex", "res://.import/control_skip.svg-c3a610696252a66395ee78d7543962c0.etc2.stex" ]
+source_file="res://app/icons/control_previous.svg"
+dest_files=[ "res://.import/control_previous.svg-397f68f177b02e5fbed2e8c64229bc6a.s3tc.stex", "res://.import/control_previous.svg-397f68f177b02e5fbed2e8c64229bc6a.etc2.stex" ]
 
 [params]
 

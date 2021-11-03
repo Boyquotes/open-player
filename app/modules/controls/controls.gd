@@ -4,12 +4,12 @@ class_name Controls
 export(Array, Texture) var volume_stages := []
 
 onready var play_pause := $PlayPause
-onready var previous_track := $Left/HBoxContainer/PreviousTrack
-onready var next_track := $Right/HBoxContainer/NextTrack
-onready var seek_back := $Left/HBoxContainer/SeekBack
-onready var seek_forward := $Right/HBoxContainer/SeekForward
-onready var volume := $Left/HBoxContainer/Volume
-onready var speed := $Right/HBoxContainer/SpeedOption
+onready var previous_track := $PreviousTrack
+onready var next_track := $NextTrack
+onready var seek_back := $SeekBack
+onready var seek_forward := $SeekForward
+onready var volume := $Volume
+onready var speed := $SpeedOption
 
 func _ready() -> void:
 	_update_style()
@@ -30,7 +30,7 @@ func _update_volume(value: float) -> void:
 	volume.get_node("Popup/PanelContainer/VSlider").value = value
 	
 	var stage := ceil(value * 3.0)
-	volume.texture = volume_stages[stage]
+	volume.icon = volume_stages[stage]
 
 func _update_speed(value: float) -> void:
 	speed.text = str(value) + "x"

@@ -7,8 +7,6 @@ extends Node
 const CLIENT_ID := 867716605148397569
 const LARGE_IMAGE := "logo"
 const LARGE_TEXT := "OpenPlayer - Music Player by nathanfranke"
-#const SMALL_IMAGE := "get"
-#const SMALL_TEXT := "Download OpenPlayer at https://op.nathan.sh/"
 
 class Driver:
 	func create() -> int:
@@ -81,11 +79,14 @@ while True:
 	func destroy() -> void:
 		kill()
 	
-	func clear() -> void:
+	func _write_data(data: Dictionary) -> void:
 		var file := File.new()
 		Global.ok(file.open(data_path, File.WRITE))
-		file.store_string(JSON.print({}))
+		file.store_string(JSON.print(data))
 		file.close()
+	
+	func clear() -> void:
+		_write_data({})
 	
 	func update_activity() -> void:
 		var data := {
@@ -94,7 +95,7 @@ while True:
 			"buttons": [
 				{
 					"label": "Download OpenPlayer",
-					"url": "https://op.nathan.sh/"
+					"url": "https://github.com/nathanfranke/open-player/"
 				}
 			]
 		}
@@ -115,10 +116,7 @@ while True:
 		else:
 			data.details = "Idle"
 		
-		var file := File.new()
-		Global.ok(file.open(data_path, File.WRITE))
-		file.store_string(JSON.print(data))
-		file.close()
+		_write_data(data)
 		
 		if process == -1:
 			process = OS.execute("python", [path, OS.get_process_id(), data_path], false)
@@ -150,8 +148,6 @@ while True:
 #
 #		activity.large_image = LARGE_IMAGE
 #		activity.large_text = LARGE_TEXT
-#		activity.small_image = SMALL_IMAGE
-#		activity.small_text = SMALL_TEXT
 #
 #		var track := Global.player.current_track
 #		if track != null:

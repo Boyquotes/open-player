@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=41 format=2]
+[gd_resource type="Theme" load_steps=42 format=2]
 
 [ext_resource path="res://app/fonts/Font12.tres" type="DynamicFont" id=1]
 [ext_resource path="res://app/fonts/Font20.tres" type="DynamicFont" id=2]
@@ -46,28 +46,28 @@ border_color = Color( 0.372549, 0.372549, 0.372549, 0.498039 )
 border_blend = true
 
 [sub_resource type="StyleBoxFlat" id=50]
-content_margin_left = 8.0
-content_margin_right = 8.0
-content_margin_top = 8.0
-content_margin_bottom = 8.0
+content_margin_left = 4.0
+content_margin_right = 4.0
+content_margin_top = 4.0
+content_margin_bottom = 4.0
 bg_color = Color( 0.498039, 0.498039, 0.498039, 0.184314 )
 border_width_bottom = 1
 border_color = Color( 0.498039, 0.498039, 0.498039, 0.498039 )
 
 [sub_resource type="StyleBoxFlat" id=7]
-content_margin_left = 8.0
-content_margin_right = 8.0
-content_margin_top = 8.0
-content_margin_bottom = 8.0
+content_margin_left = 4.0
+content_margin_right = 4.0
+content_margin_top = 4.0
+content_margin_bottom = 4.0
 bg_color = Color( 0, 0, 0, 0 )
 border_width_bottom = 1
 border_color = Color( 0.498039, 0.498039, 0.498039, 0.498039 )
 
 [sub_resource type="StyleBoxFlat" id=51]
-content_margin_left = 8.0
-content_margin_right = 8.0
-content_margin_top = 8.0
-content_margin_bottom = 8.0
+content_margin_left = 4.0
+content_margin_right = 4.0
+content_margin_top = 4.0
+content_margin_bottom = 4.0
 bg_color = Color( 0.498039, 0.498039, 0.498039, 0.372549 )
 border_width_bottom = 1
 border_color = Color( 0.498039, 0.498039, 0.498039, 0.498039 )
@@ -105,6 +105,22 @@ bg_color = Color( 0, 0, 0, 0 )
 border_width_bottom = 1
 border_color = Color( 0.498039, 0.498039, 0.498039, 0.247059 )
 
+[sub_resource type="StyleBoxFlat" id=43]
+content_margin_left = 8.0
+content_margin_right = 8.0
+content_margin_top = 8.0
+content_margin_bottom = 8.0
+bg_color = Color( 0, 0, 0, 0 )
+border_width_bottom = 1
+border_color = Color( 0.498039, 0.498039, 0.498039, 0.498039 )
+
+[sub_resource type="StyleBoxFlat" id=55]
+content_margin_left = 4.0
+content_margin_right = 4.0
+content_margin_top = 4.0
+content_margin_bottom = 4.0
+bg_color = Color( 0.184314, 0.184314, 0.184314, 1 )
+
 [sub_resource type="StyleBoxFlat" id=15]
 content_margin_left = 8.0
 content_margin_right = 8.0
@@ -114,7 +130,7 @@ bg_color = Color( 0, 0, 0, 0 )
 border_width_bottom = 1
 border_color = Color( 0.247059, 0.247059, 0.247059, 1 )
 
-[sub_resource type="Image" id=53]
+[sub_resource type="Image" id=56]
 data = {
 "data": PoolByteArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 13, 0, 28, 0, 39, 0, 39, 0, 28, 0, 13, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 22, 102, 110, 137, 193, 152, 239, 152, 239, 137, 193, 102, 110, 0, 22, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 13, 102, 110, 146, 232, 142, 255, 135, 255, 135, 255, 142, 255, 146, 232, 102, 110, 0, 13, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 28, 137, 193, 142, 255, 132, 255, 131, 255, 131, 255, 132, 255, 142, 255, 137, 193, 0, 28, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 39, 152, 239, 135, 255, 131, 255, 131, 255, 131, 255, 131, 255, 135, 255, 152, 239, 0, 39, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 40, 150, 240, 135, 255, 131, 255, 131, 255, 131, 255, 131, 255, 135, 255, 149, 240, 0, 40, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 34, 143, 219, 138, 255, 131, 255, 131, 255, 131, 255, 131, 255, 136, 255, 142, 222, 0, 36, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 23, 129, 175, 143, 255, 131, 255, 131, 255, 131, 255, 131, 255, 141, 255, 141, 197, 0, 26, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 82, 101, 150, 252, 133, 255, 131, 255, 131, 255, 133, 255, 150, 254, 77, 100, 0, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 33, 49, 143, 224, 137, 255, 131, 255, 131, 255, 137, 255, 145, 224, 4, 40, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 20, 120, 156, 147, 255, 133, 255, 133, 255, 147, 255, 116, 149, 0, 19, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 12, 44, 144, 219, 140, 255, 140, 255, 145, 220, 12, 44, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 11, 56, 79, 156, 244, 156, 247, 64, 85, 0, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 20, 114, 115, 122, 125, 0, 22, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 11, 0, 12, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ),
 "format": "LumAlpha8",
@@ -126,7 +142,7 @@ data = {
 [sub_resource type="ImageTexture" id=39]
 flags = 4
 flags = 4
-image = SubResource( 53 )
+image = SubResource( 56 )
 size = Vector2( 16, 16 )
 
 [sub_resource type="StyleBoxFlat" id=37]
@@ -180,15 +196,6 @@ border_color = Color( 0.372549, 0.372549, 0.372549, 0.498039 )
 
 [sub_resource type="StyleBoxFlat" id=21]
 bg_color = Color( 1, 1, 1, 1 )
-
-[sub_resource type="StyleBoxFlat" id=43]
-content_margin_left = 8.0
-content_margin_right = 8.0
-content_margin_top = 8.0
-content_margin_bottom = 8.0
-bg_color = Color( 0, 0, 0, 0 )
-border_width_bottom = 1
-border_color = Color( 0.498039, 0.498039, 0.498039, 0.498039 )
 
 [sub_resource type="StyleBoxFlat" id=24]
 bg_color = Color( 1, 1, 1, 0.121569 )
@@ -295,9 +302,13 @@ CheckButton/styles/hover = SubResource( 12 )
 CheckButton/styles/hover_pressed = SubResource( 12 )
 CheckButton/styles/normal = SubResource( 12 )
 CheckButton/styles/pressed = SubResource( 12 )
-Control/colors/hint_color = Color( 0.184314, 0.184314, 0.184314, 1 )
+Control/colors/hint = Color( 0.184314, 0.184314, 0.184314, 1 )
 Control/colors/icon = Color( 0.121569, 0.121569, 0.121569, 1 )
+Control/fonts/folder = ExtResource( 4 )
+Control/fonts/list_title = ExtResource( 4 )
 Control/fonts/menu_item = ExtResource( 2 )
+Control/styles/folder = SubResource( 43 )
+Control/styles/hint = SubResource( 55 )
 Control/styles/menu_item = SubResource( 15 )
 HSlider/icons/grabber = SubResource( 39 )
 HSlider/icons/grabber_highlight = SubResource( 39 )
@@ -305,15 +316,12 @@ HSlider/styles/grabber_area = SubResource( 37 )
 HSlider/styles/grabber_area_highlight = SubResource( 37 )
 HSlider/styles/slider = SubResource( 36 )
 Label/colors/font_color = Color( 0, 0, 0, 1 )
-Label/fonts/folder_title = ExtResource( 4 )
-Label/fonts/icon_button_hint = ExtResource( 4 )
 Label/fonts/queue_title = ExtResource( 4 )
 Label/fonts/track_meta = ExtResource( 1 )
 Label/fonts/track_title = ExtResource( 3 )
 LineEdit/colors/cursor_color = Color( 0, 0, 0, 1 )
 LineEdit/colors/font_color = Color( 0, 0, 0, 1 )
 LineEdit/colors/font_color_uneditable = Color( 0, 0, 0, 1 )
-LineEdit/fonts/list_title = ExtResource( 4 )
 LineEdit/fonts/search_box = ExtResource( 4 )
 LineEdit/styles/search_box = SubResource( 16 )
 OptionButton/fonts/font = null
@@ -322,7 +330,6 @@ OptionButton/styles/hover = SubResource( 41 )
 OptionButton/styles/normal = SubResource( 41 )
 OptionButton/styles/pressed = SubResource( 41 )
 Panel/styles/panel = SubResource( 21 )
-PanelContainer/styles/folder = SubResource( 43 )
 PanelContainer/styles/panel = SubResource( 41 )
 PopupMenu/colors/font_color = Color( 1, 1, 1, 1 )
 PopupMenu/colors/font_color_disabled = Color( 0.74902, 0.74902, 0.74902, 1 )

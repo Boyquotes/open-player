@@ -1,21 +1,19 @@
 tool
-extends "res://app/interface/icon_button/icon_button.gd"
+extends IconButton
 
 func _ready() -> void:
-	if Engine.editor_hint:
-		_on_state_changed(true)
-		return
-	
 	_on_state_changed(Global.player.playing)
 	Global.ok(Global.player.connect("state_changed", self, "_on_state_changed"))
+	
+	Global.ok(connect("pressed", self, "_on_pressed"))
 
 func _on_state_changed(playing: bool) -> void:
 	if playing:
-		self.texture = preload("res://app/icons/control_pause.svg")
-		self.hint = "CONTROL_PAUSE"
+		icon = preload("res://app/icons/control_pause.svg")
+		text = "CONTROL_PAUSE"
 	else:
-		self.texture = preload("res://app/icons/control_play.svg")
-		self.hint = "CONTROL_PLAY"
+		icon = preload("res://app/icons/control_play.svg")
+		text = "CONTROL_PLAY"
 
-func _pressed() -> void:
+func _on_pressed() -> void:
 	Global.player.toggle_playing()
