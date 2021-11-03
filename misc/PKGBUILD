@@ -1,6 +1,5 @@
 _pkgver() {
-	cd openplayer
-	git describe --long --tags | sed 's/\([^-]*-g\)/r\1/;s/-/./g' || echo latest
+	(cd open-player &>/dev/null && git describe --long --tags | sed 's/\([^-]*-g\)/r\1/;s/-/./g') || echo latest
 }
 
 pkgname=openplayer-git
@@ -15,7 +14,7 @@ makedepends=('scons')
 source=(
 		'godot::git+https://github.com/godotengine/godot.git#branch=3.x'
 		'gdaudioyt::git+https://github.com/nathanfranke/gdaudioyt.git'
-		'openplayer::git+https://github.com/nathanfranke/open-player.git'
+		'open-player::git+https://github.com/nathanfranke/open-player.git'
 )
 sha256sums=('SKIP' 'SKIP' 'SKIP')
 
@@ -37,7 +36,7 @@ build() {
 	# Compile Godot Export Template
 	#scons -j"$jobs" --directory='godot/' p=x11 tools=no target=release optimized=yes
 	
-	tee -a 'openplayer/export_presets.cfg' << EOT
+	tee -a 'open-player/export_presets.cfg' << EOT
 [preset.0]
 name="Export"
 platform="Linux/X11"
@@ -48,7 +47,7 @@ exclude_filter=""
 [preset.0.options]
 custom_template/release="$(pwd)/godot/bin/godot.x11.opt.64"
 EOT
-	'godot/bin/godot.x11.opt.tools.64' --audio-driver Dummy --path 'openplayer' --export 'Export' "$(pwd)/app.x86_64"
+	'godot/bin/godot.x11.opt.tools.64' --audio-driver Dummy --path 'open-player' --export 'Export' "$(pwd)/app.x86_64"
 }
 
 package() {
