@@ -31,7 +31,8 @@ Linux:
 
 ## Compiling:
 
-If you modified OpenPlayer and/or would like to create a custom build, follow these steps:
+<details>
+<summary>If you modified OpenPlayer and/or would like to create a custom build, follow these steps:</summary>
 
 <!--
 TODO: Add this back when Discord Game SDK supports buttons. Using pypresence for now.
@@ -82,7 +83,7 @@ TODO: Add this back when Discord Game SDK supports buttons. Using pypresence for
 	- Import the `open-player` project.
 	- Make a new export preset for your desired platform.
 	- Set the custom release/debug templates.
-	
+
 		<details>
 		<summary>Extra Steps: Windows</summary>
 
@@ -106,6 +107,7 @@ TODO: Add this back when Discord Game SDK supports buttons. Using pypresence for
 			- `package/name`
 		</details>
 8)  Export the project.
+</details>
 
 ## License:
 
