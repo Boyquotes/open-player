@@ -88,7 +88,7 @@ func _on_PopupMenu_popup_hide() -> void:
 func _on_PopupMenu_id_pressed(id: int) -> void:
 	match id:
 		MENU_PLAY_NEXT:
-			Global.player.queue.play_next(entry.value)
+			Global.player.play_next(entry.value)
 		MENU_ADD_TO_MY_TRACKS:
 			Global.profile.tracks.ensure_has(entry.value)
 		MENU_EDIT:
