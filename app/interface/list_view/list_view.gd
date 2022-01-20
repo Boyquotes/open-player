@@ -319,7 +319,7 @@ func _on_Container_gui_input(event: InputEvent) -> void:
 				yield(timer, "timeout")
 				if not data.stopped:
 					if Input.is_mouse_button_pressed(BUTTON_LEFT):
-						if OS.get_name() in ["Android", "iOS"]:
+						if OS.get_name() in ["Android", "iOS"] && Global.profile.vibrate_on_touch:
 							Input.vibrate_handheld(Global.VIBRATE_TIME)
 					var _flag := _touch_scrolling_indices.erase(event.index)
 			else:
