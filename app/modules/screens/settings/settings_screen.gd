@@ -21,6 +21,7 @@ func _ready() -> void:
 	var themes := [
 		preload("res://app/themes/light.tres"),
 		preload("res://app/themes/dark.tres"),
+		preload("res://app/themes/amoled_black.tres"),
 		preload("res://app/themes/gruvbox.tres")
 	]
 	for item in themes:
