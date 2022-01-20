@@ -132,7 +132,7 @@ func _on_Button_gui_input(event: InputEvent) -> void:
 					_open_context()
 			BUTTON_MIDDLE:
 				if event.pressed:
-					Global.player.queue.play_next(entry.value)
+					Global.player.play_next(entry.value)
 
 func _on_Button_button_down() -> void:
 	if OS.has_touchscreen_ui_hint():
