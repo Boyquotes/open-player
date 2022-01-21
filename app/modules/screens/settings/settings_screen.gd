@@ -21,6 +21,7 @@ func _ready() -> void:
 	var themes := [
 		preload("res://app/themes/light.tres"),
 		preload("res://app/themes/dark.tres"),
+		preload("res://app/themes/amoled_black.tres"),
 		preload("res://app/themes/gruvbox.tres")
 	]
 	for item in themes:
@@ -32,6 +33,11 @@ func _ready() -> void:
 	
 	_update_config()
 	Global.ok(Global.profile.connect("changed", self, "_update_config"))
+	
+	### SHOW VIBRATE ON TOUCH OPTION IF ON MOBILE ###
+	
+	if OS.get_name() in ["Android", "iOS"]:
+		$"VBoxContainer/VibrateOnTouch".visible = true
 
 func _update_config() -> void:
 	$VBoxContainer/Animations/VBoxContainer/AnimationsEnabled.pressed = Global.profile.animations_enabled
@@ -39,6 +45,7 @@ func _update_config() -> void:
 	$VBoxContainer/Animations/VBoxContainer/AnimationSpeed/HSlider.value = Global.profile.animation_speed
 	$VBoxContainer/DiscordRichPresence.visible = Global.has_meta("discord_rich_presence_available")
 	$VBoxContainer/DiscordRichPresence.pressed = Global.profile.discord_rich_presence
+	$VBoxContainer/VibrateOnTouch.pressed = Global.profile.vibrate_on_touch
 	
 	for i in language_option.get_item_count():
 		if language_option.get_item_metadata(i) == Global.profile.language:
@@ -63,6 +70,9 @@ func _on_Language_item_selected(index: int) -> void:
 
 func _on_Theme_item_selected(index: int) -> void:
 	Global.profile.theme = theme_option.get_item_metadata(index)
+
+func _on_VibrateOnTouch_toggled(value: bool) -> void:
+	Global.profile.vibrate_on_touch = value
 
 func _on_DiscordRichPresence_toggled(value: bool) -> void:
 	Global.profile.discord_rich_presence = value

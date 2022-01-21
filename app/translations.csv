@@ -25,6 +25,7 @@ SETTINGS_ANIMATIONS_ENABLED,Animations Enabled,Animationen aktiviert,Анима�
 SETTINGS_ANIMATION_SPEED,Animation Speed,Animations Geschwindigkeit,Скорость Анимации
 SETTINGS_LANGUAGE,Language: {0},Sprache: {0},Язык: {0}
 SETTINGS_THEME,Theme: {0},Thema: {0},Тема: {0}
+SETTINGS_VIBRATE_ON_TOUCH,Vibrate on Touch,,
 SETTINGS_DISCORD_RICH_PRESENCE,Discord Rich Presence,Discord Rich Presence,Discord Rich Presence
 SETTINGS_DONATE,Donate,Spenden,Donate
 SETTINGS_SHOW_COPYRIGHT,Show Copyright,Urheberrecht anzeigen,Показать права

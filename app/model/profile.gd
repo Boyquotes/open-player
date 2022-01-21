@@ -27,6 +27,11 @@ func _set_language(value: String) -> void:
 	Global.debug("Changed language to '%s'." % language)
 	emit_changed()
 
+export var vibrate_on_touch := true setget _set_vibrate_on_touch
+func _set_vibrate_on_touch(value: bool) -> void:
+	vibrate_on_touch = value
+	emit_changed()
+
 export var discord_rich_presence := true setget _set_discord_rich_presence
 func _set_discord_rich_presence(value: bool) -> void:
 	discord_rich_presence = value

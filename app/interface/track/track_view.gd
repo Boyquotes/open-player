@@ -154,5 +154,5 @@ func _on_Button_pressed() -> void:
 		emit_signal("selected")
 
 func _on_LongPress_timeout() -> void:
-	if OS.get_name() in ["Android", "iOS"]:
+	if OS.get_name() in ["Android", "iOS"] && Global.profile.vibrate_on_touch:
 		Input.vibrate_handheld(Global.VIBRATE_TIME)
