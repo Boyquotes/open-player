@@ -45,7 +45,6 @@ func _update_config() -> void:
 	$VBoxContainer/Animations/VBoxContainer/AnimationSpeed/HSlider.value = Global.profile.animation_speed
 	$VBoxContainer/DiscordRichPresence.visible = Global.has_meta("discord_rich_presence_available")
 	$VBoxContainer/DiscordRichPresence.pressed = Global.profile.discord_rich_presence
-#	$VBoxContainer/VibrateOnTouch.visible = Global.has_meta("discord_rich_presence_available")
 	$VBoxContainer/VibrateOnTouch.pressed = Global.profile.vibrate_on_touch
 	
 	for i in language_option.get_item_count():
