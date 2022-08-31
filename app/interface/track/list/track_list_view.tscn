@@ -7,3 +7,4 @@
 [node name="TrackListView" instance=ExtResource( 3 )]
 script = ExtResource( 1 )
 item_scene = ExtResource( 2 )
+playable = true

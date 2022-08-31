@@ -13,15 +13,15 @@ jobs:
         include:
           - name: Linux
             identifier: linux
-            runner: ubuntu-18.04
+            runner: ubuntu-20.04
             executable: "openplayer"
           - name: Windows
             identifier: windows
-            runner: ubuntu-20.04
+            runner: ubuntu-22.04
             executable: "openplayer.exe"
           - name: Android
             identifier: android
-            runner: ubuntu-20.04
+            runner: ubuntu-22.04
             executable: "openplayer.apk"
 
     steps:

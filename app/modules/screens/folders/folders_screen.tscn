@@ -1,5 +1,6 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
+[ext_resource path="res://app/fonts/Font48.tres" type="DynamicFont" id=1]
 [ext_resource path="res://app/icons/generic_down.svg" type="Texture" id=2]
 [ext_resource path="res://app/icons/generic_add.svg" type="Texture" id=3]
 [ext_resource path="res://app/interface/list_view/list_view.tscn" type="PackedScene" id=4]
@@ -15,7 +16,7 @@
 content_margin_top = 8.0
 content_margin_bottom = 8.0
 
-[sub_resource type="StyleBoxEmpty" id=11]
+[sub_resource type="StyleBoxEmpty" id=15]
 content_margin_left = 4.0
 content_margin_right = 4.0
 content_margin_top = 4.0
@@ -27,13 +28,13 @@ content_margin_right = 16.0
 content_margin_top = 16.0
 content_margin_bottom = 16.0
 
-[sub_resource type="StyleBoxEmpty" id=12]
+[sub_resource type="StyleBoxEmpty" id=16]
 content_margin_left = 4.0
 content_margin_right = 4.0
 content_margin_top = 4.0
 content_margin_bottom = 4.0
 
-[sub_resource type="StyleBoxEmpty" id=13]
+[sub_resource type="StyleBoxEmpty" id=17]
 content_margin_left = 4.0
 content_margin_right = 4.0
 content_margin_top = 4.0
@@ -63,17 +64,39 @@ margin_right = 1273.0
 margin_bottom = 713.0
 custom_constants/separation = 0
 
-[node name="Title" type="Label" parent="VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 margin_right = 1266.0
-margin_bottom = 30.0
+margin_bottom = 50.0
+
+[node name="Title" type="Label" parent="VBoxContainer/HBoxContainer"]
+margin_right = 1230.0
+margin_bottom = 50.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 1 )
 custom_styles/normal = SubResource( 10 )
 text = "FOLDERS_TITLE"
 align = 1
 
+[node name="Add" type="Button" parent="VBoxContainer/HBoxContainer"]
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 1234.0
+margin_right = 1266.0
+margin_bottom = 50.0
+mouse_default_cursor_shape = 2
+size_flags_horizontal = 4
+custom_constants/hseparation = 0
+custom_styles/hover = SubResource( 15 )
+custom_styles/pressed = SubResource( 15 )
+custom_styles/normal = SubResource( 15 )
+text = "FOLDER_CREATE"
+icon = ExtResource( 3 )
+clip_text = true
+script = ExtResource( 11 )
+
 [node name="FoldersView" parent="VBoxContainer" instance=ExtResource( 4 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 30.0
+margin_top = 50.0
 margin_right = 1266.0
 margin_bottom = 706.0
 size_flags_vertical = 3
@@ -84,38 +107,10 @@ editable = true
 [node name="Container" parent="VBoxContainer/FoldersView" index="0"]
 margin_right = 1266.0
 
-[node name="Extra" type="VBoxContainer" parent="VBoxContainer/FoldersView"]
-margin_right = 1266.0
-margin_bottom = 36.0
-mouse_filter = 2
-size_flags_horizontal = 3
-custom_constants/separation = 4
-
-[node name="Space" type="Control" parent="VBoxContainer/FoldersView/Extra"]
-margin_right = 1266.0
-mouse_filter = 2
-
-[node name="Add" type="Button" parent="VBoxContainer/FoldersView/Extra"]
-modulate = Color( 0, 0, 0, 1 )
-margin_left = 617.0
-margin_top = 4.0
-margin_right = 649.0
-margin_bottom = 36.0
-mouse_default_cursor_shape = 2
-size_flags_horizontal = 4
-custom_constants/hseparation = 0
-custom_styles/hover = SubResource( 11 )
-custom_styles/pressed = SubResource( 11 )
-custom_styles/normal = SubResource( 11 )
-text = "FOLDER_CREATE"
-icon = ExtResource( 3 )
-clip_text = true
-script = ExtResource( 11 )
-
 [node name="Empty" type="Label" parent="VBoxContainer/FoldersView"]
-margin_top = 315.0
+margin_top = 305.0
 margin_right = 1266.0
-margin_bottom = 361.0
+margin_bottom = 351.0
 size_flags_horizontal = 3
 size_flags_vertical = 6
 custom_styles/normal = SubResource( 2 )
@@ -146,9 +141,9 @@ margin_right = 8.0
 margin_bottom = 22.0
 mouse_default_cursor_shape = 2
 custom_constants/hseparation = 0
-custom_styles/hover = SubResource( 12 )
-custom_styles/pressed = SubResource( 12 )
-custom_styles/normal = SubResource( 12 )
+custom_styles/hover = SubResource( 16 )
+custom_styles/pressed = SubResource( 16 )
+custom_styles/normal = SubResource( 16 )
 icon = ExtResource( 2 )
 clip_text = true
 script = ExtResource( 11 )
@@ -164,9 +159,9 @@ margin_right = 8.0
 margin_bottom = 22.0
 mouse_default_cursor_shape = 2
 custom_constants/hseparation = 0
-custom_styles/hover = SubResource( 13 )
-custom_styles/pressed = SubResource( 13 )
-custom_styles/normal = SubResource( 13 )
+custom_styles/hover = SubResource( 17 )
+custom_styles/pressed = SubResource( 17 )
+custom_styles/normal = SubResource( 17 )
 text = "FOLDER_REMOVE"
 icon = ExtResource( 10 )
 clip_text = true
@@ -188,6 +183,7 @@ custom_styles/panel = SubResource( 1 )
 [node name="TrackListView" parent="FolderContainer/PlayableTrackList/Contents" index="0"]
 margin_right = 1266.0
 margin_bottom = 676.0
+playable = true
 
 [node name="Empty" parent="FolderContainer/PlayableTrackList/Contents" index="1"]
 margin_top = 315.0
@@ -204,8 +200,8 @@ size_flags_vertical = 0
 dialog_text = "FOLDER_REMOVE_CONFIRM"
 
 [connection signal="visibility_changed" from="." to="." method="_on_FoldersScreen_visibility_changed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Add" to="." method="_on_Add_pressed"]
 [connection signal="opened" from="VBoxContainer/FoldersView" to="." method="open"]
-[connection signal="pressed" from="VBoxContainer/FoldersView/Extra/Add" to="." method="_on_Add_pressed"]
 [connection signal="pressed" from="FolderContainer/PlayableTrackList/Top/Drop" to="." method="_on_Drop_pressed"]
 [connection signal="pressed" from="FolderContainer/PlayableTrackList/Top/Remove" to="." method="_on_Remove_pressed"]
 [connection signal="confirmed" from="RemoveDialog" to="." method="_on_RemoveDialog_confirmed"]

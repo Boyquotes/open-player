@@ -7,11 +7,11 @@
 [ext_resource path="res://app/icons/generic_remove.svg" type="Texture" id=6]
 [ext_resource path="res://app/interface/icon_button/icon_button.gd" type="Script" id=7]
 
-[sub_resource type="StyleBoxEmpty" id=19]
+[sub_resource type="StyleBoxEmpty" id=23]
 
 [sub_resource type="DynamicFont" id=14]
 
-[sub_resource type="Image" id=23]
+[sub_resource type="Image" id=24]
 data = {
 "data": PoolByteArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ),
 "format": "LumAlpha8",
@@ -23,7 +23,7 @@ data = {
 [sub_resource type="ImageTexture" id=17]
 flags = 4
 flags = 4
-image = SubResource( 23 )
+image = SubResource( 24 )
 size = Vector2( 16, 16 )
 
 [sub_resource type="StyleBoxTexture" id=18]
@@ -56,15 +56,12 @@ anchor_right = 1.0
 margin_bottom = 50.0
 mouse_filter = 2
 mouse_default_cursor_shape = 2
-custom_styles/panel = SubResource( 19 )
+custom_styles/panel = SubResource( 23 )
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Button" type="Button" parent="."]
-margin_right = 1280.0
-margin_bottom = 50.0
+margin_right = 1440.0
+margin_bottom = 88.0
 mouse_filter = 1
 custom_fonts/font = SubResource( 14 )
 custom_styles/hover = SubResource( 18 )
@@ -73,28 +70,46 @@ custom_styles/normal = SubResource( 18 )
 toggle_mode = true
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-margin_right = 1280.0
-margin_bottom = 50.0
+margin_right = 1440.0
+margin_bottom = 88.0
 mouse_filter = 2
-custom_constants/margin_right = 8
-custom_constants/margin_top = 8
-custom_constants/margin_left = 8
-custom_constants/margin_bottom = 8
+custom_constants/margin_right = 16
+custom_constants/margin_top = 16
+custom_constants/margin_left = 16
+custom_constants/margin_bottom = 16
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
-margin_left = 8.0
-margin_top = 8.0
-margin_right = 1272.0
-margin_bottom = 42.0
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 1424.0
+margin_bottom = 72.0
 mouse_filter = 2
-custom_constants/separation = 4
+custom_constants/separation = 16
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="CropEdges" type="Control" parent="MarginContainer/HBoxContainer"]
+margin_right = 56.0
+margin_bottom = 56.0
+rect_min_size = Vector2( 56, 0 )
+rect_clip_content = true
+
+[node name="Icon" type="TextureRect" parent="MarginContainer/HBoxContainer/CropEdges"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -1.0
+margin_top = -1.0
+margin_right = 1.0
+margin_bottom = 1.0
+rect_min_size = Vector2( 58, 0 )
+expand = true
+stretch_mode = 7
+
 [node name="Info" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
-margin_right = 1192.0
-margin_bottom = 34.0
+margin_left = 72.0
+margin_right = 1264.0
+margin_bottom = 56.0
 mouse_filter = 2
 size_flags_horizontal = 3
 theme = SubResource( 12 )
@@ -102,9 +117,9 @@ custom_constants/separation = 0
 alignment = 1
 
 [node name="Main" type="HBoxContainer" parent="MarginContainer/HBoxContainer/Info"]
-margin_top = 3.0
+margin_top = 14.0
 margin_right = 1192.0
-margin_bottom = 17.0
+margin_bottom = 28.0
 mouse_filter = 2
 custom_constants/separation = 0
 
@@ -119,16 +134,16 @@ size_flags_horizontal = 3
 
 [node name="Meta" parent="MarginContainer/HBoxContainer/Info" instance=ExtResource( 4 )]
 modulate = Color( 1, 1, 1, 0.74902 )
-margin_top = 17.0
+margin_top = 28.0
 margin_right = 1192.0
-margin_bottom = 31.0
+margin_bottom = 42.0
 text = "Loading..."
 
 [node name="AddToQueue" type="Button" parent="MarginContainer/HBoxContainer"]
 modulate = Color( 0, 0, 0, 1 )
-margin_left = 1196.0
-margin_right = 1228.0
-margin_bottom = 34.0
+margin_left = 1280.0
+margin_right = 1336.0
+margin_bottom = 56.0
 mouse_default_cursor_shape = 2
 custom_constants/hseparation = 0
 custom_styles/hover = SubResource( 21 )
@@ -141,9 +156,9 @@ script = ExtResource( 7 )
 
 [node name="Remove" type="Button" parent="MarginContainer/HBoxContainer"]
 modulate = Color( 0, 0, 0, 1 )
-margin_left = 1232.0
-margin_right = 1264.0
-margin_bottom = 34.0
+margin_left = 1352.0
+margin_right = 1408.0
+margin_bottom = 56.0
 mouse_default_cursor_shape = 2
 custom_constants/hseparation = 0
 custom_styles/hover = SubResource( 22 )

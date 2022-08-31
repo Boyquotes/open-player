@@ -15,27 +15,27 @@ content_margin_bottom = 4.0
 script = ExtResource( 2 )
 
 [node name="Top" parent="." index="0"]
-margin_bottom = 40.0
+margin_bottom = 72.0
 
 [node name="Title" parent="Top" index="0"]
-margin_right = 356.0
-margin_bottom = 40.0
+margin_right = 324.0
+margin_bottom = 72.0
 
 [node name="Play" parent="Top" index="1"]
 modulate = Color( 0, 0, 0, 1 )
-margin_left = 360.0
-margin_bottom = 40.0
+margin_left = 328.0
+margin_bottom = 72.0
 custom_styles/hover = SubResource( 2 )
 custom_styles/pressed = SubResource( 2 )
 custom_styles/normal = SubResource( 2 )
 
 [node name="Contents" parent="." index="1"]
-margin_top = 40.0
+margin_top = 72.0
 custom_styles/panel = SubResource( 1 )
 
 [node name="TrackListView" parent="Contents" index="0"]
-margin_bottom = 360.0
+margin_bottom = 328.0
 
 [node name="Empty" parent="Contents" index="1"]
-margin_top = 157.0
-margin_bottom = 203.0
+margin_top = 141.0
+margin_bottom = 187.0

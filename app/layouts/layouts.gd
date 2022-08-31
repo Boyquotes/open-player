@@ -21,10 +21,10 @@ func _on_resized() -> void:
 	var ratio := size.aspect()
 	if ratio < 1.0:
 		self.layout_scene = preload("res://app/layouts/portrait.tscn")
-		step = _square_round(move_toward(size.x / 960.0, 2.0, 0.6))
+		step = _square_round(size.x / 1080.0)
 	else:
 		self.layout_scene = preload("res://app/layouts/landscape.tscn")
-		step = _square_round(move_toward(size.y / 800.0, 1.0, 0.2))
+		step = _square_round(move_toward(size.y / 2160.0, 1.0, 0.2))
 	
 	get_tree().set_screen_stretch(
 		SceneTree.STRETCH_MODE_2D,

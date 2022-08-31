@@ -24,17 +24,54 @@ func _set_duration(value: float) -> void:
 	duration = value
 	emit_changed()
 
+export var custom_image: String setget _set_custom_image
+func _set_custom_image(value: String) -> void:
+	custom_image = value
+	emit_changed()
+
 func get_text() -> String:
 	return "%s - %s" % [author, title]
 
-func _init(_source: TrackSource = null, _author := "", _title := "", _duration := 0.0):
+func _init(_source: TrackSource = null, _author := "", _title := "", _duration := 0.0, _custom_image := ""):
 	source = _source
 	author = _author
 	title = _title
 	duration = _duration
+	custom_image = _custom_image
 
 func key() -> Array:
 	return [source.get_type(), source.get_id()]
+
+func get_texture(preview := false) -> Texture:
+	var url := custom_image
+	
+	if url.empty():
+		if source is TrackSourceYouTube:
+			if preview:
+				url = source.preview_url
+			else:
+				url = source.image_url
+	
+	if url.empty():
+		return null
+	
+	var path := "user://image_cache/%s.%s" % [url.hash(), url.get_extension()]
+	var dir := Directory.new()
+	Global.ok(dir.make_dir_recursive(path.get_base_dir()))
+	
+	if not dir.file_exists(path):
+		var http := HTTPRequest.new()
+		Global.add_child(http)
+		http.download_file = path
+		Global.ok(http.request(url))
+		yield(http, "request_completed")
+	
+	var image := Image.new()
+	Global.ok(image.load(path))
+	
+	var texture := ImageTexture.new()
+	texture.create_from_image(image)
+	return texture
 
 ### CONSTRUCTION ###
 
@@ -81,4 +118,4 @@ static func create_named(_source: TrackSource, group: String, object: String, _d
 		parsed_author = MetaCleaner.strip_channel(sections[0])
 		parsed_title = MetaCleaner.strip_title(sections[1])
 	
-	return _Track.new(_source, parsed_author, parsed_title, _duration)
+	return _Track.new(_source, parsed_author, parsed_title, _duration, "")

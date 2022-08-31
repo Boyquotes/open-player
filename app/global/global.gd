@@ -35,6 +35,22 @@ func _get_profile_path(v: int) -> String:
 func _load_profile() -> Profile:
 	debug("Loading profile...")
 	
+	# Migrate old save location, if it exists.
+	var legacy_path := OS.get_user_data_dir().get_base_dir().plus_file("godot").plus_file("app_userdata").plus_file("OpenPlayer")
+	var target_path := OS.get_user_data_dir()
+	var dir := Directory.new()
+	if dir.open(legacy_path) == OK:
+		ok(dir.list_dir_begin(true))
+		while true:
+			var path := dir.get_next()
+			if path.empty():
+				break
+			var _rename_err := dir.rename(legacy_path.plus_file(path), target_path.plus_file(path))
+		dir.list_dir_end()
+		ok(OS.move_to_trash(legacy_path))
+		
+		print("Migrated data from '", legacy_path, "' to '", target_path, "'")
+	
 	var path := _get_profile_path(_PROFILE_VERSION)
 	if ResourceLoader.exists(path):
 		return load(path) as Profile

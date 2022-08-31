@@ -12,7 +12,7 @@
 [ext_resource path="res://app/icons/volume_1.svg" type="Texture" id=10]
 [ext_resource path="res://app/icons/volume_3.svg" type="Texture" id=11]
 
-[sub_resource type="StyleBoxEmpty" id=3]
+[sub_resource type="StyleBoxEmpty" id=9]
 content_margin_left = 4.0
 content_margin_right = 4.0
 content_margin_top = 4.0
@@ -70,25 +70,22 @@ content_margin_bottom = 4.0
 [node name="Controls" type="HBoxContainer"]
 anchor_right = 1.0
 rect_min_size = Vector2( 0, 48 )
-custom_constants/separation = 4
+custom_constants/separation = 8
 alignment = 1
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 volume_stages = [ ExtResource( 8 ), ExtResource( 10 ), ExtResource( 1 ), ExtResource( 11 ) ]
 
 [node name="Volume" type="Button" parent="."]
-margin_left = 466.0
-margin_top = 12.0
-margin_right = 506.0
-margin_bottom = 52.0
+margin_left = 426.0
+margin_top = 24.0
+margin_right = 498.0
+margin_bottom = 96.0
 mouse_default_cursor_shape = 2
 size_flags_vertical = 4
 custom_constants/hseparation = 0
-custom_styles/hover = SubResource( 3 )
-custom_styles/pressed = SubResource( 3 )
-custom_styles/normal = SubResource( 3 )
+custom_styles/hover = SubResource( 9 )
+custom_styles/pressed = SubResource( 9 )
+custom_styles/normal = SubResource( 9 )
 text = "CONTROL_VOLUME"
 icon = ExtResource( 11 )
 clip_text = true
@@ -128,10 +125,10 @@ __meta__ = {
 }
 
 [node name="PreviousTrack" parent="." instance=ExtResource( 4 )]
-margin_left = 510.0
-margin_top = 12.0
-margin_right = 550.0
-margin_bottom = 52.0
+margin_left = 506.0
+margin_top = 24.0
+margin_right = 578.0
+margin_bottom = 96.0
 rect_min_size = Vector2( 32, 0 )
 size_flags_vertical = 4
 custom_styles/hover = SubResource( 4 )
@@ -139,10 +136,10 @@ custom_styles/pressed = SubResource( 4 )
 custom_styles/normal = SubResource( 4 )
 
 [node name="SeekBack" parent="." instance=ExtResource( 5 )]
-margin_left = 554.0
-margin_top = 12.0
-margin_right = 594.0
-margin_bottom = 52.0
+margin_left = 586.0
+margin_top = 24.0
+margin_right = 658.0
+margin_bottom = 96.0
 rect_min_size = Vector2( 32, 0 )
 size_flags_vertical = 4
 custom_styles/hover = SubResource( 5 )
@@ -150,9 +147,9 @@ custom_styles/pressed = SubResource( 5 )
 custom_styles/normal = SubResource( 5 )
 
 [node name="PlayPause" parent="." instance=ExtResource( 6 )]
-margin_left = 598.0
-margin_right = 662.0
-margin_bottom = 64.0
+margin_left = 666.0
+margin_right = 786.0
+margin_bottom = 120.0
 size_flags_vertical = 4
 custom_styles/hover = SubResource( 6 )
 custom_styles/pressed = SubResource( 6 )
@@ -160,10 +157,10 @@ custom_styles/normal = SubResource( 6 )
 text = "CONTROL_PAUSE"
 
 [node name="SeekForward" parent="." instance=ExtResource( 7 )]
-margin_left = 666.0
-margin_top = 12.0
-margin_right = 706.0
-margin_bottom = 52.0
+margin_left = 794.0
+margin_top = 24.0
+margin_right = 866.0
+margin_bottom = 96.0
 rect_min_size = Vector2( 32, 0 )
 size_flags_vertical = 4
 custom_constants/hseparation = 0
@@ -172,10 +169,10 @@ custom_styles/pressed = SubResource( 7 )
 custom_styles/normal = SubResource( 7 )
 
 [node name="NextTrack" parent="." instance=ExtResource( 3 )]
-margin_left = 710.0
-margin_top = 12.0
-margin_right = 750.0
-margin_bottom = 52.0
+margin_left = 874.0
+margin_top = 24.0
+margin_right = 946.0
+margin_bottom = 96.0
 rect_min_size = Vector2( 32, 0 )
 size_flags_vertical = 4
 custom_styles/hover = SubResource( 8 )
@@ -183,10 +180,10 @@ custom_styles/pressed = SubResource( 8 )
 custom_styles/normal = SubResource( 8 )
 
 [node name="SpeedOption" type="Button" parent="."]
-margin_left = 754.0
-margin_top = 22.0
-margin_right = 814.0
-margin_bottom = 42.0
+margin_left = 954.0
+margin_top = 50.0
+margin_right = 1014.0
+margin_bottom = 70.0
 rect_min_size = Vector2( 60, 0 )
 size_flags_vertical = 4
 text = "1x"

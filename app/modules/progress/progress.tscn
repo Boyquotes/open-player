@@ -5,10 +5,8 @@
 [node name="Progress" type="HBoxContainer"]
 anchor_right = 1.0
 margin_bottom = 14.0
+custom_constants/separation = 16
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Start" type="Label" parent="."]
 margin_right = 80.0
@@ -18,8 +16,8 @@ text = "0:00"
 align = 1
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
-margin_left = 84.0
-margin_right = 396.0
+margin_left = 96.0
+margin_right = 1344.0
 margin_bottom = 14.0
 rect_min_size = Vector2( 64, 0 )
 mouse_filter = 1
@@ -31,8 +29,8 @@ step = 0.0
 percent_visible = false
 
 [node name="End" type="Label" parent="."]
-margin_left = 400.0
-margin_right = 480.0
+margin_left = 1360.0
+margin_right = 1440.0
 margin_bottom = 14.0
 rect_min_size = Vector2( 80, 0 )
 text = "0:00"

@@ -37,11 +37,13 @@ TRACK_MENU_ADD_TO_MY_TRACKS,Add to my music,Zu meiner Musik hinzufügen,доба
 TRACK_MENU_ADD_TO_FOLDER,Add to playlist,Zur Wiedergabeliste hinzufügen,Добавить в плейлист
 TRACK_MENU_EDIT,Edit,Bearbeiten,Edit
 TRACK_MENU_WATCH_ON_YOUTUBE,Watch on YouTube,Auf YouTube ansehen,Смотреть на YouTube
+TRACK_MENU_WATCH_ON_YOUTUBE_AT_TIME,Watch on YouTube (At Timestamp),,
 TRACK_MENU_COPY_YOUTUBE_URL,Copy YouTube URL,YouTube-URL kopieren,Копировать URL с YouTube
 TRACK_MENU_COPY_YOUTUBE_ID,Copy YouTube ID,YouTube-ID kopieren,Копировать YouTube ID
 TRACK_EDITOR_WINDOW,Editing {0},Bearbeiten {0},Editing {0}
 TRACK_EDITOR_AUTHOR,Author,Autor*in,Author
 TRACK_EDITOR_TITLE,Title,Titel,Title
+TRACK_EDITOR_IMAGE,Custom Image URL,,
 TRACK_EDITOR_SAVE,Save,Speichern,Save
 QUEUE_TITLE,Now Playing,Läuft gerade,Сейчас играет
 QUEUE_SHUFFLE,Shuffle,Mischen,Шарканье

@@ -6,6 +6,7 @@ enum {
 	MENU_ADD_TO_FOLDER,
 	MENU_EDIT,
 	MENU_YOUTUBE_WATCH,
+	MENU_YOUTUBE_WATCH_AT_TIME,
 	MENU_YOUTUBE_COPY_URL,
 	MENU_YOUTUBE_COPY_ID,
 }
@@ -21,8 +22,10 @@ func _ready() -> void:
 	
 	### URL ###
 	
+	var is_playing := Global.player.current == entry
 	var is_youtube := entry.value.source is TrackSourceYouTube
 	menu.set_item_disabled(menu.get_item_index(MENU_YOUTUBE_WATCH), not is_youtube)
+	menu.set_item_disabled(menu.get_item_index(MENU_YOUTUBE_WATCH_AT_TIME), not is_youtube or not is_playing)
 	menu.set_item_disabled(menu.get_item_index(MENU_YOUTUBE_COPY_URL), not is_youtube)
 	menu.set_item_disabled(menu.get_item_index(MENU_YOUTUBE_COPY_ID), not is_youtube)
 	
@@ -95,14 +98,17 @@ func _on_PopupMenu_id_pressed(id: int) -> void:
 			var instance := preload("res://app/interface/track/editor/track_editor.tscn").instance()
 			instance.track = entry.value
 			get_tree().current_scene.add_child(instance)
-		MENU_YOUTUBE_WATCH, MENU_YOUTUBE_COPY_URL, MENU_YOUTUBE_COPY_ID: # YouTube
+		MENU_YOUTUBE_WATCH, MENU_YOUTUBE_WATCH_AT_TIME, MENU_YOUTUBE_COPY_URL, MENU_YOUTUBE_COPY_ID: # YouTube
 			var source: TrackSourceYouTube = entry.value.source
 			var youtube_id := source.id
 			var youtube_url := "https://www.youtube.com/watch?v=%s" % youtube_id
+			var time := "&t=%d" % int(Global.player.position)
 			
 			match id:
 				MENU_YOUTUBE_WATCH:
 					Global.ok(OS.shell_open(youtube_url))
+				MENU_YOUTUBE_WATCH_AT_TIME:
+					Global.ok(OS.shell_open(youtube_url + time))
 				MENU_YOUTUBE_COPY_URL:
 					OS.clipboard = youtube_url
 				MENU_YOUTUBE_COPY_ID:

@@ -10,9 +10,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 focus_mode = 1
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Layouts" parent="." instance=ExtResource( 2 )]
 

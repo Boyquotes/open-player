@@ -66,8 +66,8 @@ func _notification(what: int) -> void:
 			_update_transform()
 
 func _update_style() -> void:
-	label.add_stylebox_override("normal", get_stylebox("hint"))
-	pointer.modulate = get_color("hint")
+	label.add_stylebox_override("normal", anchor.get_stylebox("hint"))
+	pointer.modulate = anchor.get_color("hint")
 
 func _update_transform() -> void:
 	label.text = text

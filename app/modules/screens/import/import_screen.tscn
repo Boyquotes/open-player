@@ -1,7 +1,7 @@
 [gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://app/themes/dark.tres" type="Theme" id=1]
-[ext_resource path="res://app/fonts/Font20.tres" type="DynamicFont" id=2]
+[ext_resource path="res://app/fonts/Font40.tres" type="DynamicFont" id=2]
 [ext_resource path="res://app/interface/dummy_container/dummy_container.gd" type="Script" id=3]
 [ext_resource path="res://app/modules/screens/import/import_screen.gd" type="Script" id=5]
 [ext_resource path="res://app/modules/screens/import/search_container.gd" type="Script" id=6]
@@ -15,7 +15,7 @@
 [ext_resource path="res://app/modules/playable_track_list/playable_track_list.tscn" type="PackedScene" id=14]
 [ext_resource path="res://app/interface/icon_button/icon_button.gd" type="Script" id=15]
 
-[sub_resource type="StyleBoxEmpty" id=8]
+[sub_resource type="StyleBoxEmpty" id=10]
 content_margin_left = 4.0
 content_margin_right = 4.0
 content_margin_top = 4.0
@@ -29,7 +29,7 @@ content_margin_bottom = 4.0
 
 [sub_resource type="StyleBoxEmpty" id=2]
 
-[sub_resource type="StyleBoxEmpty" id=10]
+[sub_resource type="StyleBoxEmpty" id=11]
 content_margin_left = 4.0
 content_margin_right = 4.0
 content_margin_top = 4.0
@@ -37,7 +37,7 @@ content_margin_bottom = 4.0
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
-[sub_resource type="StyleBoxEmpty" id=7]
+[sub_resource type="StyleBoxEmpty" id=12]
 
 [node name="ImportScreen" type="PanelContainer"]
 margin_right = 400.0
@@ -95,8 +95,6 @@ resizable = true
 mode = 3
 access = 2
 filters = PoolStringArray( "*.mp3 ; MP3 Audio", "*.ogg ; OGG Vorbis Audio" )
-current_dir = "/home/nathan/workspace/personal/open-player"
-current_path = "/home/nathan/workspace/personal/open-player/"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -124,9 +122,9 @@ margin_right = 8.0
 margin_bottom = 22.0
 mouse_default_cursor_shape = 2
 custom_constants/hseparation = 0
-custom_styles/hover = SubResource( 8 )
-custom_styles/pressed = SubResource( 8 )
-custom_styles/normal = SubResource( 8 )
+custom_styles/hover = SubResource( 10 )
+custom_styles/pressed = SubResource( 10 )
+custom_styles/normal = SubResource( 10 )
 icon = ExtResource( 8 )
 clip_text = true
 script = ExtResource( 15 )
@@ -150,6 +148,7 @@ custom_styles/panel = SubResource( 2 )
 [node name="TrackListView" parent="FilesContainer/PlayableTrackList/Contents" index="0"]
 margin_right = 386.0
 margin_bottom = 352.0
+playable = true
 
 [node name="Empty" parent="FilesContainer/PlayableTrackList/Contents" index="1"]
 margin_top = 169.0
@@ -191,9 +190,9 @@ margin_right = 8.0
 margin_bottom = 22.0
 mouse_default_cursor_shape = 2
 custom_constants/hseparation = 0
-custom_styles/hover = SubResource( 10 )
-custom_styles/pressed = SubResource( 10 )
-custom_styles/normal = SubResource( 10 )
+custom_styles/hover = SubResource( 11 )
+custom_styles/pressed = SubResource( 11 )
+custom_styles/normal = SubResource( 11 )
 icon = ExtResource( 8 )
 clip_text = true
 script = ExtResource( 15 )
@@ -217,7 +216,7 @@ margin_right = 386.0
 margin_bottom = 386.0
 mouse_filter = 1
 size_flags_vertical = 3
-custom_styles/panel = SubResource( 7 )
+custom_styles/panel = SubResource( 12 )
 script = ExtResource( 3 )
 
 [node name="TrackListView" parent="SearchContainer/VBoxContainer/Results" instance=ExtResource( 11 )]
@@ -225,6 +224,7 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 386.0
 margin_bottom = 342.0
+playable = true
 
 [node name="LoadingContainer" type="CenterContainer" parent="SearchContainer/VBoxContainer/Results"]
 margin_right = 386.0

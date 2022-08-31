@@ -3,6 +3,14 @@ class_name TrackSourceYouTube
 
 export var id: String
 
+var preview_url: String setget ,_get_preview_url
+func _get_preview_url() -> String:
+	return "https://img.youtube.com/vi/%s/sddefault.jpg" % id
+
+var image_url: String setget ,_get_image_url
+func _get_image_url() -> String:
+	return "https://img.youtube.com/vi/%s/maxresdefault.jpg" % id
+
 func _init(_id := ""):
 	id = _id
 

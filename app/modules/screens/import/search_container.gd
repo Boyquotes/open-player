@@ -47,6 +47,7 @@ func _search() -> void:
 	
 	var list := TrackList.new()
 	
+	# Prioritize artist channels.
 	for from_artist in [true, false]:
 		for result in results:
 			if result.from_artist == from_artist:

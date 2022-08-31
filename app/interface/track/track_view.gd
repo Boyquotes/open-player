@@ -5,6 +5,8 @@ signal selected
 signal removed
 
 onready var button: Button = $Button
+onready var icon_container := $MarginContainer/HBoxContainer/CropEdges
+onready var icon: TextureRect = $MarginContainer/HBoxContainer/CropEdges/Icon
 onready var info := $MarginContainer/HBoxContainer/Info
 onready var loading := info.get_node("Main/Loading")
 onready var title := info.get_node("Main/Title")
@@ -50,10 +52,17 @@ func _is_active() -> bool:
 
 func _update_track() -> void:
 	if entry != null:
+		var use_preview := not removable
+		var texture = entry.value.get_texture(use_preview)
+		if texture is GDScriptFunctionState:
+			texture = yield(texture, "completed")
+		icon.texture = texture
+		
 		title.text = entry.value.title
 		meta.text = "%s \u2022 %s" % [entry.value.author, Global.display_time(entry.value.duration)]
 		button.text = entry.value.get_text()
 	else:
+		icon.texture = null
 		title.text = ""
 		meta.text = ""
 		button.text = ""
@@ -94,6 +103,9 @@ func _ready() -> void:
 	Global.ok(connect("selected", self, "_on_selected"))
 	
 	update_active()
+
+func _process(_delta: float) -> void:
+	icon_container.rect_min_size.x = icon_container.rect_size.y
 
 func _exit_tree() -> void:
 	Global.profile.disconnect("theme_changed", self, "_update_style")

@@ -1,6 +1,6 @@
 extends DummyContainer
 
-onready var title := $VBoxContainer/Title
+onready var title := $VBoxContainer/HBoxContainer/Title
 onready var view := $VBoxContainer/FoldersView
 onready var empty := view.get_node("Empty")
 onready var current_container := $FolderContainer

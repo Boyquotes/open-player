@@ -136,6 +136,8 @@ _global_script_class_icons={
 
 config/name="OpenPlayer"
 run/main_scene="res://app/app.tscn"
+config/use_custom_user_dir=true
+config/custom_user_dir_name="open-player"
 run/low_processor_mode_sleep_usec=100000
 boot_splash/image="res://app/branding/logos/logo.png"
 boot_splash/fullsize=false
@@ -161,8 +163,10 @@ gdscript/warnings/unused_signal=false
 
 [display]
 
-window/size/width=1280
-window/size/height=720
+window/size/width=1440
+window/size/height=1440
+window/size/test_width=1600
+window/size/test_height=900
 window/dpi/allow_hidpi=true
 window/energy_saving/keep_screen_on=false
 window/handheld/orientation="sensor_portrait"
@@ -192,7 +196,7 @@ texture={
 "process/premult_alpha": false,
 "size_limit": 0,
 "stream": false,
-"svg/scale": 1.0
+"svg/scale": 2.0
 }
 
 [input]

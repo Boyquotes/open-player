@@ -11,16 +11,34 @@ anchor_bottom = 1.0
 mouse_filter = 1
 custom_styles/panel = SubResource( 1 )
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="OpenPlayer" type="TextureRect" parent="."]
 modulate = Color( 0, 0, 0, 1 )
-margin_left = 608.0
-margin_top = 328.0
-margin_right = 672.0
-margin_bottom = 392.0
+margin_left = 656.0
+margin_top = 656.0
+margin_right = 784.0
+margin_bottom = 784.0
 size_flags_horizontal = 4
 size_flags_vertical = 6
 texture = ExtResource( 2 )
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="."]
+margin_right = 1440.0
+margin_bottom = 1440.0
+
+[node name="CropEdges" type="Control" parent="AspectRatioContainer"]
+margin_right = 1440.0
+margin_bottom = 1440.0
+rect_clip_content = true
+
+[node name="TextureRect" type="TextureRect" parent="AspectRatioContainer/CropEdges"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -4.0
+margin_top = -4.0
+margin_right = 4.0
+margin_bottom = 4.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+expand = true
+stretch_mode = 7

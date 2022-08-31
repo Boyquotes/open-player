@@ -40,7 +40,7 @@ func _ready() -> void:
 		$"VBoxContainer/VibrateOnTouch".visible = true
 
 func _update_config() -> void:
-	$VBoxContainer/Animations/VBoxContainer/AnimationsEnabled.pressed = Global.profile.animations_enabled
+	$VBoxContainer/Animations/VBoxContainer/AnimationsEnabled/AnimationsEnabled.pressed = Global.profile.animations_enabled
 	$VBoxContainer/Animations/VBoxContainer/AnimationSpeed.visible = Global.profile.animations_enabled
 	$VBoxContainer/Animations/VBoxContainer/AnimationSpeed/HSlider.value = Global.profile.animation_speed
 	$VBoxContainer/DiscordRichPresence.visible = Global.has_meta("discord_rich_presence_available")
