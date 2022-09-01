@@ -17,31 +17,16 @@ jobs:
             executable: "openplayer"
           - name: Windows
             identifier: windows
-            runner: ubuntu-22.04
+            runner: ubuntu-20.04
             executable: "openplayer.exe"
           - name: Android
             identifier: android
-            runner: ubuntu-22.04
+            runner: ubuntu-20.04
             executable: "openplayer.apk"
 
     steps:
 
 ### INSTALL DEPENDENCIES ###
-
-      - name: (Bionic) Change package sources and install base dependencies
-        if: ${{ matrix.runner == 'ubuntu-18.04' }}
-        shell: sh
-        run: |
-          sudo rm -f /etc/apt/sources.list.d/*
-          sudo tee -a /etc/apt/sources.list << EOT
-          deb http://archive.ubuntu.com/ubuntu/ bionic main restricted universe multiverse
-          deb http://archive.ubuntu.com/ubuntu/ bionic-updates main restricted universe multiverse
-          deb http://archive.ubuntu.com/ubuntu/ bionic-security main restricted universe multiverse
-          deb http://archive.ubuntu.com/ubuntu/ bionic-backports main restricted universe multiverse
-          EOT
-          
-          sudo apt-get update
-          sudo apt-get install build-essential scons pkg-config libx11-dev libxcursor-dev libxinerama-dev libgl1-mesa-dev libglu-dev libasound2-dev libpulse-dev libudev-dev libxi-dev libxrandr-dev yasm
 
       - name: (Focal) Change package sources and install base dependencies
         if: ${{ matrix.runner == 'ubuntu-20.04' }}
