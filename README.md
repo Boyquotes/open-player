@@ -1,6 +1,6 @@
 [![GitHub release](https://img.shields.io/github/v/release/nathanfranke/open-player?include_prereleases&label=Download&sort=date&style=for-the-badge)](https://github.com/nathanfranke/open-player/releases)
 [![GitHub Repo stars](https://img.shields.io/github/stars/nathanfranke/open-player?style=for-the-badge)](https://github.com/nathanfranke/open-player)
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/nathanfranke/open-player/%F0%9F%9B%A0%EF%B8%8F%20Builds?style=for-the-badge)](https://github.com/nathanfranke/open-player/actions)
+[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/nathanfranke/open-player/build.yml?branch=main&style=for-the-badge)](https://github.com/nathanfranke/open-player/actions)
 
 # OpenPlayer - Music that doesn't waste your time.
 
